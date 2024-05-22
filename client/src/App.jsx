@@ -1,8 +1,8 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom';
-import NavBar from './components/NavBar'
+import NavBar from './components/Layout/NavBar';
 import HomeScreen from './screens/HomeScreen';
-import ProductCard from './components/ProductCard';
+import ProductScreen from './screens/ProductScreen';
 
 const App = () => {
   return (
@@ -10,7 +10,7 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomeScreen />} />
-        <Route path="/test" element={<ProductCard />} />
+        <Route path="/products" element={<ProductScreen />} />
       </Routes>
     </>
 

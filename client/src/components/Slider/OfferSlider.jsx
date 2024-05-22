@@ -5,9 +5,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import slide1 from '../../public/smart-watch1.png';
-import slide2 from '../../public/smart-watch2.png';
-import slide3 from '../../public/smart-watch3.png';
+// Images
+import slide1 from '/smart-watch1.png';
+import slide2 from '/smart-watch2.png';
+import slide3 from '/smart-watch3.png';
 
 const slides = [
     {
