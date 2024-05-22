@@ -1,48 +1,53 @@
-import React from 'react'
-import image from '../../public/smart-watch1.png'
+import React from 'react';
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
+
+    // Web Site For SVG : https://lineicons.com/free-icons/akar-icons
+
     return (
-        <div className='h-screen flex items-center justify-center'>
-
+        <>
             {/* ________ Card ________ */}
-            <div className='bg-white text-gray-700 w-64 min-h-[10rem] shadow-lg rounded-md overflow-hidden'>
+            <div className='bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:scale-105 ease-in-out delay-150 duration-500 hover:shadow-2xl'>
+                {/* <div className='bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition ease-in-out delay-150 duration-500 hover:shadow-2xl hover:shadow-indigo-500/50 cursor-pointer'> */}
                 {/* ________ Image ________  */}
                 <div className="flex justify-center items-center h-48">
-                    <img src={image}
+                    <img
+                        src={product.image}
                         // alt='product' className='w-full h-full object-cover'
-                        alt='product' className='h-48 object-cover'
+                        alt='product' className='h-48 object-cover hover:cursor-pointer'
                     />
                 </div>
 
                 {/* ________ Content ________ */}
                 <div className='p-5 flex flex-col gap-3'>
-                    {/* <div className='p-5 flex flex-col gap-3 h-64'> */}
 
                     {/* ________ Badge ________ */}
                     <div className='flex items-center justify-between gap-2'>
-                        <span className='px-3 py-1 rounded-full text-xs bg-blue-600 text-white drop-shadow-md' >New</span>
-                        <span className='px-3 py-1 rounded-full text-xs bg-gray-100 border drop-shadow-md' >Trending</span>
+                        <span className='px-3 py-1 rounded-full text-xs bg-blue-600 text-white drop-shadow-md' >
+                            {product.isNew ? 'New' : ''}
+                        </span>
+                        <span className='px-3 py-1 rounded-full text-xs bg-gray-100 border drop-shadow-md' >
+                            {product.isTrending ? 'Trending' : ''}
+                        </span>
                     </div>
 
                     {/* ________ Product title ________ */}
                     <h2 className='font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap'
-                        title='Best Headphones Ever'>
-                        Best Headphones Ever
+                        title={product.name}>
+                        {product.name}
                     </h2>
 
                     {/* ________ Product Price ________ */}
-                    {/* <div> */}
-                    <div className='flex items-center justify-between'>
+                    <div>
                         <span className='text-xl font-bold'>
-                            $149
+                            ${product.price}
                         </span>
                         <div className='flex items-center gap-2 mt-1'>
                             <span className='text-sm line-through opacity-50'>
-                                $199
+                                ${product.defaultPrice}
                             </span>
                             <span className='bg-green-400 px-1.5 py-0.5 rounded-md text-xs text-white'>
-                                save 20%
+                                save {product.save}%
                             </span>
                         </div>
                     </div>
@@ -86,10 +91,12 @@ const ProductCard = () => {
 
                     {/* ________ Product action button ________ */}
                     <div className='mt-4 flex gap-2'>
-                        <button className='bg-green-600/80 hover:bg-green-600/90 px-6 py-2 rounded-md text-white font-medium tracking-wider transition'>
-                            Add to cart
+                        {/* ___ Add To Cart Button ___ */}
+                        <button className='bg-[#000] hover:bg-[#fff] px-6 py-2 rounded-md text-white border hover:text-[#000] hover:border-black font-medium tracking-wider transition'>
+                            {product.buttonText}
                         </button>
-                        <button className='flex-grow flex justify-center it bg-gray-300/60 hover:bg-gray-300/80 transition rounded-md'>
+                        {/* ___ Wishlist Button ___ */}
+                        <button className='flex-grow flex justify-center items-center bg-gray-300/60 transition rounded-md hover:bg-white border hover:border-black'>
                             <svg width="32" height="32" viewBox="0 0 512 512" style={{ color: 'currentColor' }} xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
                                 <rect width="512" height="512" x="0" y="0" rx="30" fill="transparent" stroke="transparent" strokeWidth="0" strokeOpacity="100%" paintOrder="stroke"></rect>
                                 <svg width="256px" height="256px" viewBox="0 0 24 24" fill="currentColor" x="128" y="128" role="img" style={{ display: 'inline-block', verticalAlign: 'middle' }} xmlns="http://www.w3.org/2000/svg">
@@ -99,7 +106,8 @@ const ProductCard = () => {
                                 </svg>
                             </svg>
                         </button>
-                        {/* <button className='flex-grow flex justify-center bg-gray-300/60 hover:bg-gray-300/80 transition rounded-md'>
+                        {/* ___ Preview Button ___ */}
+                        <button className='flex-grow flex justify-center items-center bg-gray-300/60 transition rounded-md hover:bg-white border hover:border-black'>
                             <svg width="32" height="32" viewBox="0 0 512 512" style={{ color: 'currentColor' }} xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
                                 <rect width="512" height="512" x="0" y="0" rx="30" fill="transparent" stroke="transparent" strokeWidth="0" strokeOpacity="100%" paintOrder="stroke"></rect>
                                 <svg width="256px" height="256px" viewBox="0 0 24 24" fill="currentColor" x="128" y="128" role="img" style={{ display: 'inline-block', verticalAlign: 'middle' }} xmlns="http://www.w3.org/2000/svg">
@@ -111,16 +119,15 @@ const ProductCard = () => {
                                     </g>
                                 </svg>
                             </svg>
-                        </button> */}
-
+                        </button>
                     </div>
-
+                    {/* ________ End Product action button ________ */}
                 </div>
+                {/* ________ End Content ________ */}
             </div>
             {/* ________ End Card ________ */}
-
-        </div>
+        </>
     )
 }
 
-export default ProductCard
+export default ProductCard;
