@@ -98,7 +98,7 @@ const Products = () => {
     ]
 
     return (
-        <div className='container mx-auto my-4'>
+        <div className='container mx-auto my-10 border border-yellow-500'>
             {/* <div className="text-center p-10">
                 <h1 className="font-bold text-4xl mb-4">🔷 All Products</h1>
             </div> */}

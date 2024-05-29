@@ -35,7 +35,7 @@ const HeroSlider = () => {
     ]
 
     return (
-        <div className="h-[500px] bg-red-400"> {/* Adjust this height as needed */}
+        <div className="h-[520px] mb-10 border border-white"> {/* Adjust this height as needed */}
             <Swiper
                  modules={[
                     // Navigation, 

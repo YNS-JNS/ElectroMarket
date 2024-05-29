@@ -45,7 +45,7 @@ const FeaturedSlider = () => {
   ];
 
   return (
-    <>
+    <div className="border border-red-500 my-10">
       <div className='container mx-auto'>
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0">
           <h2 className="text-xl font-medium tracking-tight text-white">Trending Products</h2>
@@ -120,7 +120,7 @@ const FeaturedSlider = () => {
           })
         }
       </Swiper>
-    </>
+    </div>
 
   );
 };

@@ -27,7 +27,7 @@ const Categories = () => {
     ];
 
     return (
-        <div className='my-20 mx-2 h-[300px]'>
+        <div className='my-10 mx-2 h-[400px] border border-blue-500'>
             <h1 className="text-2xl font-bold text-center my-10">Discover Our Top Categories 🔥</h1>
             <Swiper
                 modules={[Navigation, Pagination, A11y]}
