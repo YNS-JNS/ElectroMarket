@@ -35,9 +35,9 @@ const HeroSlider = () => {
     ]
 
     return (
-        <>
+        <div className="h-[500px] bg-red-400"> {/* Adjust this height as needed */}
             <Swiper
-                modules={[
+                 modules={[
                     // Navigation, 
                     // Pagination, 
                     Scrollbar, A11y, Autoplay]}
@@ -53,9 +53,9 @@ const HeroSlider = () => {
                 {
                     productHeroSlider.map((slider, index) => (
                         <SwiperSlide key={index}>
-                            <div className="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden">
-                                <div className="container mx-auto px-6 flex justify-between relative py-16">
-                                    {/* Title Section  */}
+                            <div className="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden h-full">
+                                <div className="container mx-auto px-6 flex justify-between relative h-full py-8 px-2">
+                                    {/* Title Section */}
                                     <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
                                         <span className="w-20 h-2 bg-gray-800 dark:bg-white mb-12"></span>
                                         <h1 className="font-bebas-neue uppercase text-6xl font-black flex flex-col leading-none dark:text-white text-gray-800">
@@ -77,13 +77,10 @@ const HeroSlider = () => {
                                         </div>
                                     </div>
                                     {/* Image Section */}
-                                    <div className="hidden sm:block sm:w-1/3 lg:w-3/5 relative">
+                                    <div className="hidden sm:block sm:w-1/3 lg:w-3/5 relative h-full">
                                         <img
-                                            // src="https://www.tailwind-kit.com/images/object/10.png" 
                                             src={slider.image}
-                                            // loading="lazy"
-                                            className="max-w-xs md:max-w-sm m-auto"
-                                            // className="max-w-xs md:max-w-md lg:max-w-lg m-auto object-cover h-auto w-72"
+                                            className="max-w-xs md:max-w-sm m-auto h-full object-cover"
                                             alt="Product Image"
                                         />
                                     </div>
@@ -93,7 +90,7 @@ const HeroSlider = () => {
                     ))
                 }
             </Swiper>
-        </>
+        </div>
     );
 }
 

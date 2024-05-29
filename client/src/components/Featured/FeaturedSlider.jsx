@@ -48,8 +48,8 @@ const FeaturedSlider = () => {
     <>
       <div className='container mx-auto'>
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0">
-          <h2 className="text-1xl font-medium tracking-tight text-white">Trending Products</h2>
-          <Link to="/products" className="hidden text-1xl font-semibold text-blue-600 hover:text-cyan-500 sm:block">
+          <h2 className="text-xl font-medium tracking-tight text-white">Trending Products</h2>
+          <Link to="/products" className="hidden text-xl font-semibold text-blue-600 hover:text-cyan-500 sm:block">
             See more
             <span aria-hidden="true"> &rarr;</span>
           </Link>

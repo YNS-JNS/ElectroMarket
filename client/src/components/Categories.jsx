@@ -27,8 +27,8 @@ const Categories = () => {
     ];
 
     return (
-        <div className='my-10 mx-2'>
-            <h1 className="text-3xl font-bold text-center my-10">Discover Our Top Categories 🔥</h1>
+        <div className='my-20 mx-2 h-[300px]'>
+            <h1 className="text-2xl font-bold text-center my-10">Discover Our Top Categories 🔥</h1>
             <Swiper
                 modules={[Navigation, Pagination, A11y]}
                 spaceBetween={20}
