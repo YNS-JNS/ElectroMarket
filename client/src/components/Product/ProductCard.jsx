@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
     return (
         <>
             {/* ________ Card ________ */}
-            <div className='bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:scale-105 ease-in-out delay-150 duration-500 hover:shadow-2xl'>
+            <div className='bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:scale-105 ease-in-out delay-150 duration-500 hover:shadow-2xl cursor-pointer'>
                 {/* <div className='bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition ease-in-out delay-150 duration-500 hover:shadow-2xl hover:shadow-indigo-500/50 cursor-pointer'> */}
                 {/* ________ Image ________  */}
                 <div className="flex justify-center items-center h-48">
@@ -92,7 +92,10 @@ const ProductCard = ({ product }) => {
                     {/* ________ Product action button ________ */}
                     <div className='mt-4 flex gap-2'>
                         {/* ___ Add To Cart Button ___ */}
-                        <button className='bg-[#000] hover:bg-[#fff] px-6 py-2 rounded-md text-white border hover:text-[#000] hover:border-black font-medium tracking-wider transition'>
+                        <button 
+                        // className='bg-[#000] hover:bg-[#fff] px-6 py-2 rounded-md text-white border hover:text-[#000] hover:border-black font-medium tracking-wider transition'
+                        className='text-sm bg-indigo-600 hover:bg-indigo-500  px-6 py-2 rounded-md text-white font-medium tracking-wider transition'
+                        >
                             {product.buttonText}
                         </button>
                         {/* ___ Wishlist Button ___ */}

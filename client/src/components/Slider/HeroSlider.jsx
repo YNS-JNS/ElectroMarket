@@ -35,9 +35,9 @@ const HeroSlider = () => {
     ]
 
     return (
-        <>
+        <div className="h-[520px] mb-10 border border-white"> {/* Adjust this height as needed */}
             <Swiper
-                modules={[
+                 modules={[
                     // Navigation, 
                     // Pagination, 
                     Scrollbar, A11y, Autoplay]}
@@ -46,21 +46,21 @@ const HeroSlider = () => {
                 // navigation
                 // pagination={{ clickable: true }}
                 scrollbar={{ draggable: true }}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                // autoplay={{ delay: 3000, disableOnInteraction: false }}
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
             >
-
                 {
                     productHeroSlider.map((slider, index) => (
                         <SwiperSlide key={index}>
-                            <div className="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden">
-                                <div className="container mx-auto px-6 flex relative py-16">
+                            <div className="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden h-full">
+                                <div className="container mx-auto px-6 flex justify-between relative h-full py-8 px-2">
+                                    {/* Title Section */}
                                     <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
                                         <span className="w-20 h-2 bg-gray-800 dark:bg-white mb-12"></span>
-                                        <h1 className="font-bebas-neue uppercase text-6xl sm:text-8xl font-black flex flex-col leading-none dark:text-white text-gray-800">
+                                        <h1 className="font-bebas-neue uppercase text-6xl font-black flex flex-col leading-none dark:text-white text-gray-800">
                                             {slider.title}
-                                            <span className="text-5xl sm:text-7xl">
+                                            <span className="text-6xl">
                                                 {slider.subTitle}
                                             </span>
                                         </h1>
@@ -76,13 +76,11 @@ const HeroSlider = () => {
                                             </a>
                                         </div>
                                     </div>
-                                    <div className="hidden sm:block sm:w-1/3 lg:w-3/5 relative">
+                                    {/* Image Section */}
+                                    <div className="hidden sm:block sm:w-1/3 lg:w-3/5 relative h-full">
                                         <img
-                                            // src="https://www.tailwind-kit.com/images/object/10.png" 
                                             src={slider.image}
-                                            // loading="lazy"
-                                            className="max-w-xs md:max-w-sm m-auto"
-                                            // className="max-w-xs md:max-w-md lg:max-w-lg m-auto object-cover h-96 w-96"
+                                            className="max-w-xs md:max-w-sm m-auto h-full object-cover"
                                             alt="Product Image"
                                         />
                                     </div>
@@ -92,7 +90,7 @@ const HeroSlider = () => {
                     ))
                 }
             </Swiper>
-        </>
+        </div>
     );
 }
 
