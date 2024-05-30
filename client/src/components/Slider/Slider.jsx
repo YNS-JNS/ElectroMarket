@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
 import { Navigation, Pagination, Scrollbar,A11y, Autoplay, EffectCube } from 'swiper/modules';
 
