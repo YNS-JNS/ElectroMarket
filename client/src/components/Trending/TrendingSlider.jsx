@@ -41,11 +41,11 @@ const TrendingSlider = () => {
                     clickable: true,
                 }}
                 modules={[FreeMode, Pagination]}
-                className="max-w-[90%] lg:max-w-[80%]"
+                className="h-[600px] w6[300px]"
             >
                 {products.map((product) => (
                     <SwiperSlide key={product.id}>
-                        <div className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[250px] w-[215px] lg:h-[400px] lg:w-[350px] overflow-hidden cursor-pointer">
+                        <div className="flex flex-col gap-6 mb-20 group relative shadow-lg text-white rounded-xl px-6 py-8 h-[250px] w-[215px] overflow-hidden cursor-pointer">
                             <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${product.image})` }} />
                             <div className="absolute inset-0 bg-black opacity-10 group-hover:opacity-50" />
                             <div className="relative flex flex-col gap-3">

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const CardSlider = ({product}) => {
+const CardSlider = ({ product }) => {
 
-    const {name, image, newPrice, oldPrice} = product;
+    const { name, image, newPrice, oldPrice } = product;
 
     return (
         <>
@@ -40,23 +40,23 @@ const CardSlider = ({product}) => {
                     {/* ________ Product title ________ */}
                     <h2 className='font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap text-white'
                         title="Smart Watch Oraimo">
-                       {name}
+                        {name}
                     </h2>
                     {/* ________ End Product title ________ */}
 
                     {/* ________ Product Price ________ */}
                     <div className='flex items-center justify-between'>
-                        <span className='text-xl font-bold text-white'>
-                            ${newPrice}
-                        </span>
                         <div className='flex items-center gap-2 mt-1'>
+                            <span className='text-xl font-bold text-white'>
+                                ${newPrice}
+                            </span>
                             <span className='text-slate-400 text-sm line-through opacity-50'>
                                 ${oldPrice}
                             </span>
-                            <span className='bg-green-400 px-1.5 py-0.5 rounded-md text-xs text-white'>
-                                save {newPrice - oldPrice}%
-                            </span>
                         </div>
+                        <span className='bg-green-400 px-1.5 py-0.5 rounded-md text-xs text-white'>
+                            save {newPrice - oldPrice}%
+                        </span>
                     </div>
                     {/* ________ End Product Price ________ */}
 

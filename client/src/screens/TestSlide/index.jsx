@@ -1,14 +1,16 @@
 import React from 'react';
-// import ProductSlider from '../../components/Test/ProductSlider';
+import ProductCarousel from '../../components/Test/ProductCarousel';
 // import TrendingSlider from '../../components/Trending/TrendingSlider'
-import Carousel from '../../components/Carousel/Carousel'
+// import ProductSlider from '../../components/Test/ProductSlider';
+// import Carousel from '../../components/Carousel/Carousel'
 
 const TestSlide = () => {
   return (
-    <div className='h-screen flex items-center justify-center px-4 py-10'>
+    <div className='h-screen flex items-center justify-center py-10'>
       {/* <TrendingSlider /> */}
       {/* <ProductSlider /> */}
-      <Carousel/>
+      {/* <Carousel/> */}
+      <ProductCarousel />
     </div>
   )
 }
