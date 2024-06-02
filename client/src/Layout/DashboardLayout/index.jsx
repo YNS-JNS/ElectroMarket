@@ -1,6 +1,6 @@
 // DashboardScreen.jsx
 import React from 'react'
-import SideBar from '../../components/Dashboard/SideBar'
+import SideBar from '../../components/Dashboard/SideBar/SideBar'
 import { Outlet } from 'react-router-dom'
 import Header from '../../components/Dashboard/Header'
 
