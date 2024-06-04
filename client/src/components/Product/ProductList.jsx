@@ -4,7 +4,7 @@ import image1 from '/smart-watch1.png';
 import image2 from '/smart-watch2.png';
 import { Link } from 'react-router-dom';
 
-const Products = () => {
+const ProductList = () => {
 
     const products = [
         {
@@ -123,4 +123,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default ProductList;

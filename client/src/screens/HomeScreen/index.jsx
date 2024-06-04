@@ -1,7 +1,7 @@
 import React from 'react'
 import Categories from '../../components/Categories';
 import HeroSlider from '../../components/Slider/HeroSlider';
-import Products from '../../components/Product/Products';
+import Products from '../../components/Product/ProductList';
 import FeaturedSlider from '../../components/Featured/FeaturedSlider';
 import { Link } from 'react-router-dom';
 import OfferSlider from '../../components/Slider/OfferSlider';
