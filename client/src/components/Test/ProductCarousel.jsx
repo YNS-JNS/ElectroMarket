@@ -116,7 +116,7 @@ const ProductCarousel = () => {
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
                     autoplay={{
-                        delay: 3500,
+                        delay: 1500,
                         disableOnInteraction: false,
                       }}
                     className='container mx-auto my-10 px-6 py-10 border border-yellow-500 h-[550px] w-full flex items-center justify-center'

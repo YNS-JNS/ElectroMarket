@@ -3,7 +3,7 @@ import ProductCard from '../../components/Product/ProductCard'
 import image1 from '../../../public/smart-watch1.png';
 import image2 from '../../../public/smart-watch2.png';
 
-const ProductScreen = () => {
+const ProductListScreen = () => {
 
     const products = [
         {
@@ -151,4 +151,4 @@ const ProductScreen = () => {
     )
 }
 
-export default ProductScreen
+export default ProductListScreen
