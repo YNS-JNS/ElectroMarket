@@ -8,7 +8,7 @@ import 'swiper/css/scrollbar';
 import { EffectCoverflow, Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
 
 
-const Carousel = () => {
+const DemoCarousel = () => {
 
     const slides = [
         {
@@ -98,4 +98,4 @@ const Carousel = () => {
     );
 };
 
-export default Carousel;
+export default DemoCarousel;

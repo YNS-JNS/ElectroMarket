@@ -1,6 +1,6 @@
 // SliderTest.jsx
 import React from 'react';
-import CardSlider from './CardSlider';
+import CardDemo from './CardDemo';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Pagination, Navigation, A11y, Autoplay } from 'swiper/modules';
 // Import Swiper styles
@@ -9,19 +9,19 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-// Import sliderStyle Styles
-import './sliderStyle.css';
+// Import slider Styles
+import './style.css';
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 // Import images
-import slide_image_1 from '../../assets/images/img_electro1.png';
-import slide_image_2 from '../../assets/images/img_electro2.png';
-import slide_image_3 from '../../assets/images/img_electro3.png';
-import slide_image_4 from '../../assets/images/img_electro4.png';
-import slide_image_5 from '../../assets/images/img_electro5.png';
-import slide_image_6 from '../../assets/images/img_electro6.png';
-import slide_image_7 from '../../assets/images/img_electro7.png';
+import slide_image_1 from '../../../assets/images/img_electro1.png';
+import slide_image_2 from '../../../assets/images/img_electro2.png';
+import slide_image_3 from '../../../assets/images/img_electro3.png';
+import slide_image_4 from '../../../assets/images/img_electro4.png';
+import slide_image_5 from '../../../assets/images/img_electro5.png';
+import slide_image_6 from '../../../assets/images/img_electro6.png';
+import slide_image_7 from '../../../assets/images/img_electro7.png';
 
-function ProductSlider() {
+function Demo2() {
     return (
         <div className="container_slider">
             <h1 className="heading">Demo Slider</h1>
@@ -53,7 +53,7 @@ function ProductSlider() {
             >
                 {[slide_image_1, slide_image_2, slide_image_3, slide_image_4, slide_image_5, slide_image_6, slide_image_7].map((image, index) => (
                     <SwiperSlide key={index}>
-                        <CardSlider image={image} name={`Flower ${index + 1}`} newPrice="1000" oldPrice="1200" />
+                        <CardDemo image={image} name={`Flower ${index + 1}`} newPrice="1000" oldPrice="1200" />
                     </SwiperSlide>
                 ))}
 
@@ -74,4 +74,4 @@ function ProductSlider() {
     );
 }
 
-export default ProductSlider;
+export default Demo2;

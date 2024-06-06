@@ -1,23 +1,27 @@
 import React from "react";
+// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper modules
 import { EffectCoverflow, Pagination, A11y, Autoplay } from "swiper/modules";
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
-import "./FeaturedSlider.css";
+// Packages:
 import { Link } from "react-router-dom";
-import img1 from '/img_electro1.png'
-import img2 from '/img_electro2.png'
-import img3 from '/img_electro3.png'
-import img4 from '/img_electro4.png'
-import img5 from '/img_electro5.png'
-import img6 from '/img_electro6.png'
-import img7 from '/img_electro7.png'
+// Styles:
+import "./style.css";
+// Images
+import img1 from '/img_electro1.png';
+import img2 from '/img_electro2.png';
+import img3 from '/img_electro3.png';
+import img4 from '/img_electro4.png';
+import img5 from '/img_electro5.png';
+import img6 from '/img_electro6.png';
+import img7 from '/img_electro7.png';
 
-const FeaturedSlider = () => {
+const TrendingProductSlider = () => {
 
   const products = [
     {
@@ -125,4 +129,4 @@ const FeaturedSlider = () => {
   );
 };
 
-export default FeaturedSlider;
+export default TrendingProductSlider;

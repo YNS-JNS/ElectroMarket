@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardSlider = ({ product }) => {
+const LatestProductCard = ({ product }) => {
 
     const { name, image, newPrice, oldPrice } = product;
 
@@ -80,4 +80,4 @@ const CardSlider = ({ product }) => {
     )
 }
 
-export default CardSlider;
+export default LatestProductCard;

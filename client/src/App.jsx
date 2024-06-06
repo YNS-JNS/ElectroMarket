@@ -6,7 +6,6 @@ import DashboardLayout from './Layout/DashboardLayout';
 import HomeScreen from './screens/HomeScreen';
 import DashboardScreen from './screens/Admin/DashboardScreen';
 import ProductListScreen from './screens/ProductListScreen';
-import TestSlide from './screens/TestSlide';
 import ProfileScreen from './screens/ProfileScreen';
 import ProductScreen from './screens/Admin/ProductScreen';
 import OrderScreen from './screens/Admin/OrderScreen';
@@ -14,6 +13,8 @@ import CustomerScreen from './screens/Admin/CustomerScreen';
 import TransactionScreen from './screens/Admin/TransactionScreen';
 import MessageScreen from './screens/Admin/MessageScreen';
 import ProductDetailsScreen from './screens/ProductDetailsScreen';
+import DemoSliderScreen from './screens/DemoSliderScreen';
+
 // Importing Components:
 import NavBar from './components/NavBar/NavBar';
 // Importing Dashboard Components:
@@ -31,11 +32,12 @@ const App = () => {
     <>
       {/* if hideNavBar is true, hide the nav bar */}
       {!hideNavBar && <NavBar />}
+      
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/products" element={<ProductListScreen />} />
         <Route path="/products/:id" element={<ProductDetailsScreen />} />
-        <Route path="/slide" element={<TestSlide />} />
+        <Route path="/demo-slider" element={<DemoSliderScreen />} />
 
         {/* Nested routes for dashboard */}
         <Route path="/dashboard" element={<DashboardLayout />} >

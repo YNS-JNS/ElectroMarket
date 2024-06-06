@@ -1,3 +1,4 @@
+// CategorySlider.jsx
 import React from 'react';
 // Import Swiper core and required modules
 import { Navigation, Pagination, A11y } from 'swiper/modules';
@@ -15,8 +16,12 @@ import slide3 from '/smart-watch3.png';
 import laptop from '/laptop.png';
 import electro from '/electro.png';
 import gaming from '/gaming.png';
+// Components
+import CategoryCard from './CategoryCard';
+// Custom CSS for navigation buttons
+import './style.css';
 
-const Categories = () => {
+const CategorySlider = () => {
     const categories = [
         { image: slide1, title: 'Smart Watches' },
         { image: laptop, title: 'Laptops' },
@@ -27,7 +32,7 @@ const Categories = () => {
     ];
 
     return (
-        <div className='my-10 mx-2 h-[400px] border border-blue-500'>
+        <div className='my-10 mx-2 h-[25rem] border border-blue-500'>
             <h1 className="text-2xl font-bold text-center my-10">Discover Our Top Categories 🔥</h1>
             <Swiper
                 modules={[Navigation, Pagination, A11y]}
@@ -37,18 +42,18 @@ const Categories = () => {
                 pagination={{ clickable: true }}
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
+                className="category-swiper"
             >
-                {categories.map((category, index) => (
-                    <SwiperSlide key={index}>
-                        <div className="flex flex-col items-center justify-center p-4 dark:bg-gray-800 rounded-lg shadow-lg">
-                            <img src={category.image} alt={category.title} className="w-32 h-32 object-cover mb-4 rounded-md" />
-                            <h2 className="text-xl font-bold text-center">{category.title}</h2>
-                        </div>
-                    </SwiperSlide>
-                ))}
+                {
+                    categories.map((category, index) => (
+                        <SwiperSlide key={index}>
+                            <CategoryCard category={category} />
+                        </SwiperSlide>
+                    ))
+                }
             </Swiper>
         </div>
     );
 }
 
-export default Categories;
+export default CategorySlider;
