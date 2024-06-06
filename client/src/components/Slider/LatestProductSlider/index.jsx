@@ -1,3 +1,4 @@
+// LatestProductSlider.jsx
 import React from 'react';
 // Import Swiper core and required modules
 import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
@@ -16,11 +17,12 @@ import img4 from '/img_electro4.png'
 import img5 from '/img_electro5.png'
 import img6 from '/img_electro6.png'
 import img7 from '/img_electro7.png'
-// import CardCarousel from './CardCarousel';
-// import ProductCard from '../Product/ProductCard';
-import CardSlider from '../Trending/CardSlider';
+// Components:
+import LatestProductCard from './LatestProductCard';
+// Style:
+import './style.css'
 
-const ProductCarousel = () => {
+const LatestProductSlider = () => {
 
     const products = [
         {
@@ -119,12 +121,11 @@ const ProductCarousel = () => {
                         delay: 1500,
                         disableOnInteraction: false,
                       }}
-                    className='container mx-auto my-10 px-6 py-10 border border-yellow-500 h-[550px] w-full flex items-center justify-center'
+                    className='latest-product-slider container mx-auto my-10 px-6 py-10 border border-yellow-500 h-[550px] w-full flex items-center justify-center'
                 >
-                    {/* {categories.map((category, index) => ( */}
                     {products.map((product, index) => (
                         <SwiperSlide key={index} className='border border-red-600'>
-                            <CardSlider product={product} />
+                            <LatestProductCard product={product} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
@@ -133,4 +134,4 @@ const ProductCarousel = () => {
     );
 }
 
-export default ProductCarousel;
+export default LatestProductSlider;

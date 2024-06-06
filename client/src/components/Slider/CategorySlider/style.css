@@ -1,0 +1,14 @@
+/* CategorySlider.css */
+.category-swiper .swiper-button-prev,
+.category-swiper .swiper-button-next {
+    top: 30%;
+    transform: translateY(-50%);
+}
+
+.category-swiper .swiper-button-prev {
+    left: 10px; /* Adjust as needed */
+}
+
+.category-swiper .swiper-button-next {
+    right: 10px; /* Adjust as needed */
+}
