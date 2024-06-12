@@ -32,21 +32,58 @@ const CategorySlider = () => {
     ];
 
     return (
-        <div className='my-10 mx-2 h-[25rem] border border-blue-500'>
-            <h1 className="text-2xl font-bold text-center my-10">Discover Our Top Categories 🔥</h1>
+        <div className='container mx-auto my-10 flex flex-col items-center justify-center h-[25rem] border border-blue-500'>
+
+            {/* Title and Link */}
+            <div className='w-full flex items-center justify-start px-2 border border-blue-500'>
+                <h2 className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium tracking-tight text-white" >
+                    All categories
+                </h2>
+            </div>
+
+            {/* Slider */}
             <Swiper
                 modules={[Navigation, Pagination, A11y]}
                 spaceBetween={20}
                 slidesPerView={5}
                 navigation
                 pagination={{ clickable: true }}
+                breakpoints={
+                    {
+                        // When window width is >= 300px
+                        300: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                        },
+                        // When window width is >= 640px
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                        },
+                        // When window width is >= 768px
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 15,
+                        },
+                        // When window width is >= 1024px
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 20,
+                        },
+                        // when window width is >= 1280px
+                        1280: {
+                            slidesPerView: 5,
+                            spaceBetween: 25,
+                        },
+                    }
+                }
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
-                className="category-swiper"
+                className="category-swiper my-10 px-6 py-10 border border-yellow-500 h-[280px] w-full flex items-center justify-center"
             >
                 {
                     categories.map((category, index) => (
-                        <SwiperSlide key={index}>
+                        <SwiperSlide key={index} className='border border-blue-600'>
                             <CategoryCard category={category} />
                         </SwiperSlide>
                     ))

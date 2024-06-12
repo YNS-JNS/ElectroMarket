@@ -8,13 +8,13 @@ const HomeScreen = () => {
 
     return (
         <>
-            {/* Hero Section  */}
+            {/* Hero Section Slider */}
             <HeroSlider />
 
-            {/* Categories Section */}
+            {/* Categories Section Carousel */}
             <CategorySlider />
 
-            {/* Featured Products Section Carousel */}
+            {/* Latest Products Section Carousel */}
             <LatestProductSlider />
 
             {/* All Products Section */}
