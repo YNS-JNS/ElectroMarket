@@ -110,7 +110,7 @@ const ProductList = () => {
             {/* Title and Link */}
             <div className='w-full flex flex-row items-center justify-between px-2 border border-blue-500'>
                 <h2 className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium tracking-tight text-white" >
-                    All Products
+                    Recommended Products
                 </h2>
 
                 <Link to="/products" className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium text-blue-600 hover:text-cyan-500 sm:block" >
