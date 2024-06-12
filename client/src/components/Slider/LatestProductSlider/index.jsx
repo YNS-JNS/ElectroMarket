@@ -1,26 +1,28 @@
-// LatestProductSlider.jsx
+// LatestProductSlider.jsx:
 import React from 'react';
-// Import Swiper core and required modules
+// Import Swiper core and required modules:
 import { Navigation, Pagination, A11y, Autoplay } from 'swiper/modules';
-// Import Swiper React components
+// Import Swiper React components:
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
+// Import Swiper styles:
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-// Images
-import img1 from '/img_electro1.png'
-import img2 from '/img_electro2.png'
-import img3 from '/img_electro3.png'
-import img4 from '/img_electro4.png'
-import img5 from '/img_electro5.png'
-import img6 from '/img_electro6.png'
-import img7 from '/img_electro7.png'
+// Images:
+import img1 from '/img_electro1.png';
+import img2 from '/img_electro2.png';
+import img3 from '/img_electro3.png';
+import img4 from '/img_electro4.png';
+import img5 from '/img_electro5.png';
+import img6 from '/img_electro6.png';
+import img7 from '/img_electro7.png';
 // Components:
 import LatestProductCard from './LatestProductCard';
 // Style:
 import './style.css'
+// Package
+import { Link } from 'react-router-dom';
 
 const LatestProductSlider = () => {
 
@@ -105,31 +107,77 @@ const LatestProductSlider = () => {
     ]
 
     return (
-        <div className='my-10 mx-2 h-screen w-full border border-blue-500 flex items-center justify-center'>
-            <div>
-                <h1 className="text-2xl font-bold text-center my-10">Demo Carousel</h1>
-                <Swiper
-                    modules={[Navigation, Pagination, A11y, Autoplay]}
-                    loop={true}
-                    spaceBetween={20}
-                    slidesPerView={4}
-                    navigation
-                    pagination={{ clickable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
-                    autoplay={{
-                        delay: 1500,
-                        disableOnInteraction: false,
-                      }}
-                    className='latest-product-slider container mx-auto my-10 px-6 py-10 border border-yellow-500 h-[550px] w-full flex items-center justify-center'
-                >
-                    {products.map((product, index) => (
-                        <SwiperSlide key={index} className='border border-red-600'>
-                            <LatestProductCard product={product} />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+        <div className='container mx-auto my-10 flex flex-col items-center justify-center border border-blue-500'>
+
+            {/* Title and Link */}
+            <div className='w-full flex flex-row items-center justify-between px-2 border border-blue-500'>
+                <h2 className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium tracking-tight text-white" >
+                    Latest Products
+                </h2>
+
+                <Link to="/products" className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium text-blue-600 hover:text-cyan-500 sm:block" >
+                    See more
+                    <span aria-hidden="true"> &rarr;</span>
+                </Link>
             </div>
+
+            {/* Slider */}
+            <Swiper
+                modules={[Navigation, Pagination, A11y, Autoplay]}
+                loop={true}
+                spaceBetween={20}
+                slidesPerView={5}
+                navigation
+                centeredSlides={true}
+                pagination={{ clickable: true }}
+                breakpoints={
+                    {
+                        // When window width is >= 300px
+                        300: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
+                            // centeredSlides:{true}
+                        },
+                        // When window width is >= 640px
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                        },
+                        // When window width is >= 768px
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 15,
+                        },
+                        // When window width is >= 1024px
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 20,
+                        },
+                        // when window width is >= 1280px
+                        1280: {
+                            slidesPerView: 4,
+                            spaceBetween: 25,
+                        },
+                    }
+                }
+                onSwiper={(swiper) => console.log(swiper)}
+                onSlideChange={() => console.log('slide change')}
+                autoplay={{
+                    delay: 1500,
+                    disableOnInteraction: false,
+                }}
+                className='latest-product-slider my-10 px-6 py-10 border border-yellow-500 h-[500px] w-full flex items-center justify-center'
+            >
+                {products.map((product, index) => (
+                    <SwiperSlide key={index}
+                        // to center the 'LatestProductCard' horizontally and vertically
+                        className='w-full border border-blue-600 flex items-center justify-center'
+                    >
+                        <LatestProductCard product={product} />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+
         </div>
     );
 }

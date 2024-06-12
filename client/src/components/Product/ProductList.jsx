@@ -1,7 +1,15 @@
 import React from 'react';
 import ProductCard from './ProductCard';
-import image1 from '/smart-watch1.png';
-import image2 from '/smart-watch2.png';
+
+// Images:
+import img1 from '../../assets/images/img_electro1.png';
+import img2 from '../../assets/images/img_electro2.png';
+import img3 from '../../assets/images/img_electro3.png';
+import img4 from '../../assets/images/img_electro4.png';
+import img5 from '../../assets/images/img_electro5.png';
+import img6 from '../../assets/images/img_electro6.png';
+import img7 from '../../assets/images/img_electro7.png';
+
 import { Link } from 'react-router-dom';
 
 const ProductList = () => {
@@ -13,7 +21,7 @@ const ProductList = () => {
             defaultPrice: 100,
             price: 49,
             save: 50,
-            image: image1,
+            image: img1,
             isNew: true,
             isTrending: true,
             buttonText: 'Add To Cart',
@@ -24,7 +32,7 @@ const ProductList = () => {
             defaultPrice: 100,
             price: 80,
             save: 20,
-            image: image2,
+            image: img2,
             isNew: true,
             isTrending: true,
             buttonText: 'Add To Cart',
@@ -35,7 +43,7 @@ const ProductList = () => {
             defaultPrice: 100,
             price: 80,
             save: 20,
-            image: image1,
+            image: img3,
             isNew: true,
             isTrending: true,
             buttonText: 'Add To Cart',
@@ -46,7 +54,7 @@ const ProductList = () => {
             defaultPrice: 100,
             price: 80,
             save: 20,
-            image: image2,
+            image: img4,
             isNew: true,
             isTrending: true,
             buttonText: 'Add To Cart',
@@ -57,7 +65,7 @@ const ProductList = () => {
             defaultPrice: 100,
             price: 49,
             save: 50,
-            image: image1,
+            image: img5,
             isNew: true,
             isTrending: true,
             buttonText: 'Add To Cart',
@@ -68,7 +76,7 @@ const ProductList = () => {
             defaultPrice: 100,
             price: 80,
             save: 20,
-            image: image2,
+            image: img6,
             isNew: true,
             isTrending: true,
             buttonText: 'Add To Cart',
@@ -79,7 +87,7 @@ const ProductList = () => {
             defaultPrice: 100,
             price: 80,
             save: 20,
-            image: image1,
+            image: img7,
             isNew: true,
             isTrending: true,
             buttonText: 'Add To Cart',
@@ -90,7 +98,7 @@ const ProductList = () => {
             defaultPrice: 100,
             price: 80,
             save: 20,
-            image: image2,
+            image: img1,
             isNew: true,
             isTrending: true,
             buttonText: 'Add To Cart',
@@ -99,12 +107,13 @@ const ProductList = () => {
 
     return (
         <div className='container mx-auto my-10 border border-yellow-500'>
-            {/* <div className="text-center p-10">
-                <h1 className="font-bold text-4xl mb-4">🔷 All Products</h1>
-            </div> */}
-            <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0">
-                <h2 className="text-xl font-medium tracking-tight text-white">All Products</h2>
-                <Link to="/products" className="hidden text-xl font-semibold text-blue-600 hover:text-cyan-500 sm:block">
+            {/* Title and Link */}
+            <div className='w-full flex flex-row items-center justify-between px-2 border border-blue-500'>
+                <h2 className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium tracking-tight text-white" >
+                    All Products
+                </h2>
+
+                <Link to="/products" className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium text-blue-600 hover:text-cyan-500 sm:block" >
                     See more
                     <span aria-hidden="true"> &rarr;</span>
                 </Link>
@@ -112,8 +121,7 @@ const ProductList = () => {
 
             {/* Grid Section */}
             <section
-                // className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-8 mt-10 mb-5"
-                className="mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-8 mt-10 mb-5"
+                className="mx-auto my-10 grid grid-cols-1 gap-y-10 gap-x-5 justify-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             >
                 {products.map((product) => (
                     <ProductCard key={product.id} product={product} />

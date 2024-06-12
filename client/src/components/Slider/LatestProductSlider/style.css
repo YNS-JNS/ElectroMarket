@@ -3,7 +3,7 @@
 /* Center the pagination at the bottom middle */
 .latest-product-slider .swiper-pagination {
     position: absolute;
-    bottom: 10px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     width: auto;
@@ -28,7 +28,7 @@
 }
 
 .latest-product-slider .swiper-pagination-bullet-active {
-    background-color: #ff0000; /* Active bullet color */
+    background-color: #06b6d4; /* Active bullet color */
 }
 
 .latest-product-slider .swiper-button-prev,
