@@ -1,5 +1,6 @@
 import React from 'react';
-
+// Import style:
+import './style.css';
 const ProductCard = ({ product }) => {
 
     // Web Site For SVG : https://lineicons.com/free-icons/akar-icons
@@ -7,38 +8,48 @@ const ProductCard = ({ product }) => {
     return (
         <>
             {/* ________ Card ________ */}
-            <div className='bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:scale-105 ease-in-out delay-150 duration-500 hover:shadow-2xl'>
-                {/* <div className='bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition ease-in-out delay-150 duration-500 hover:shadow-2xl hover:shadow-indigo-500/50 cursor-pointer'> */}
+            <div
+                className='product_card bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:shadow-2xl cursor-pointer'
+            >
                 {/* ________ Image ________  */}
-                <div className="flex justify-center items-center h-48">
+                <div
+                    className="flex items-center justify-center p-2"
+                >
                     <img
                         src={product.image}
-                        // alt='product' className='w-full h-full object-cover'
-                        alt='product' className='h-48 object-cover hover:cursor-pointer'
+                        alt='product' className='product_image w-full h-full object-contain max-w-48 max-h-48'
                     />
                 </div>
 
                 {/* ________ Content ________ */}
-                <div className='p-5 flex flex-col gap-3'>
+                <div className='p-4 sm:p-5 md:p-6 flex flex-col gap-3'>
 
                     {/* ________ Badge ________ */}
                     <div className='flex items-center justify-between gap-2'>
-                        <span className='px-3 py-1 rounded-full text-xs bg-blue-600 text-white drop-shadow-md' >
+                        <span
+                            className='px-3 py-1 rounded-full text-xs bg-blue-600 text-white drop-shadow-md'
+                        // className='px-2 py-1 rounded-full text-xs sm:text-sm md:text-base bg-blue-600 text-white' 
+                        >
                             {product.isNew ? 'New' : ''}
                         </span>
-                        <span className='px-3 py-1 rounded-full text-xs bg-gray-100 border drop-shadow-md' >
+                        <span
+                            className='px-3 py-1 rounded-full text-xs bg-gray-100 border drop-shadow-md'
+                        // className='px-2 py-1 rounded-full text-xs sm:text-sm md:text-base bg-gray-100 border'
+                        >
                             {product.isTrending ? 'Trending' : ''}
                         </span>
                     </div>
 
                     {/* ________ Product title ________ */}
-                    <h2 className='font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap'
-                        title={product.name}>
+                    <h2
+                        className='font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap'
+                        title={product.name}
+                    >
                         {product.name}
                     </h2>
 
                     {/* ________ Product Price ________ */}
-                    <div>
+                    <div className='flex items-center justify-between'>
                         <span className='text-xl font-bold'>
                             ${product.price}
                         </span>
@@ -92,11 +103,16 @@ const ProductCard = ({ product }) => {
                     {/* ________ Product action button ________ */}
                     <div className='mt-4 flex gap-2'>
                         {/* ___ Add To Cart Button ___ */}
-                        <button className='bg-[#000] hover:bg-[#fff] px-6 py-2 rounded-md text-white border hover:text-[#000] hover:border-black font-medium tracking-wider transition'>
+                        <button
+                            // className='text-sm bg-gray-300/60 hover:bg-white border hover:border-black px-6 py-2 rounded-md font-medium tracking-wider transition'
+                            className='text-xs sm:text-sm md:text-base bg-gray-300/60 hover:bg-white border hover:border-black px-4 sm:px-6 py-2 rounded-md font-medium transition'
+                        >
                             {product.buttonText}
                         </button>
                         {/* ___ Wishlist Button ___ */}
-                        <button className='flex-grow flex justify-center items-center bg-gray-300/60 transition rounded-md hover:bg-white border hover:border-black'>
+                        <button
+                            className='flex-grow flex justify-center items-center bg-gray-300/60 transition rounded-md hover:bg-white border hover:border-black'
+                        >
                             <svg width="32" height="32" viewBox="0 0 512 512" style={{ color: 'currentColor' }} xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
                                 <rect width="512" height="512" x="0" y="0" rx="30" fill="transparent" stroke="transparent" strokeWidth="0" strokeOpacity="100%" paintOrder="stroke"></rect>
                                 <svg width="256px" height="256px" viewBox="0 0 24 24" fill="currentColor" x="128" y="128" role="img" style={{ display: 'inline-block', verticalAlign: 'middle' }} xmlns="http://www.w3.org/2000/svg">
