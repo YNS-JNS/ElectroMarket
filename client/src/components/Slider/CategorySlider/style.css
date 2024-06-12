@@ -1,0 +1,56 @@
+/* .category-swiper{
+    background-color: #06b6d4;
+    height: 250px;
+} */
+
+/* Center the pagination at the bottom middle  */
+.category-swiper .swiper-pagination {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+/* Center the navigation buttons vertically */
+.category-swiper .swiper-button-prev,
+.category-swiper .swiper-button-next {
+    top: 55%;
+    transform: translateY(-50%);
+}
+
+/* Center the navigation buttons vertically */
+.category-swiper .swiper-button-prev,
+.category-swiper .swiper-button-next {
+    color: #000;
+}
+
+.category-swiper .swiper-pagination-bullet {
+    background-color: #000;
+}
+
+.category-swiper .swiper-pagination-bullet-active {
+    background-color: #06b6d4;
+    /* Active bullet color */
+}
+
+
+.category-swiper .swiper-button-prev,
+.category-swiper .swiper-button-next {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    /* Button color */
+}
+
+/*
+Nb:
+transform: translateX(-50%);:
+
+The transform property is used to adjust the position further by translating the element along the X-axis.
+translateX(-50%) shifts the element 50% of its own width to the left. This effectively centers the pagination bullets because the left: 50%; only centers the left edge of the bullets, and this transform centers the entire element.
+This combination of left: 50% and translateX(-50%) is a common technique for centering an absolutely positioned element horizontally within its container.
+*/

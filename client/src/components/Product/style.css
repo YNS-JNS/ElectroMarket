@@ -1,0 +1,5 @@
+.product_card:hover .product_image {
+    /* hover:scale-105 ease-in-out delay-150 duration-500 */
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in-out
+}

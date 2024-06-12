@@ -1,28 +1,24 @@
 import React from 'react'
-import Categories from '../../components/Categories';
 import HeroSlider from '../../components/Slider/HeroSlider';
-import Products from '../../components/Product/Products';
-import FeaturedSlider from '../../components/Featured/FeaturedSlider';
-import { Link } from 'react-router-dom';
-import OfferSlider from '../../components/Slider/OfferSlider';
+import CategorySlider from '../../components/Slider/CategorySlider';
+import LatestProductSlider from '../../components/Slider/LatestProductSlider';
+import ProductList from '../../components/Product/ProductList';
 
 const HomeScreen = () => {
 
     return (
         <>
-            {/* Hero Section  */}
+            {/* Hero Section Slider */}
             <HeroSlider />
 
-            {/* Categories Section */}
-            <Categories />
+            {/* Categories Section Carousel */}
+            <CategorySlider />
 
-            {/* Featured Products Section */}
-            <FeaturedSlider />
+            {/* Latest Products Section Carousel */}
+            <LatestProductSlider />
 
             {/* All Products Section */}
-            <Products />
-
-            <OfferSlider/>
+            <ProductList />
 
         </>
     )
