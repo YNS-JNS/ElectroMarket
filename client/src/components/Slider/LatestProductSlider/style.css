@@ -1,0 +1,41 @@
+/* LatestProductSlider.css */
+
+/* Center the pagination at the bottom middle */
+.latest-product-slider .swiper-pagination {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+/* Center the navigation buttons vertically */
+.latest-product-slider .swiper-button-prev,
+.latest-product-slider .swiper-button-next {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Optional: Customize the navigation button appearance */
+.latest-product-slider .swiper-button-prev,
+.latest-product-slider .swiper-button-next {
+    color: #000; /* Change color as needed */
+    /* You can also add other styles like background, border-radius, etc. */
+}
+
+.latest-product-slider .swiper-pagination-bullet {
+    background-color: #000; /* Bullet color */
+}
+
+.latest-product-slider .swiper-pagination-bullet-active {
+    background-color: #06b6d4; /* Active bullet color */
+}
+
+.latest-product-slider .swiper-button-prev,
+.latest-product-slider .swiper-button-next {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #fff; /* Button color */
+}
