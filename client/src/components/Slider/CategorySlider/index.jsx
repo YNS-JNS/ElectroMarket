@@ -36,7 +36,7 @@ const CategorySlider = () => {
 
             {/* Title and Link */}
             <div className='w-full flex items-center justify-start px-2 border border-blue-500'>
-                <h2 className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium tracking-tight text-white" >
+                <h2 className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-neutral-700" >
                     All categories
                 </h2>
             </div>
