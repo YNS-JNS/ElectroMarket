@@ -1,43 +1,76 @@
-import React from 'react'
+// Importation des modules nécessaires
+import React from 'react';
+import { RiArrowDownSLine } from 'react-icons/ri';
 
 const NavBar = () => {
     return (
-        <>
-            {/* Outer container for the navbar, set to be sticky at the top with a high z-index to overlay other content */}
-            <div className="navbar bg-base-100 sticky top-0 z-50 border-b border-neutral-600">
+        <div className='container mx-auto'>
+            {/* 1- Laptop Section */}
+            {/* Conteneur extérieur pour la barre de navigation, défini pour être collant en haut avec un z-index élevé pour superposer d'autres contenus */}
+            <div className="navbar flex items-center justify-between bg-base-100 sticky top-0 z-50 border-b border-neutral-600 py-2">
 
-                {/* 1 Section */}
-                {/* Left section of the navbar for branding or logo */}
-                <div className="flex-1">
-                    {/* Link styled as a button for the site branding */}
+                {/* Section 1 */}
+                {/* Section gauche de la barre de navigation pour l'image de marque ou le logo */}
+                <div>
+                    {/* Lien stylisé comme un bouton pour la marque du site */}
                     <a className="btn btn-ghost text-xl">Electr🔥Market</a>
                 </div>
 
-                {/* 2 Section */}
-                {/* Right section of the navbar for interactive elements */}
-                <div className="flex-none">
+                {/* Section 2 */}
+                {/* Use shrink to allow a flex item to shrink if needed using 'navbar-center' */}
+                {/* 'hidden md:flex': Barre de recherche centrale qui est cachée sur les petits écrans et visible sur les écrans de taille moyenne et plus grands */}
+                <div className="navbar-center hidden md:flex">
+                    <div className="join w-full md:w-[30rem]">
+                        {/* Champ de recherche */}
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            placeholder="Search Product..."
+                            className="w-full join-item input input-bordered input-sm"
+                        />
+                        {/* Menu déroulant pour la catégorie */}
+                        <div className="dropdown dropdown-hover join-item">
+                            <label
+                                tabIndex={0}
+                                className="w-[7rem] px-1 btn btn-sm btn-outline border-gray-300 rounded-none capitalize"
+                            >
+                                Category <RiArrowDownSLine />
+                            </label>
+                            <ul
+                                tabIndex={0}
+                                className="dropdown-content z-[1] menu p-1 shadow border border-gray-300 bg-base-100 rounded-lg w-52"
+                            >
+                                <li><a>Electronic</a></li>
+                                <li><a>Home Furniture</a></li>
+                            </ul>
+                        </div>
+                        {/* Search button */}
+                        <button className="btn btn-sm btn-secondary join-item rounded-r-lg capitalize">
+                            Search
+                        </button>
+                    </div>
+                </div>
 
-                    {/* 1- Dropdown menu */}
-                    {/* Dropdown menu for the shopping cart */}
+                {/* Section 3 */}
+                {/* Section droite de la barre de navigation pour les éléments interactifs */}
+                <div className="flex-none flex items-center gap-4">
+                    {/* 1 - Menu déroulant pour le panier */}
                     <div className="dropdown dropdown-end">
-                        {/* Button that triggers the dropdown */}
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">
-                                {/* Shopping cart icon */}
+                                {/* Icône de panier */}
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                {/* Badge indicating the number of items in the cart */}
+                                {/* Badge indiquant le nombre d'articles dans le panier */}
                                 <span className="badge badge-sm indicator-item">8</span>
                             </div>
                         </div>
 
-                        {/* Dropdown content for the shopping cart details */}
+                        {/* Contenu déroulant pour les détails du panier */}
                         <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
                             <div className="card-body">
-                                {/* Display the number of items */}
                                 <span className="font-bold text-lg">8 Items</span>
-                                {/* Display the subtotal cost */}
                                 <span className="text-info">Subtotal: $999</span>
-                                {/* Button to view the cart */}
                                 <div className="card-actions">
                                     <button className="btn btn-primary btn-block">View cart</button>
                                 </div>
@@ -45,35 +78,39 @@ const NavBar = () => {
                         </div>
                     </div>
 
-                    {/* 2- Dropdown menu */}
-                    {/* Dropdown menu for the user profile */}
+                    {/* 2 - Menu déroulant pour le profil utilisateur */}
                     <div className="dropdown dropdown-end">
-                        {/* Button with a user avatar that triggers the dropdown */}
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                 {/* Placeholder for the user's profile picture */}
-                                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                {/* Espace réservé pour la photo de profil de l'utilisateur */}
+                                <img alt="User avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                             </div>
                         </div>
-                        {/* Dropdown content for user-related actions */}
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                {/* Link to the user's profile with a badge indicating new content */}
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            {/* Link to the settings page */}
+                            <li><a className="justify-between">Profile <span className="badge">New</span></a></li>
                             <li><a>Settings</a></li>
-                            {/* Link to log out */}
                             <li><a>Logout</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </>
-    )
+
+            {/* 2- Mobile Section */}
+            {/* Section de recherche visible uniquement sur les petits écrans */}
+            <div className="md:hidden mt-4 mb-4 px-2">
+                <div className="join w-full flex">
+                    <input
+                        type="text"
+                        name="search-mobile"
+                        id="search-mobile"
+                        placeholder="Search Product..."
+                        className="w-full join-item input input-bordered input-sm"
+                    />
+                    <button className="btn btn-sm btn-secondary join-item capitalize">Search</button>
+                </div>
+            </div>
+        </div>
+    );
 }
 
-export default NavBar
+export default NavBar;

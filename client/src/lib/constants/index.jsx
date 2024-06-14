@@ -63,3 +63,22 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 		icon: <HiOutlineQuestionMarkCircle />
 	}
 ]
+
+export const CATEGORY_LINKS = [
+    {
+        label: "Mobile Phones",
+        path: "/",
+    },
+    {
+        label: "Laptops & Desktops",
+        path: "/",
+    },
+    {
+        label: "PC Games",
+        path: "/",
+    },
+    {
+        label: "Home & Furnitures",
+        path: "/",
+    },
+]

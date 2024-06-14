@@ -16,6 +16,8 @@ import ProductDetailsScreen from './screens/ProductDetailsScreen';
 
 // Importing Components:
 import NavBar from './components/NavBar/NavBar';
+import CategoryMenu from './components/CategoryMenu';
+
 // Importing Dashboard Components:
 import AddProduct from './components/Dashboard/Product/AddProduct';
 import UpdateProducts from './components/Dashboard/Product/UpdateProducts';
@@ -31,6 +33,7 @@ const App = () => {
     <>
       {/* if hideNavBar is true, hide the nav bar */}
       {!hideNavBar && <NavBar />}
+      {!hideNavBar && <CategoryMenu />}
       
       <Routes>
         <Route path="/" element={<HomeScreen />} />
