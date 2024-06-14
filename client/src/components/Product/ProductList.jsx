@@ -109,11 +109,11 @@ const ProductList = () => {
         <div className='container mx-auto my-10 border border-yellow-500'>
             {/* Title and Link */}
             <div className='w-full flex flex-row items-center justify-between px-2 border border-blue-500'>
-                <h2 className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium tracking-tight text-white" >
+                <h2 className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-neutral-700" >
                     Recommended Products
                 </h2>
 
-                <Link to="/products" className="text-xl sm:text-lg md:text-lg lg:text-xl xl:text-2xl font-medium text-blue-600 hover:text-cyan-500 sm:block" >
+                <Link to="/products" className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-2xl font-medium text-blue-600 hover:text-cyan-500 sm:block" >
                     See more
                     <span aria-hidden="true"> &rarr;</span>
                 </Link>
@@ -121,7 +121,7 @@ const ProductList = () => {
 
             {/* Grid Section */}
             <section
-                className="mx-auto my-10 grid grid-cols-1 gap-y-10 gap-x-5 justify-items-center sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                className="mx-auto my-10 grid grid-cols-1 gap-y-10 gap-x-5 justify-items-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
             >
                 {products.map((product) => (
                     <ProductCard key={product.id} product={product} />
