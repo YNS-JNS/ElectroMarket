@@ -51,7 +51,10 @@ const HeroSlider = () => {
     
 
     return (
-        <div className="min-h-[25rem] mb-10 border border-white">
+        <div 
+        // className="container mx-auto min-h-[25rem] mb-10 border border-white"
+        className="container mx-auto min-h-[25rem] mb-10"
+        >
             <Swiper
                 modules={[
                     // Navigation, 
@@ -66,7 +69,7 @@ const HeroSlider = () => {
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
                 loop={true}
-                className="dark:bg-gray-800"
+                // className="dark:bg-gray-800"
             >
                 {
                     productHeroSlider.map((slider, index) => (
