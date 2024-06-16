@@ -16,26 +16,26 @@ function CountdownTimer() {
 
     return (
         <div className="grid grid-flow-col gap-2 text-center auto-cols-max">
-            <div className="flex flex-col p-1.5 bg-secondary rounded-lg text-secondary-content">
-                <span className="countdown text-3xl">
+            <div className="flex flex-col p-1.5 bg-secondary rounded-lg text-secondary-content text-sm">
+                <span className="countdown text-2xl">
                     <span style={{ "--value": 15 }}></span>
                 </span>
                 days
             </div>
-            <div className="flex flex-col p-1.5 bg-secondary rounded-lg text-secondary-content">
-                <span className="countdown text-3xl">
+            <div className="flex flex-col p-1.5 bg-secondary rounded-lg text-secondary-content text-sm">
+                <span className="countdown text-2xl">
                     <span style={{ "--value": 10 }}></span>
                 </span>
                 hours
             </div>
-            <div className="flex flex-col p-1.5 bg-secondary rounded-lg text-secondary-content">
-                <span className="countdown text-3xl">
+            <div className="flex flex-col p-1.5 bg-secondary rounded-lg text-secondary-content text-sm">
+                <span className="countdown text-2xl">
                     <span style={{ "--value": 24 }}></span>
                 </span>
                 min
             </div>
-            <div className="flex flex-col p-1.5 bg-secondary rounded-lg text-secondary-content">
-                <span className="countdown text-3xl">
+            <div className="flex flex-col p-1.5 bg-secondary rounded-lg text-secondary-content text-sm">
+                <span className="countdown text-2xl">
                     <span style={{ "--value": count }}></span>
                 </span>
                 sec

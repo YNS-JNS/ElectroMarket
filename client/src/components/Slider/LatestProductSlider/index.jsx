@@ -107,10 +107,10 @@ const LatestProductSlider = () => {
     ]
 
     return (
-        <div className='container mx-auto my-10 flex flex-col items-center justify-center border border-blue-500'>
+        <div className='container mx-auto my-10 flex flex-col items-center justify-center'>
 
             {/* Title and Link */}
-            <div className='w-full flex flex-row items-center justify-between px-2 border border-blue-500'>
+            <div className='w-full flex flex-row items-center justify-between px-2'>
                 <h2 className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-neutral-700" >
                     Latest Products
                 </h2>
@@ -166,12 +166,12 @@ const LatestProductSlider = () => {
                     delay: 1500,
                     disableOnInteraction: false,
                 }}
-                className='latest-product-slider my-10 px-6 py-10 border border-yellow-500 h-[500px] w-full flex items-center justify-center'
+                className='latest-product-slider my-1 px-6 py-10 h-[30rem] w-full flex items-center justify-center'
             >
                 {products.map((product, index) => (
                     <SwiperSlide key={index}
                         // to center the 'LatestProductCard' horizontally and vertically
-                        className='w-full border border-blue-600 flex items-center justify-center'
+                        className='w-full flex items-center justify-center'
                     >
                         <LatestProductCard product={product} />
                     </SwiperSlide>
