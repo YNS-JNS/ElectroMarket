@@ -17,6 +17,7 @@ import ProductDetailsScreen from './screens/ProductDetailsScreen';
 // Importing Components:
 import NavBar from './components/NavBar/NavBar';
 import CategoryMenu from './components/CategoryMenu';
+import Footer from './components/Footer';
 
 // Importing Dashboard Components:
 import AddProduct from './components/Dashboard/Product/AddProduct';
@@ -30,10 +31,10 @@ const App = () => {
   const hideNavBar = pathname.startsWith('/dashboard');
 
   return (
-    <>
+    <div className='bg-sky-50'>
       {/* if hideNavBar is true, hide the nav bar */}
       {!hideNavBar && <NavBar />}
-      {!hideNavBar && <CategoryMenu />}
+      {!hideNavBar && <CategoryMenu />}  
       
       <Routes>
         <Route path="/" element={<HomeScreen />} />
@@ -67,7 +68,10 @@ const App = () => {
           <Route path="messages" element={<MessageScreen />} />
         </Route>
       </Routes>
-    </>
+
+
+      {!hideNavBar && <Footer />}
+    </div>
 
   )
 }
