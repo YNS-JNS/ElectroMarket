@@ -9,7 +9,8 @@ const LatestProductCard = ({ product }) => {
         <>
             {/* ________ Card ________ */}
             <div
-                className='bg-[#0f172a] text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:scale-105 ease-in-out delay-150 duration-500 hover:shadow-2xl border'
+                // 'bg-[#0f172a]'
+                className='bg-[#fff] text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:scale-105 ease-in-out delay-150 duration-500 hover:shadow-2xl border'
             >
                 {/* ________ Badge ________ */}
                 <div
@@ -51,7 +52,7 @@ const LatestProductCard = ({ product }) => {
 
                     {/* ________ Product title ________ */}
                     <h2
-                        className='font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap text-white'
+                        className='font-semibold text-2xl overflow-ellipsis overflow-hidden whitespace-nowrap text-neutral-800'
                         title="Smart Watch Oraimo">
                         {name}
                     </h2>
@@ -65,18 +66,18 @@ const LatestProductCard = ({ product }) => {
                             className='flex items-center gap-2 mt-1'
                         >
                             <span
-                                className='text-xl font-bold text-white'
+                                className='text-xl font-bold text-neutral-700'
                             >
                                 ${newPrice}
                             </span>
                             <span
-                                className='text-slate-400 text-sm line-through opacity-50'
+                                className='text-slate-600 text-sm line-through opacity-50'
                             >
                                 ${oldPrice}
                             </span>
                         </div>
                         <span
-                            className='bg-green-400 px-1.5 py-0.5 rounded-md text-xs text-white'
+                            className='bg-green-600 px-1.5 py-0.5 rounded-md text-xs text-white'
                         >
                             save {newPrice - oldPrice}%
                         </span>
