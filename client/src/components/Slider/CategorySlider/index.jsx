@@ -32,10 +32,10 @@ const CategorySlider = () => {
     ];
 
     return (
-        <div className='container mx-auto my-10 flex flex-col items-center justify-center h-[25rem] border border-blue-500'>
+        <div className='container mx-auto my-10 flex flex-col items-center justify-center h-[20rem]'>
 
             {/* Title and Link */}
-            <div className='w-full flex items-center justify-start px-2 border border-blue-500'>
+            <div className='w-full flex items-center justify-start px-2'>
                 <h2 className="text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-2xl font-medium tracking-tight text-neutral-700" >
                     All categories
                 </h2>
@@ -79,11 +79,11 @@ const CategorySlider = () => {
                 }
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
-                className="category-swiper my-10 px-6 py-10 border border-yellow-500 h-[280px] w-full flex items-center justify-center"
+                className="category-swiper my-1 px-6 py-10 h-[280px] w-full flex items-center justify-center"
             >
                 {
                     categories.map((category, index) => (
-                        <SwiperSlide key={index} className='border border-blue-600'>
+                        <SwiperSlide key={index}>
                             <CategoryCard category={category} />
                         </SwiperSlide>
                     ))

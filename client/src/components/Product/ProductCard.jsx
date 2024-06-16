@@ -9,7 +9,8 @@ const ProductCard = ({ product }) => {
         <>
             {/* ________ Card ________ */}
             <div
-                className='product_card bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:shadow-2xl cursor-pointer'
+                className='product_card bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:shadow-2xl cursor-pointer border'
+                // className='bg-[#fff] text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:scale-105 ease-in-out delay-150 duration-500 hover:shadow-2xl border'
             >
                 {/* ________ Image ________  */}
                 <div
@@ -57,7 +58,7 @@ const ProductCard = ({ product }) => {
                             <span className='text-sm line-through opacity-50'>
                                 ${product.defaultPrice}
                             </span>
-                            <span className='bg-green-400 px-1.5 py-0.5 rounded-md text-xs text-white'>
+                            <span className='bg-green-600 px-1.5 py-0.5 rounded-md text-xs text-white'>
                                 save {product.save}%
                             </span>
                         </div>
