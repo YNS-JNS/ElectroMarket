@@ -50,7 +50,7 @@ const App = () => {
           <Route path="profile" element={<ProfileScreen />} />
           {/* Products */}
           <Route path="products" element={<ProductScreen />} />
-          <Route path="products/add" element={<AddProduct />} />
+          <Route path="products/new" element={<AddProduct />} />
           <Route path="products/:id/edit" element={<UpdateProducts />} />
           {/* Orders */}
           <Route path="orders" element={<OrderScreen />} />

@@ -7,7 +7,9 @@ import {
 	HiOutlineDocumentText,
 	HiOutlineAnnotation,
 	HiOutlineQuestionMarkCircle,
-	HiOutlineCog
+	HiOutlineCog,
+	HiOutlinePlusCircle,
+	HiOutlineViewList
 } from 'react-icons/hi'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
@@ -21,7 +23,21 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		key: 'products',
 		label: 'Products',
 		path: '/dashboard/products',
-		icon: <HiOutlineCube />
+		icon: <HiOutlineCube />,
+		children: [
+			{
+				key: 'new-product',
+				label: 'New Product',
+				path: '/dashboard/products/new',
+				icon: <HiOutlinePlusCircle />,
+			},
+			{
+				key: 'products-list',
+				label: 'Products List',
+				path: '/dashboard/products/list',
+				icon: <HiOutlineViewList />,
+			}
+		]
 	},
 	{
 		key: 'orders',
@@ -65,20 +81,20 @@ export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
 ]
 
 export const CATEGORY_LINKS = [
-    {
-        label: "Mobile Phones",
-        path: "/",
-    },
-    {
-        label: "Laptops & Desktops",
-        path: "/",
-    },
-    {
-        label: "PC Games",
-        path: "/",
-    },
-    {
-        label: "Home & Furnitures",
-        path: "/",
-    },
+	{
+		label: "Mobile Phones",
+		path: "/",
+	},
+	{
+		label: "Laptops & Desktops",
+		path: "/",
+	},
+	{
+		label: "PC Games",
+		path: "/",
+	},
+	{
+		label: "Home & Furnitures",
+		path: "/",
+	},
 ]
