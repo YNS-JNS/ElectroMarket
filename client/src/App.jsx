@@ -7,7 +7,6 @@ import HomeScreen from './screens/HomeScreen';
 import DashboardScreen from './screens/Admin/DashboardScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import ProductScreen from './screens/Admin/ProductScreen';
 import OrderScreen from './screens/Admin/OrderScreen';
 import CustomerScreen from './screens/Admin/CustomerScreen';
 import TransactionScreen from './screens/Admin/TransactionScreen';
@@ -49,8 +48,7 @@ const App = () => {
           {/* Profile */}
           <Route path="profile" element={<ProfileScreen />} />
           {/* Products */}
-          <Route path="products" element={<ProductScreen />} />
-          <Route path="products/add" element={<AddProduct />} />
+          <Route path="products/new" element={<AddProduct />} />
           <Route path="products/:id/edit" element={<UpdateProducts />} />
           {/* Orders */}
           <Route path="orders" element={<OrderScreen />} />
