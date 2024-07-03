@@ -1,131 +1,108 @@
-import React from 'react';
+import React, { useState } from 'react';
+// Packages:
+import classNames from 'classnames';
+import { HiOutlinePlusCircle } from 'react-icons/hi'
+// Components:
+import CustomStepper from '../CustomStepper';
+import ProductInfo from '../Widgets/ProductInfo';
+import ProductPrice from '../Widgets/ProductPrice';
+import ProductMedia from '../Widgets/ProductMedia';
 
-function AddProduct() {
+
+const AddProduct = () => {
+
+  const [activeStep, setActiveStep] = useState(0);
+  const [animate, setAnimate] = useState(false);
+
+  // _____________________________________________________________________
+  // An array of objects representing the steps of the Add Product process
+  const steps = [
+    { title: '1. Product Info', onClick: () => setStep(0) },
+    { title: '2. Media', onClick: () => setStep(1) },
+    { title: '3. Pricing & Quantity', onClick: () => setStep(2) },
+    { title: 'Confirmation', onClick: () => setStep(3) },
+  ];
+  // _____________________________________________________________________
+  // Function to set the active step
+  const setStep = (step) => {
+    if (step !== activeStep) {
+      setAnimate(true);
+      setTimeout(() => {
+        setActiveStep(step);
+        setAnimate(false);
+      }, 300); // Match this duration with your CSS transition
+    }
+  };
+  // _____________________________________________________________________
+  // Function to render the component for the current active step
+  const getSectionComponent = (activeStep) => {
+    switch (activeStep) {
+      case 0: return <ProductInfo />;
+      case 1: return <ProductMedia />;
+      case 2: return <ProductPrice />;
+      case 3: return <Confirmation />;
+      default: return null;
+    }
+  };
+  // _____________________________________________________________________
+
   return (
-    <div>
-      {/* First Form Section */}
-      <section className="max-w-full  p-6 mx-auto bg-white rounded-md shadow-md mt-4 mb-10">
-        <h1 className="text-2xl font-medium text-black mb-4">Add New Product</h1>
-        <h6 className="text-base mb-4">Fill out the form to add a new product.</h6>
-        <form>
-          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-            {/* Name */}
-            <div>
-              <label className="text-lg text-black" htmlFor="username1">Name</label>
-              <input
-                id="username1"
-                type="text"
-                className="text-base block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-              />
-            </div>
-
-            {/* Description */}
-            <div>
-              <label className="text-lg text-black" htmlFor="textarea">Description</label>
-              <textarea
-                id="textarea"
-                className="text-base block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-              ></textarea>
-            </div>
-
-            {/* Category */}
-            <div>
-              <label className="text-lg text-black" htmlFor="select">Category</label>
-              <select
-                id="select"
-                className="text-base block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-              >
-                <option>Electronic</option>
-                <option>Mobile</option>
-                <option>Tangerang</option>
-                <option>Bandung</option>
-              </select>
-            </div>
-
-            {/* Brand */}
-            <div>
-              <label className="text-lg text-black" htmlFor="select">Brand</label>
-              <select
-                id="select"
-                className="text-base block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-              >
-                <option>Nike</option>
-                <option>Apple</option>
-                <option>Samsung</option>
-                <option>Google</option>
-              </select>
-            </div>
-
-            {/* Price */}
-            <div>
-              <label className="text-lg text-black" htmlFor="price">Price</label>
-              <input
-                id="price"
-                type="number"
-                className="text-base block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-              />
-            </div>
-
-             {/* Quantity */}
-             <div>
-              <label className="text-lg text-black" htmlFor="price">Quantity</label>
-              <input
-                id="price"
-                type="number"
-                className="text-base block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-              />
-            </div>
-
-            {/* Image */}
-            <div>
-              <label className="block text-lg font-medium  text-black">Image</label>
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                <div className="space-y-1 text-center">
-                  <svg
-                    className="mx-auto h-12 w-12 text-black"
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 48 48"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <div className="flex text-sm text-gray-600">
-                    <label
-                      htmlFor="file-upload"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                    >
-                      <span>Upload a file</span>
-                      <input
-                        id="file-upload"
-                        name="file-upload"
-                        type="file"
-                        className="sr-only"
-                      />
-                    </label>
-                    <p className="pl-1 text-black">or drag and drop</p>
-                  </div>
-                  <p className="text-xs text-black">PNG, JPG, GIF up to 10MB</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-end mt-6">
-            <button className="px-6 py-2 leading-5 text-black transition-colors duration-200 transform bg-white rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 border border-gray-800">
-              Save
-            </button>
-          </div>
+    <div className='container mx-auto w-2/3'>
+      <CustomStepper steps={steps} activeStep={activeStep} />
+      <section className="max-w-full  p-6 mx-auto bg-white rounded-md shadow-lg mt-4 mb-10 h-auto flex flex-col justify-between">
+        <form className={classNames('transition-container', { 'animate-fade': animate })}>
+          {getSectionComponent(activeStep)}
         </form>
-      </section>
+        <div className={`w-full mt-4 flex ${activeStep === 0 || activeStep === steps.length - 1 ? 'justify-end' : 'justify-between'} `}>
+          {activeStep !== 0 && activeStep !== steps.length - 1 && (
+            <button
+              className="middle none center rounded-lg bg-[#d9dee4] py-3 px-6 font-sans text-xs font-bold uppercase text-[#344767] shadow-md shadow-[#d9dee4]/20 transition-all hover:shadow-lg hover:shadow--[#d9dee4]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              onClick={() => setStep(activeStep - 1)}
+            >
+              Previous
+            </button>
+          )}
+          {activeStep !== steps.length - 1 && activeStep !== steps.length - 1 - 1 && (
+            <button
+              // className="middle none center rounded-lg bg-black text-white py-3 px-6 font-sans text-xs font-bold uppercase shadow-md hover:shadow-black/20"
+              className='inline-block px-6 py-3 mb-0 ml-auto font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-gray-900 to-slate-800 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25'
+              // className="text-sm font-bold uppercase px-8 py-4 bg-gradient-to-r from-pink-500 to-pink-700 text-white rounded-lg transition-transform transform-gpu hover:shadow-lg"
+              onClick={() => setStep(activeStep + 1)}
+            >
+              Next
+            </button>
+          )}
+          {activeStep === steps.length - 1 - 1 && (
+            <button
+              className="middle none center rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              onClick={() => setStep(activeStep + 1)}
+            >
+              Confirm
+            </button>
+          )}
+          {activeStep === steps.length - 1 && (
+            <button
+              //  className="bg-black rounded-lg text-white text-sm text-center self-center px-3 py-2 flex justify-between"
+              className="middle none center rounded-lg bg-black text-white py-3 px-6 font-sans text-xs font-bold uppercase shadow-md hover:shadow-black/20 flex justify-between"
 
+              onClick={() => setStep(0)}>
+              <span className='text-xl'><HiOutlinePlusCircle /></span>
+              <span className='ml-2'>New Product</span>
+            </button>
+          )}
+        </div>
+      </section>
     </div>
   );
-}
+};
 
 export default AddProduct;
+
+const Confirmation = () => {
+  return (
+    <div className="bg-green-100 border-l-4 border-blue-500 text-blue-700 p-4 rounded-lg my-4">
+      <p className="text-sm font-semibold">Status: Confirmed</p>
+      <p className='text-xs'>Your New Product has been successfully confirmed and is now being processed.</p>
+    </div>
+  )
+}

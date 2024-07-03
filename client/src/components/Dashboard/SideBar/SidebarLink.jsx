@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames'; // A simple JavaScript utility for conditionally joining classNames together.
+import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
 const SidebarLink = ({ link, linkClass }) => {
 
@@ -26,6 +27,7 @@ const SidebarLink = ({ link, linkClass }) => {
             >
                 <span className="text-xl">{link.icon}</span>
                 {link.label}
+                {link.children ? (<span className="ml-auto text-xl">{isExpanded ? <FaChevronUp /> : <FaChevronDown />}</span>) : null}
             </Link>
 
             {

@@ -4,6 +4,30 @@ import { RiArrowDownSLine, RiShoppingBasket2Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
+
+    const links = [
+        {
+            name: "Dashboard",
+            link: "/dashboard",
+            isNew: false
+        },
+        {
+            name: "Profile",
+            link: "/",
+            isNew: true
+        },
+        {
+            name: "Settings",
+            link: "/",
+            isNew: false
+        },
+        {
+            name: "Logout",
+            link: "/",
+            isNew: false
+        },
+    ]
+
     return (
         <div className='w-full bg-[#1d232a]'>
             <div className='container mx-auto'>
@@ -94,9 +118,16 @@ const NavBar = () => {
                                 </div>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a className="justify-between">Profile <span className="badge">New</span></a></li>
-                                <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
+                                {
+                                    links && links.map((link, index) => (
+                                        <li key={index}>
+                                            <Link to={link.link} className='hover:no-underline text-white' >
+                                                {link.name} 
+                                                {link.isNew && <span className="badge">New</span>}
+                                            </Link>
+                                        </li>
+                                    ))
+                                }
                             </ul>
                         </div>
                     </div>
