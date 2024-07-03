@@ -6,11 +6,10 @@ import Header from '../../components/Dashboard/Header/Header'
 
 const DashboardLayout = () => {
     return (
-        <div
-            // className='flex flex-row h-screen w-screen overflow-hidden bg-neutral-100'
-            className='flex flex-row h-screen w-screen overflow-hidden bg-sky-50'
+        <div 
+        className='flex flex-row h-screen w-screen overflow-hidden bg-sky-50'
+        // className='flex flex-row h-screen w-screen overflow-y-scroll bg-sky-50'
         >
-
             {/* ______ Begin ______  */}
             <SideBar />
             {/* ____ End ____  */}
@@ -19,11 +18,11 @@ const DashboardLayout = () => {
             <div className='flex flex-col flex-1'>
                 <Header />
                 <div className='flex-1 p-4 min-h-0 overflow-auto'>
+                    {/* <Header /> */}
                     <Outlet />
                 </div>
             </div>
             {/* ______ End ______ */}
-
         </div>
     )
 }

@@ -105,6 +105,8 @@ const ProductList = () => {
         },
     ]
 
+    console.log(products)
+
     return (
         <div className='container mx-auto my-10'>
             {/* Title and Link */}

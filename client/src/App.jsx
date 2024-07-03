@@ -7,7 +7,6 @@ import HomeScreen from './screens/HomeScreen';
 import DashboardScreen from './screens/Admin/DashboardScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import ProductScreen from './screens/Admin/ProductScreen';
 import OrderScreen from './screens/Admin/OrderScreen';
 import CustomerScreen from './screens/Admin/CustomerScreen';
 import TransactionScreen from './screens/Admin/TransactionScreen';
@@ -22,7 +21,7 @@ import Footer from './components/Footer';
 // Importing Dashboard Components:
 import AddProduct from './components/Dashboard/Product/AddProduct';
 import UpdateProducts from './components/Dashboard/Product/UpdateProducts';
-
+import ListScreen from './screens/ListScreen';
 
 const App = () => {
 
@@ -39,37 +38,28 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/products" element={<ProductListScreen />} />
+        <Route path="/products/list" element={<ListScreen />} />
         <Route path="/products/:id" element={<ProductDetailsScreen />} />
 
         {/* Nested routes for dashboard */}
         <Route path="/dashboard" element={<DashboardLayout />} >
-
           {/* Dashboard */}
           <Route index element={<DashboardScreen />} />
-
           {/* Profile */}
           <Route path="profile" element={<ProfileScreen />} />
-
           {/* Products */}
-          <Route path="products" element={<ProductScreen />} />
-          <Route path="products/add" element={<AddProduct />} />
+          <Route path="products/new" element={<AddProduct />} />
           <Route path="products/:id/edit" element={<UpdateProducts />} />
-
           {/* Orders */}
           <Route path="orders" element={<OrderScreen />} />
-
           {/* Customers */}
           <Route path="customers" element={<CustomerScreen />} />
-
           {/* Transactions */}
           <Route path="transactions" element={<TransactionScreen />} />
-
           {/* Messages */}
           <Route path="messages" element={<MessageScreen />} />
         </Route>
       </Routes>
-
-
       {!hideNavBar && <Footer />}
     </div>
 
