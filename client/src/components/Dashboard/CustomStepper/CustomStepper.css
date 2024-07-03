@@ -1,0 +1,8 @@
+/* MyStepper.css */
+.transition-container {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.animate-fade {
+    opacity: 0;
+}
