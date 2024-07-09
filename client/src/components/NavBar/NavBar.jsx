@@ -29,7 +29,7 @@ const NavBar = () => {
     ]
 
     return (
-        <div className='w-full bg-[#1d232a]'>
+        <div className='w-full'>
             <div className='container mx-auto'>
                 {/* 1- Laptop Section */}
                 {/* Conteneur extérieur pour la barre de navigation, défini pour être collant en haut avec un z-index élevé pour superposer d'autres contenus */}
