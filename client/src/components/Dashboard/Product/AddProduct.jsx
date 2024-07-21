@@ -7,6 +7,7 @@ import CustomStepper from '../CustomStepper';
 import ProductInfo from '../Widgets/ProductInfo';
 import ProductPrice from '../Widgets/ProductPrice';
 import ProductMedia from '../Widgets/ProductMedia';
+import { Button } from '@material-tailwind/react';
 
 
 const AddProduct = () => {
@@ -63,14 +64,12 @@ const AddProduct = () => {
             </button>
           )}
           {activeStep !== steps.length - 1 && activeStep !== steps.length - 1 - 1 && (
-            <button
-              // className="middle none center rounded-lg bg-black text-white py-3 px-6 font-sans text-xs font-bold uppercase shadow-md hover:shadow-black/20"
-              className='inline-block px-6 py-3 mb-0 ml-auto font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-gray-900 to-slate-800 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25'
-              // className="text-sm font-bold uppercase px-8 py-4 bg-gradient-to-r from-pink-500 to-pink-700 text-white rounded-lg transition-transform transform-gpu hover:shadow-lg"
+            <Button
+              // className='inline-block px-6 py-3 mb-0 ml-auto font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-gray-900 to-slate-800 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25'
               onClick={() => setStep(activeStep + 1)}
             >
               Next
-            </button>
+            </Button>
           )}
           {activeStep === steps.length - 1 - 1 && (
             <button
