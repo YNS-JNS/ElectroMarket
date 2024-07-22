@@ -6,18 +6,20 @@ import './CustomStepper.css'; // Import custom CSS for animations
 
 const CustomStepper = (props) => {
     return (
-        // Render the Stepper component with the provided props and customized colors and styles
-        <Stepper
-            {...props} 
-            activeColor="#171717"
-            defaultColor="#eee"
-            completeColor="#171717"
-            activeTitleColor="#171717"
-            completeTitleColor="#171717"
-            defaultTitleColor="#bbb"
-            circleFontSize={0} // Hide circle text
-            completeBarColor="#171717"
-        />
+        <div className='stepper-background'>
+            {/* Render the Stepper component with the provided props and customized colors and styles */}
+            <Stepper
+                {...props}
+                activeColor="#283142"
+                defaultColor="#eee"
+                completeColor="#283142"
+                activeTitleColor="#283142"
+                completeTitleColor="#283142"
+                defaultTitleColor="#bbb"
+                circleFontSize={0} // Hide circle text
+                completeBarColor="#283142"
+            />
+        </div>
     );
 };
 

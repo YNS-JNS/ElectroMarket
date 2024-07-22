@@ -1,21 +1,17 @@
+import daisyui from "daisyui";
+
 /** @type {import('tailwindcss').Config} */
-
-const withMT = require("@material-tailwind/react/utils/withMT");
-
-module.exports = withMT({
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
-  theme: {
-    extend: {
-      colors: {
-        sky: {
-          500: '#0ea5e9',
-        },
-      },
-    },
-  },
-  plugins: [require('daisyui'),],
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {},
+  plugins: [
+    daisyui,
+  ],
   daisyui: {
     themes: ["light", "dark"],
-    darkTheme: "light", // Default theme set to light
+    darkTheme: "light", // or 'dark'
   },
-});
+}
