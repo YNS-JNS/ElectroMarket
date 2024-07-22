@@ -7,9 +7,9 @@ const ProductPrice = () => {
                 <h5 
                 // className='text-xl font-bold text-[#344767]'
                 className='text-xl font-medium text-[#090909]'
-                >Pricing & Quantity</h5>
+                >Pricing</h5>
             </div>
-            <div className="flex flex-row justify-between items-start gap-8">
+            <div className="flex flex-row justify-start items-start gap-8">
                 {/* Price */}
                 <div>
                     <label className="text-xs text-gray-700 font-bold" htmlFor="price">Price</label>
@@ -33,17 +33,6 @@ const ProductPrice = () => {
                         <option>Euro (EU)</option>
                         <option>Pound (UK)</option>
                     </select>
-                </div>
-
-                {/* Quantity */}
-                <div>
-                    <label className="text-xs text-gray-700 font-bold" htmlFor="quantity">Quantity</label>
-                    <input
-                        id="quantity"
-                        type="number"
-                        placeholder='100'
-                        className="text-sm block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
-                    />
                 </div>
             </div>
         </div>
