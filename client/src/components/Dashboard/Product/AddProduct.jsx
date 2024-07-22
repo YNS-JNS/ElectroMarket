@@ -7,7 +7,6 @@ import CustomStepper from '../CustomStepper';
 import ProductInfo from '../Widgets/ProductInfo';
 import ProductPrice from '../Widgets/ProductPrice';
 import ProductMedia from '../Widgets/ProductMedia';
-import { Button } from '@material-tailwind/react';
 
 
 const AddProduct = () => {
@@ -20,7 +19,7 @@ const AddProduct = () => {
   const steps = [
     { title: '1. Product Info', onClick: () => setStep(0) },
     { title: '2. Media', onClick: () => setStep(1) },
-    { title: '3. Pricing & Quantity', onClick: () => setStep(2) },
+    { title: '3. Pricing', onClick: () => setStep(2) },
     { title: 'Confirmation', onClick: () => setStep(3) },
   ];
   // _____________________________________________________________________
@@ -64,12 +63,12 @@ const AddProduct = () => {
             </button>
           )}
           {activeStep !== steps.length - 1 && activeStep !== steps.length - 1 - 1 && (
-            <Button
-              // className='inline-block px-6 py-3 mb-0 ml-auto font-bold text-right text-white uppercase align-middle transition-all border-0 rounded-lg cursor-pointer hover:scale-102 active:opacity-85 hover:shadow-soft-xs dark:bg-gradient-to-tl dark:from-slate-850 dark:to-gray-850 bg-gradient-to-tl from-gray-900 to-slate-800 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25'
+            <button
+              className="middle none center rounded-lg bg-black bg-gradient-to-tl from-gray-900 to-slate-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               onClick={() => setStep(activeStep + 1)}
             >
               Next
-            </Button>
+            </button>
           )}
           {activeStep === steps.length - 1 - 1 && (
             <button
@@ -82,7 +81,8 @@ const AddProduct = () => {
           {activeStep === steps.length - 1 && (
             <button
               //  className="bg-black rounded-lg text-white text-sm text-center self-center px-3 py-2 flex justify-between"
-              className="middle none center rounded-lg bg-black text-white py-3 px-6 font-sans text-xs font-bold uppercase shadow-md hover:shadow-black/20 flex justify-between"
+              // className="middle none center rounded-lg bg-black text-white py-3 px-6 font-sans text-xs font-bold uppercase shadow-md hover:shadow-black/20 flex justify-between"
+              className="flex justify-between middle none center rounded-lg bg-black bg-gradient-to-tl from-gray-900 to-slate-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
 
               onClick={() => setStep(0)}>
               <span className='text-xl'><HiOutlinePlusCircle /></span>
