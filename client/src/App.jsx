@@ -12,6 +12,7 @@ import CustomerScreen from './screens/Admin/CustomerScreen';
 import TransactionScreen from './screens/Admin/TransactionScreen';
 import MessageScreen from './screens/Admin/MessageScreen';
 import ProductDetailsScreen from './screens/ProductDetailsScreen';
+import CartScreen from './screens/CartScreen';
 
 // Importing Components:
 import NavBar from './components/NavBar/NavBar';
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/products" element={<ProductListScreen />} />
         <Route path="/products/list" element={<ListScreen />} />
         <Route path="/products/:id" element={<ProductDetailsScreen />} />
+        <Route path="/cart" element={<CartScreen />} />
 
         {/* Nested routes for dashboard */}
         <Route path="/dashboard" element={<DashboardLayout />} >
