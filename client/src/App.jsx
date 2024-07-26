@@ -31,7 +31,7 @@ const App = () => {
   const hideNavBar = pathname.startsWith('/dashboard');
 
   return (
-    <div className='bg-sky-50'>
+    <div className='bg-white'>
       {/* if hideNavBar is true, hide the nav bar */}
       {!hideNavBar && <NavBar />}
       {!hideNavBar && <CategoryMenu />}  

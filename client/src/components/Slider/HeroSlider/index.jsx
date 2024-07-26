@@ -51,10 +51,7 @@ const HeroSlider = () => {
     
 
     return (
-        <div 
-        // className="container mx-auto min-h-[25rem] mb-10 border border-white"
-        className="container mx-auto min-h-[25rem] mb-10"
-        >
+        <div className="container mx-auto min-h-[25rem] mb-10">
             <Swiper
                 modules={[
                     // Navigation, 

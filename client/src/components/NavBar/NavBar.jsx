@@ -29,21 +29,17 @@ const NavBar = () => {
     ]
 
     return (
-        <div className='w-full'>
+        <div className='w-full bg-white'>
             <div className='container mx-auto'>
                 {/* 1- Laptop Section */}
                 {/* Conteneur extérieur pour la barre de navigation, défini pour être collant en haut avec un z-index élevé pour superposer d'autres contenus */}
-                <div className="navbar flex items-center justify-between bg-base-100 sticky top-0 z-50 border-b border-neutral-600 py-2">
+                <div className="navbar flex items-center justify-between bg-base-100 sticky top-0 z-50 border-b border-neutral-200 py-2">
 
                     {/* Section 1 */}
-                    {/* Section gauche de la barre de navigation pour l'image de marque ou le logo */}
-                    {/* <div>
-                        <a className="btn btn-ghost text-xl">Electr⚡Market</a>
-                    </div> */}
                     <div className="flex justify-center text-secondary sm:justify-start">
-                        <Link href={"/"} className="flex items-center gap-2 text-secondary text-xl font-semibold">
+                        <Link to={'/'} className="flex items-center gap-2 text-secondary text-xl font-semibold">
                             <RiShoppingBasket2Fill fontSize={30} />
-                            <span className="pt-0.5">Elect⚡Market</span>
+                            <span className="pt-0.5">Electro⚡Market</span>
                         </Link>
                     </div>
 
@@ -103,7 +99,10 @@ const NavBar = () => {
                                     <span className="font-bold text-lg">8 Items</span>
                                     <span className="text-info">Subtotal: $999</span>
                                     <div className="card-actions">
+                                        <Link to={`/cart`} >
                                         <button className="btn btn-primary btn-block">View cart</button>
+                                        </Link>
+
                                     </div>
                                 </div>
                             </div>
