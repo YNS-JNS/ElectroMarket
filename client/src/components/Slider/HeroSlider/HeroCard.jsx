@@ -5,7 +5,7 @@ const HeroCard = ({ slider }) => {
   return (
     <div
       // className="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden h-full"
-      className="bg-sky-50 flex relative z-20 items-center overflow-hidden h-full"
+      className="bg-white flex relative z-20 items-center overflow-hidden h-full"
     >
       <div
         className="container mx-auto flex flex-col lg:flex-row justify-between gap-4 relative h-full py-8 px-4 sm:px-6 md:px-8"
