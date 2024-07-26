@@ -10,7 +10,7 @@ function CategoryMenu() {
 
     return (
         <div className="w-full bg-white">
-            <div className="container mx-auto border-b border-b-gray-300 bg-white">
+            <div className="container mx-auto border-b border-neutral-200 bg-white">
                 <div className="px-2 relative">
 
                     {/* Large screen category menu */}
