@@ -13,6 +13,7 @@ import TransactionScreen from './screens/Admin/TransactionScreen';
 import MessageScreen from './screens/Admin/MessageScreen';
 import ProductDetailsScreen from './screens/ProductDetailsScreen';
 import CartScreen from './screens/CartScreen';
+import ListScreen from './screens/ListScreen';
 
 // Importing Components:
 import NavBar from './components/NavBar/NavBar';
@@ -22,7 +23,7 @@ import Footer from './components/Footer';
 // Importing Dashboard Components:
 import AddProduct from './components/Dashboard/Product/AddProduct';
 import UpdateProducts from './components/Dashboard/Product/UpdateProducts';
-import ListScreen from './screens/ListScreen';
+import ProductList from './components/Dashboard/Product/ProductList';
 
 const App = () => {
 
@@ -52,6 +53,7 @@ const App = () => {
           {/* Products */}
           <Route path="products/new" element={<AddProduct />} />
           <Route path="products/:id/edit" element={<UpdateProducts />} />
+          <Route path="products/list" element={<ProductList />} />
           {/* Orders */}
           <Route path="orders" element={<OrderScreen />} />
           {/* Customers */}
