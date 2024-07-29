@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Importing Images
 import img1 from '../../../assets/images/img_electro1.png';
@@ -9,9 +9,10 @@ import img5 from '../../../assets/images/img_electro5.png';
 import img6 from '../../../assets/images/img_electro6.png';
 import img7 from '../../../assets/images/img_electro7.png';
 import ProductRow from './ProductRow';
+import ActionBar from './ActionBar';
 
 const ProductList = () => {
-
+    // const [filter, setFilter] = useState('');
     const products = [
         { id: 1, name: 'Smartwatch MT12', category: 'Electronics', brand: 'Oraimo', price: 199.00, quantity: 95, status: true, image: img1 },
         { id: 2, name: 'Smartwatch XYZ', category: 'Electronics', brand: 'Oraimo', price: 99.00, quantity: 1000, status: true, image: img2 },
@@ -22,9 +23,19 @@ const ProductList = () => {
         { id: 7, name: 'Casque R12', category: 'Electronics', brand: 'Xiaomi', price: 49.00, quantity: 50, status: false, image: img7 },
     ];
 
+    const handleAddProduct = () => {
+        // Implement add product functionality here
+    };
+
+    const handleSearchChange = () => {
+        // setFilter(e.target.value);
+    };
+
+
     return (
-        // <div className="container mx-auto">
+        <div className="container mx-auto">
             <div className="flex flex-col">
+                <ActionBar onAddProduct={handleAddProduct} onSearchChange={handleSearchChange} />
                 <div className="overflow-x-auto pb-4">
                     <div className="min-w-full inline-block align-middle">
                         <div className="overflow-hidden border rounded-lg border-gray-300">
@@ -105,7 +116,7 @@ const ProductList = () => {
                     </div>
                 </div>
             </div>
-        // </div>
+        </div>
     );
 };
 
