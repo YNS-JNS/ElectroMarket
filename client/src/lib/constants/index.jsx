@@ -9,7 +9,8 @@ import {
 	HiOutlineQuestionMarkCircle,
 	HiOutlineCog,
 	HiOutlinePlusCircle,
-	HiOutlineViewList
+	HiOutlineViewList,
+	HiOutlinePencilAlt
 } from 'react-icons/hi'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
@@ -30,6 +31,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 				label: 'New Product',
 				path: '/dashboard/products/new',
 				icon: <HiOutlinePlusCircle />,
+			},
+			{
+				key: 'edit-product',
+				label: 'Edit Product',
+				path: '/dashboard/products/:id/edit',
+				icon: <HiOutlinePencilAlt />,
 			},
 			{
 				key: 'products-list',
