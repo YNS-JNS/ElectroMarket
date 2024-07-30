@@ -11,8 +11,8 @@ const SORT_OPTIONS = [
 
 const STATUS_OPTIONS = [
     { value: '', label: 'All Status' },
-    { value: 'Active', label: 'Active' },
-    { value: 'Inactive', label: 'Inactive' }
+    { value: 'inStock', label: 'InStock' },
+    { value: 'outOfStock', label: 'OutOfStock' }
 ];
 
 const BRAND_OPTIONS = [

@@ -22,8 +22,8 @@ import Footer from './components/Footer';
 
 // Importing Dashboard Components:
 import AddProduct from './components/Dashboard/Product/AddProduct';
-import UpdateProducts from './components/Dashboard/Product/UpdateProducts';
 import ProductList from './components/Dashboard/Product/ProductList';
+import UpdateProduct from './components/Dashboard/Product/UpdateProduct';
 
 const App = () => {
 
@@ -52,7 +52,7 @@ const App = () => {
           <Route path="profile" element={<ProfileScreen />} />
           {/* Products */}
           <Route path="products/new" element={<AddProduct />} />
-          <Route path="products/:id/edit" element={<UpdateProducts />} />
+          <Route path="products/:id/edit" element={<UpdateProduct />} />
           <Route path="products/list" element={<ProductList />} />
           {/* Orders */}
           <Route path="orders" element={<OrderScreen />} />
