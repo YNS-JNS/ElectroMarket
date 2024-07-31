@@ -50,7 +50,7 @@ const ActionBar = ({ onAddProduct, onSearchChange, onSortChange, onStatusFilterC
     );
 
     return (
-        <div className="flex flex-col gap-4 p-4 mb-2 bg-white rounded-md shadow">
+        <div className="flex flex-col gap-4 p-4 mb-4 bg-white rounded-xl shadow-lg">
             {/* Section 1 */}
             <div className="flex justify-end">
                 {/* Add New Product Button */}

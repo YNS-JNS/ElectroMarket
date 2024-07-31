@@ -18,13 +18,13 @@ const UpdateProduct = () => {
   const [selectedImage, setSelectedImage] = useState(productImg[0].image);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-3">
 
       {/* Heading */}
-      <h1 className="text-2xl font-bold mb-4">Edit Product</h1>
+      <h1 className="text-2xl font-medium mb-4">Edit Product</h1>
 
       {/* Section 1: Heading Bar */}
-      <div className="flex items-center justify-between bg-white rounded-xl p-4 mb-4 shadow-lg">
+      <div className="flex items-center justify-between p-4 mb-2 bg-white rounded-xl shadow-lg">
         <h2 className="text-xl font-normal">
           Make the changes below
         </h2>
@@ -42,7 +42,9 @@ const UpdateProduct = () => {
 
         {/* Product images */}
         <div className="w-1/3 h-auto bg-white rounded-xl shadow-lg p-4">
-          <h3 className="text-lg font-medium mb-2">Product Images</h3>
+          <div className='my-4'>
+            <h5 className='text-xl font-medium text-[#090909]'>Product Images</h5>
+          </div>
           <div>
             <div className="w-72 aspect-[4/3] overflow-hidden rounded-lg border border-gray-300 flex items-center justify-center">
               <div className="max-w-full">
@@ -177,12 +179,14 @@ const UpdateProduct = () => {
       <div className="my-4 flex gap-6">
         {/* Social links */}
         <div className="w-1/3 h-auto bg-white rounded-xl shadow-lg p-4">
-          <h3 className="text-lg font-medium mb-2">Social Links</h3>
+          <div className='my-4'>
+            <h5 className='text-xl font-medium text-[#090909]'>Social Links</h5>
+          </div>
           <div className='flex flex-col'>
 
             {/* Instagram */}
             <div>
-              <label className="text-xs text-gray-700 font-bold" htmlFor="shopify">Shopify Handle</label>
+              <label className="text-sm text-gray-700 font-bold" htmlFor="shopify">Shopify Handle</label>
               <input
                 id="shopify"
                 type="text"
@@ -193,7 +197,7 @@ const UpdateProduct = () => {
 
             {/* Facebook */}
             <div>
-              <label className="text-xs text-gray-700 font-bold" htmlFor="facebook">Facebook Account</label>
+              <label className="text-sm text-gray-700 font-bold" htmlFor="facebook">Facebook Account</label>
               <input
                 id="facebook"
                 type="text"
@@ -204,7 +208,7 @@ const UpdateProduct = () => {
 
             {/* Instagram */}
             <div>
-              <label className="text-xs text-gray-700 font-bold" htmlFor="instagram">Instagram Account</label>
+              <label className="text-sm text-gray-700 font-bold" htmlFor="instagram">Instagram Account</label>
               <input
                 id="instagram"
                 type="text"
@@ -224,7 +228,7 @@ const UpdateProduct = () => {
           <div className="flex flex-row justify-start items-start gap-8">
             {/* Price */}
             <div>
-              <label className="text-xs text-gray-700 font-bold" htmlFor="price">Price</label>
+              <label className="text-sm text-gray-700 font-bold" htmlFor="price">Price</label>
               <input
                 id="price"
                 type="number"
@@ -235,9 +239,9 @@ const UpdateProduct = () => {
 
             {/* Currency */}
             <div>
-              <label className="text-xs text-gray-700 font-bold" htmlFor="select">Currency</label>
+              <label className="text-sm text-gray-700 font-bold" htmlFor="currency">Currency</label>
               <select
-                id="select"
+                id="currency"
                 className="text-sm block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
               >
                 <option>Dirham (MA)</option>
