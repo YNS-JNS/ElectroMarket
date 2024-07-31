@@ -47,9 +47,11 @@ const AddProduct = () => {
   // _____________________________________________________________________
 
   return (
-    <div className='container mx-auto w-2/3'>
+    // <div className='container mx-auto w-2/3'>
+    <div className='container mx-auto w-2/3 flex flex-col gap-3 '>
       <CustomStepper steps={steps} activeStep={activeStep} />
-      <section className="max-w-full  p-6 mx-auto bg-white rounded-md shadow-lg mt-4 mb-10 h-auto flex flex-col justify-between">
+      {/* <section className="min-w-full  p-6 mx-auto bg-white rounded-xl shadow-lg mt-4 mb-10 h-auto flex flex-col justify-between"> */}
+      <section className="min-w-full mx-auto h-auto flex flex-col justify-between p-4 mb-4 bg-white rounded-xl shadow-lg">
         <form className={classNames('transition-container', { 'animate-fade': animate })}>
           {getSectionComponent(activeStep)}
         </form>
