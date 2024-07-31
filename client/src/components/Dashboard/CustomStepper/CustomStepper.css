@@ -8,8 +8,8 @@
 }
 
 /* Ajout d'une classe pour la couleur de fond */
-.stepper-background {
-    background-color: #fff; /* Changez cette valeur pour la couleur de fond souhaitée */
-    padding: 5px; /* Facultatif : ajoutez du padding si nécessaire */
-    border-radius: 10px; /* Facultatif : ajoutez un bord arrondi */
-}
+/* .stepper-background { */
+    /* background-color: #fff; Changez cette valeur pour la couleur de fond souhaitée */
+    /* padding: 5px; Facultatif : ajoutez du padding si nécessaire */
+    /* border-radius: 10px; Facultatif : ajoutez un bord arrondi */
+/* } */

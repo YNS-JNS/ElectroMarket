@@ -4,15 +4,15 @@ const ProductPrice = () => {
     return (
         <div>
             <div className='my-4'>
-                <h5 
-                // className='text-xl font-bold text-[#344767]'
-                className='text-xl font-medium text-[#090909]'
+                <h5
+                    // className='text-xl font-bold text-[#344767]'
+                    className='text-xl font-medium text-[#090909]'
                 >Pricing</h5>
             </div>
             <div className="flex flex-row justify-start items-start gap-8">
                 {/* Price */}
                 <div>
-                    <label className="text-xs text-gray-700 font-bold" htmlFor="price">Price</label>
+                    <label className="text-sm text-gray-700 font-bold" htmlFor="price">Price</label>
                     <input
                         id="price"
                         type="number"
@@ -23,9 +23,9 @@ const ProductPrice = () => {
 
                 {/* Currency */}
                 <div>
-                    <label className="text-xs text-gray-700 font-bold" htmlFor="select">Currency</label>
+                    <label className="text-sm text-gray-700 font-bold" htmlFor="currency">Currency</label>
                     <select
-                        id="select"
+                        id="currency"
                         className="text-sm block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
                     >
                         <option>Dirham (MA)</option>

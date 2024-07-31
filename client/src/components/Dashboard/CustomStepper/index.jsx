@@ -6,7 +6,7 @@ import './CustomStepper.css'; // Import custom CSS for animations
 
 const CustomStepper = (props) => {
     return (
-        <div className='stepper-background'>
+        <div className='stepper-background p-4 mb-4 bg-white rounded-xl shadow-lg'>
             {/* Render the Stepper component with the provided props and customized colors and styles */}
             <Stepper
                 {...props}
