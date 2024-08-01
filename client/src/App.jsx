@@ -24,6 +24,7 @@ import Footer from './components/Footer';
 import AddProduct from './components/Dashboard/Product/AddProduct';
 import ProductList from './components/Dashboard/Product/ProductList';
 import UpdateProduct from './components/Dashboard/Product/UpdateProduct';
+import ProductPreview from './components/Dashboard/Product/ProductPreview';
 
 const App = () => {
 
@@ -53,6 +54,7 @@ const App = () => {
           {/* Products */}
           <Route path="products/new" element={<AddProduct />} />
           <Route path="products/:id/edit" element={<UpdateProduct />} />
+          <Route path="products/:id/preview" element={<ProductPreview />} />
           <Route path="products/list" element={<ProductList />} />
           {/* Orders */}
           <Route path="orders" element={<OrderScreen />} />
