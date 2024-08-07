@@ -7,6 +7,7 @@ import CustomStepper from '../CustomStepper';
 import ProductInfo from '../Widgets/ProductInfo';
 import ProductPrice from '../Widgets/ProductPrice';
 import ProductMedia from '../Widgets/ProductMedia';
+import CustomButton from '../../Ui/CustomButton';
 
 
 const AddProduct = () => {
@@ -57,20 +58,42 @@ const AddProduct = () => {
         </form>
         <div className={`w-full mt-4 flex ${activeStep === 0 || activeStep === steps.length - 1 ? 'justify-end' : 'justify-between'} `}>
           {activeStep !== 0 && activeStep !== steps.length - 1 && (
-            <button
-              className="middle none center rounded-lg bg-[#d9dee4] py-3 px-6 font-sans text-xs font-bold uppercase text-[#344767] shadow-md shadow-[#d9dee4]/20 transition-all hover:shadow-lg hover:shadow--[#d9dee4]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              onClick={() => setStep(activeStep - 1)}
-            >
-              Previous
-            </button>
+            <div className='flex gap-2'>
+              <button
+                className="middle none center rounded-lg bg-[#d9dee4] py-3 px-6 font-sans text-xs font-bold uppercase text-[#344767] shadow-md shadow-[#d9dee4]/20 transition-all hover:shadow-lg hover:shadow--[#d9dee4]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                onClick={() => setStep(activeStep - 1)}
+              >
+                Previous
+              </button>
+
+              <CustomButton
+                label="Previous"
+                //  icon={HiOutlinePlusCircle}
+                onClick={() => console.log("New Product")}
+              variant='secondary'
+              // variant='ghost'
+              // disabled={true}
+
+              />
+            </div>
           )}
           {activeStep !== steps.length - 1 && activeStep !== steps.length - 1 - 1 && (
-            <button
-              className="middle none center rounded-lg bg-black bg-gradient-to-tl from-gray-900 to-slate-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              onClick={() => setStep(activeStep + 1)}
-            >
-              Next
-            </button>
+            <div className='flex gap-2'>
+              <button
+                className="middle none center rounded-lg bg-black bg-gradient-to-tl from-gray-900 to-slate-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                onClick={() => setStep(activeStep + 1)}
+              >
+                Next
+              </button>
+
+              <CustomButton
+                label="Next"
+                //  icon={HiOutlinePlusCircle}
+                onClick={() => console.log("New Product")}
+              // disabled={true}
+
+              />
+            </div>
           )}
           {activeStep === steps.length - 1 - 1 && (
             <button

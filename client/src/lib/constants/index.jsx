@@ -13,6 +13,7 @@ import {
 	HiOutlinePencilAlt,
 	HiOutlineEye
 } from 'react-icons/hi'
+import { GiWireframeGlobe } from "react-icons/gi";
 
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
@@ -76,6 +77,12 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		label: 'Messages',
 		path: '/dashboard/messages',
 		icon: <HiOutlineAnnotation />
+	},
+	{
+		key: 'wireframes',
+		label: 'Wireframes',
+		path: '/dashboard/wireframes',
+		icon: <GiWireframeGlobe />
 	}
 ]
 
