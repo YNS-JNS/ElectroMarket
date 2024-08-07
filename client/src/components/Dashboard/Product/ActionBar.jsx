@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { HiOutlinePlusCircle, HiOutlineSearch } from 'react-icons/hi';
+import CustomButton from '../../Ui/CustomButton';
 
 const SORT_OPTIONS = [
     { value: '', label: 'Sort By' },
@@ -54,13 +55,27 @@ const ActionBar = ({ onAddProduct, onSearchChange, onSortChange, onStatusFilterC
             {/* Section 1 */}
             <div className="flex justify-end">
                 {/* Add New Product Button */}
-                <button
+                {/* <button
                     className="flex items-center gap-2 rounded-lg bg-gradient-to-tl from-gray-900 to-slate-500 py-3 px-6 text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85 disabled:pointer-events-none disabled:opacity-50"
                     onClick={onAddProduct}
                 >
                     <HiOutlinePlusCircle className="text-xl" />
                     <span>New Product</span>
-                </button>
+                </button> */}
+                {/* <ButtonPrimary
+                    label="New Product"
+                    icon={HiOutlinePlusCircle}
+                    onClick={() => console.log("New Product")}
+                /> */}
+                <CustomButton
+                    label="New Product"
+                    icon={HiOutlinePlusCircle}
+                    onClick={() => console.log("New Product")}
+                    variant='secondary'
+                    // variant='ghost'
+                    // disabled={true}
+
+                />
             </div>
 
             {/* Section 2 */}
