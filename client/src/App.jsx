@@ -25,6 +25,7 @@ import AddProduct from './components/Dashboard/Product/AddProduct';
 import ProductList from './components/Dashboard/Product/ProductList';
 import UpdateProduct from './components/Dashboard/Product/UpdateProduct';
 import ProductPreview from './components/Dashboard/Product/ProductPreview';
+import Wireframes from './components/Dashboard/Wireframes';
 
 const App = () => {
 
@@ -64,6 +65,8 @@ const App = () => {
           <Route path="transactions" element={<TransactionScreen />} />
           {/* Messages */}
           <Route path="messages" element={<MessageScreen />} />
+          {/* Wireframes */}
+          <Route path="wireframes" element={<Wireframes />} />
         </Route>
       </Routes>
       {!hideNavBar && <Footer />}

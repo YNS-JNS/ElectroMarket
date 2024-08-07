@@ -120,7 +120,7 @@ const NavBar = () => {
                                 {
                                     links && links.map((link, index) => (
                                         <li key={index}>
-                                            <Link to={link.link} className='hover:no-underline text-white' >
+                                            <Link to={link.link} className='hover:no-underline text-black' >
                                                 {link.name} 
                                                 {link.isNew && <span className="badge">New</span>}
                                             </Link>
