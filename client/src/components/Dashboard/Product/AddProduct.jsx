@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // Packages:
 import classNames from 'classnames';
-import { HiOutlinePlusCircle } from 'react-icons/hi'
+import { HiOutlineArrowSmLeft, HiOutlineArrowSmRight, HiOutlinePlusCircle } from 'react-icons/hi'
 // Components:
 import CustomStepper from '../CustomStepper';
 import ProductInfo from '../Widgets/ProductInfo';
@@ -48,72 +48,57 @@ const AddProduct = () => {
   // _____________________________________________________________________
 
   return (
-    // <div className='container mx-auto w-2/3'>
     <div className='container mx-auto w-2/3 flex flex-col gap-3 '>
       <CustomStepper steps={steps} activeStep={activeStep} />
-      {/* <section className="min-w-full  p-6 mx-auto bg-white rounded-xl shadow-lg mt-4 mb-10 h-auto flex flex-col justify-between"> */}
       <section className="min-w-full mx-auto h-auto flex flex-col justify-between p-4 mb-4 bg-white rounded-xl shadow-lg">
         <form className={classNames('transition-container', { 'animate-fade': animate })}>
           {getSectionComponent(activeStep)}
         </form>
         <div className={`w-full mt-4 flex ${activeStep === 0 || activeStep === steps.length - 1 ? 'justify-end' : 'justify-between'} `}>
+
+          {/* Previous button */}
           {activeStep !== 0 && activeStep !== steps.length - 1 && (
             <div className='flex gap-2'>
-              <button
-                className="middle none center rounded-lg bg-[#d9dee4] py-3 px-6 font-sans text-xs font-bold uppercase text-[#344767] shadow-md shadow-[#d9dee4]/20 transition-all hover:shadow-lg hover:shadow--[#d9dee4]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                onClick={() => setStep(activeStep - 1)}
-              >
-                Previous
-              </button>
-
               <CustomButton
-                label="Previous"
-                //  icon={HiOutlinePlusCircle}
-                onClick={() => console.log("New Product")}
-              variant='secondary'
-              // variant='ghost'
-              // disabled={true}
-
+                label="Prev"
+                leftIcon={HiOutlineArrowSmLeft}
+                onClick={() => setStep(activeStep - 1)}
+                variant='secondary'
               />
             </div>
           )}
+
+          {/* Next button */}
           {activeStep !== steps.length - 1 && activeStep !== steps.length - 1 - 1 && (
             <div className='flex gap-2'>
-              <button
-                className="middle none center rounded-lg bg-black bg-gradient-to-tl from-gray-900 to-slate-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                onClick={() => setStep(activeStep + 1)}
-              >
-                Next
-              </button>
-
               <CustomButton
                 label="Next"
-                //  icon={HiOutlinePlusCircle}
-                onClick={() => console.log("New Product")}
-              // disabled={true}
-
+                rightIcon={HiOutlineArrowSmRight}
+                onClick={() => setStep(activeStep + 1)}
+                variant='primary'
               />
             </div>
           )}
-          {activeStep === steps.length - 1 - 1 && (
-            <button
-              className="middle none center rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-              onClick={() => setStep(activeStep + 1)}
-            >
-              Confirm
-            </button>
-          )}
-          {activeStep === steps.length - 1 && (
-            <button
-              //  className="bg-black rounded-lg text-white text-sm text-center self-center px-3 py-2 flex justify-between"
-              // className="middle none center rounded-lg bg-black text-white py-3 px-6 font-sans text-xs font-bold uppercase shadow-md hover:shadow-black/20 flex justify-between"
-              className="flex justify-between middle none center rounded-lg bg-black bg-gradient-to-tl from-gray-900 to-slate-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
 
-              onClick={() => setStep(0)}>
-              <span className='text-xl'><HiOutlinePlusCircle /></span>
-              <span className='ml-2'>New Product</span>
-            </button>
+          {/* Confirm button */}
+          {activeStep === steps.length - 1 - 1 && (
+            <CustomButton
+              label="Confirm"
+              onClick={() => setStep(activeStep + 1)}
+              variant='success'
+            />
           )}
+
+          {/* Add new product button */}
+          {activeStep === steps.length - 1 && (
+            <CustomButton
+              label="New Product"
+              leftIcon={HiOutlinePlusCircle}
+              onClick={() => setStep(0)}
+              variant='black'
+            />
+          )}
+
         </div>
       </section>
     </div>

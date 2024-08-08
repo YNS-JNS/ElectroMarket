@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { HiOutlineSave } from 'react-icons/hi';
+import CustomButton from '../../Ui/CustomButton';
 // Images
 import img1 from '../../../assets/images/img_electro1.png';
 import img2 from '../../../assets/images/img_electro2.png';
@@ -28,13 +29,13 @@ const UpdateProduct = () => {
         <h2 className="text-xl font-normal">
           Make the changes below
         </h2>
-        <button
-          className="flex items-center gap-2 rounded-lg bg-gradient-to-tl from-gray-900 to-slate-500 py-3 px-6 text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg focus:opacity-85 active:opacity-85 disabled:pointer-events-none disabled:opacity-50"
-        // onClick={handleSave}
-        >
-          <HiOutlineSave className="text-xl" />
-          <span>Save</span>
-        </button>
+
+        <CustomButton
+          label="Save"
+          leftIcon={HiOutlineSave}
+          onClick={() => console.log("Save")}
+          variant='primary'
+        />
       </div>
 
       {/* Section 2: Product Images and Details */}
@@ -67,9 +68,18 @@ const UpdateProduct = () => {
           </div>
 
           {/* Buttons */}
-          <div className='flex justify-between'>
-            <button className="btn btn-primary mt-4">Edit</button>
-            <button className="btn btn-white border border-slate-500 mt-4">Remove</button>
+          <div className='mt-6 flex justify-between'>
+            <CustomButton
+              label="Edit"
+              onClick={() => console.log("edit image")}
+              variant='primary'
+            />
+
+            <CustomButton
+              label="Remove"
+              onClick={() => console.log("remove image")}
+              variant='secondary'
+            />
           </div>
         </div>
 

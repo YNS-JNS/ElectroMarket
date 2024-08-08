@@ -142,6 +142,14 @@ const Header = () => {
               </MenuItem>
               <MenuItem>
                 <div
+                  onClick={() => navigate('/')}
+                  className='data-[focus]:bg-gray-100 text-sm active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
+                >
+                  Your Store
+                </div>
+              </MenuItem>
+              <MenuItem>
+                <div
                   className='data-[focus]:bg-gray-100 text-sm active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
                 >
                   Sign out

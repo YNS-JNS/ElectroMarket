@@ -54,14 +54,14 @@ const VARIANTS = {
    }
  `,
 
-// Black Button Css:
-success: css`
- background: #3FA2F6;
+  // Black Button Css:
+  success: css`
+ background: #0F67B1;
  color: #fff;
  /* border: 2px solid #3FA2F6; */
 
  &:hover {
-   background: #0F67B1;
+ background: #3FA2F6;
    color: #fff;
    /* border: 2px solid #000; */
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -86,9 +86,8 @@ const Container = styled.button`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  /* width: 150px; Set a fixed width */
-  /* height: 50px; Set a fixed height */
   padding: 12px 25px;
+  margin: 8px 4px;
   cursor: pointer;
   border: none;
   border-radius: 5px;
