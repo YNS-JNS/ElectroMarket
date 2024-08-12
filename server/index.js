@@ -1,7 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
-const connectToDb = require("./app/configs/db.config");
+const connectToDB = require("./app/configs/db.config");
 const { notFound, globalErrorHandler } = require("./app/middlewares/errorHandler");
 const brandRoutes = require("./app/routes/brand.routes");
 const categoryRoutes = require("./app/routes/category.routes");
@@ -12,7 +12,7 @@ require("dotenv").config();
 const app = express();
 // ________________________________________________________________________
 const corsOptions = {
-    origin: '*', // frontend URI (ReactJS)
+    origin: '*',
 }
 // ________________________________________________________________________
 
@@ -27,7 +27,7 @@ app.use(cors(corsOptions));
 app.use(logger('dev'));
 
 // Connect to MongoDB _____________________________________________________
-connectToDb();
+connectToDB();
 // ________________________________________________________________________
 
 // Routes:
