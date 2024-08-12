@@ -48,7 +48,7 @@ const HeroSlider = () => {
             button: 'Buy Now'
         },
     ];
-    
+
 
     return (
         <div className="container mx-auto min-h-[25rem] mb-10">
@@ -66,7 +66,7 @@ const HeroSlider = () => {
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
                 loop={true}
-                // className="dark:bg-gray-800"
+            // className="dark:bg-gray-800"
             >
                 {
                     productHeroSlider.map((slider, index) => (

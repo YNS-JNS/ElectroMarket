@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import { RiAddFill, RiCheckboxCircleFill, RiShieldCheckFill, RiSubtractFill } from "react-icons/ri"
+import CustomButton from '../components/Ui/CustomButton';
+import CustomLink from "./Ui/CustomLink";
 
 import img1 from '../../public/images/recommended/1.png'
 import img2 from '../../public/images/recommended/2.png'
@@ -20,21 +22,18 @@ function ProductDetailsOverview({ product }) {
 
     const [selectedImage, setSelectedImage] = useState(productImg[0].image);
 
-
-    console.log(productImg[0].image);
-
-
     return (
         <div>
             <div className="bg-white p-6 rounded-lg border border-gray-300 flex gap-6">
                 <div>
+                    {/* Product Main Image */}
                     <div className="w-[32rem] aspect-[4/3] overflow-hidden rounded-lg border border-gray-300 flex items-center justify-center">
                         <div className="max-w-full">
                             <img src={selectedImage} alt="" className="w-full h-full object-cover" />
                         </div>
                     </div>
                     <div className="flex items-center gap-3 mt-6">
-                        {/* images  */}
+                        {/* Product Images */}
                         {productImg.map((img, idx) => (
                             <div
                                 key={idx}
@@ -91,13 +90,21 @@ function ProductDetailsOverview({ product }) {
                             <RiSubtractFill fontSize={20} />
                         </button>
                     </div>
+
+                    {/* Buy Now and Add to Cart Buttons Section */}
                     <div className="flex gap-3">
-                        <Link href="/cart" className="btn btn-secondary capitalize hover:no-underline">
-                            Buy Now
-                        </Link>
-                        <Link href="/cart" className="btn btn-accent capitalize hover:no-underline">
-                            Add To Cart
-                        </Link>
+                        {/* Buy Now Button */}
+                        <CustomLink
+                            to="/cart"
+                            label="Buy Now"
+                            variant="success"
+                        />
+                        {/* Add to Cart Button */}
+                        <CustomLink
+                            to="/cart"
+                            label="Add to Cart"
+                            variant="secondary"
+                        />
                     </div>
                     <div className="pt-4 flex items-center gap-3 text-sm text-gray-500">
                         <RiShieldCheckFill fontSize={22} />

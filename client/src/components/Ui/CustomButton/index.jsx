@@ -54,14 +54,14 @@ const VARIANTS = {
    }
  `,
 
-// Black Button Css:
-success: css`
- background: #3FA2F6;
+  // Black Button Css:
+  success: css`
+ background: #0F67B1;
  color: #fff;
  /* border: 2px solid #3FA2F6; */
 
  &:hover {
-   background: #0F67B1;
+ background: #3FA2F6;
    color: #fff;
    /* border: 2px solid #000; */
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -86,14 +86,15 @@ const Container = styled.button`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  /* width: 150px; Set a fixed width */
-  /* height: 50px; Set a fixed height */
-  padding: 12px 25px;
+  padding: ${(props) => props.padding || '12px 25px'};
+  margin: ${(props) => props.margin || '8px 4px'};
+  width: ${(props) => props.width || 'auto'};
+  height: ${(props) => props.height || 'auto'};
   cursor: pointer;
   border: none;
   border-radius: 5px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: ${(props) => props.fontSize || '14px'};
   text-transform: uppercase;
   transition: all 0.2s;
 
@@ -101,11 +102,11 @@ const Container = styled.button`
   ${(props) => props.disabled && DISABLED}
 `;
 
-const CustomButton = ({ label, leftIcon: LeftIcon, rightIcon: RightIcon, onClick, variant = 'primary', disabled }) => {
+const CustomButton = ({ label, leftIcon: LeftIcon, rightIcon: RightIcon, onClick, variant = 'primary', disabled, fontSize, padding, margin, width, height }) => {
   return (
-    <Container onClick={onClick} variant={variant} disabled={disabled}>
+    <Container onClick={onClick} variant={variant} disabled={disabled} fontSize={fontSize} padding={padding} margin={margin} width={width} height={height}>
       {LeftIcon && <LeftIcon className="text-xl" />}
-      <span>{label}</span>
+      {label && <span>{label}</span>}
       {RightIcon && <RightIcon className="text-xl" />}
     </Container>
   );
@@ -118,6 +119,11 @@ CustomButton.propTypes = {
   rightIcon: PropTypes.elementType,
   variant: PropTypes.oneOf(['primary', 'secondary', 'ghost', 'black']),
   disabled: PropTypes.bool,
+  fontSize: PropTypes.string,
+  padding: PropTypes.string,
+  margin: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
 };
 
 CustomButton.defaultProps = {
@@ -126,6 +132,11 @@ CustomButton.defaultProps = {
   rightIcon: null,
   variant: 'primary',
   disabled: false,
+  fontSize: '14px',
+  padding: '12px 25px',
+  margin: '8px 4px',
+  width: 'auto',
+  height: 'auto',
 };
 
 export default CustomButton;
