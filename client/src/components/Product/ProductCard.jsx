@@ -1,6 +1,12 @@
 import React from 'react';
+import CustomButton from '../Ui/CustomButton';
 // Import style:
 import './style.css';
+
+// Import Icons:
+import { FaRegHeart } from 'react-icons/fa';
+import { IoEyeOutline } from 'react-icons/io5';
+
 const ProductCard = ({ product }) => {
 
     // Web Site For SVG : https://lineicons.com/free-icons/akar-icons
@@ -8,14 +14,9 @@ const ProductCard = ({ product }) => {
     return (
         <>
             {/* ________ Card ________ */}
-            <div
-                className='product_card bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:shadow-2xl cursor-pointer border'
-                // className='bg-[#fff] text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:scale-105 ease-in-out delay-150 duration-500 hover:shadow-2xl border'
-            >
+            <div className='product_card bg-white text-gray-700 w-72 min-h-[10rem] shadow-lg rounded-md overflow-hidden transition hover:shadow-2xl cursor-pointer border' >
                 {/* ________ Image ________  */}
-                <div
-                    className="flex items-center justify-center p-2"
-                >
+                <div className="flex items-center justify-center p-2" >
                     <img
                         src={product.image}
                         alt='product' className='product_image w-full h-full object-contain max-w-48 max-h-48'
@@ -102,41 +103,27 @@ const ProductCard = ({ product }) => {
                     </span>
 
                     {/* ________ Product action button ________ */}
-                    <div className='mt-4 flex gap-2'>
-                        {/* ___ Add To Cart Button ___ */}
-                        <button
-                            // className='text-sm bg-gray-300/60 hover:bg-white border hover:border-black px-6 py-2 rounded-md font-medium tracking-wider transition'
-                            className='text-xs sm:text-sm md:text-base bg-gray-300/60 hover:bg-white border hover:border-black px-4 sm:px-6 py-2 rounded-md font-medium transition'
-                        >
-                            {product.buttonText}
-                        </button>
-                        {/* ___ Wishlist Button ___ */}
-                        <button
-                            className='flex-grow flex justify-center items-center bg-gray-300/60 transition rounded-md hover:bg-white border hover:border-black'
-                        >
-                            <svg width="32" height="32" viewBox="0 0 512 512" style={{ color: 'currentColor' }} xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-                                <rect width="512" height="512" x="0" y="0" rx="30" fill="transparent" stroke="transparent" strokeWidth="0" strokeOpacity="100%" paintOrder="stroke"></rect>
-                                <svg width="256px" height="256px" viewBox="0 0 24 24" fill="currentColor" x="128" y="128" role="img" style={{ display: 'inline-block', verticalAlign: 'middle' }} xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="currentColor">
-                                        <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 3C4.239 3 2 5.216 2 7.95c0 2.207.875 7.445 9.488 12.74a.985.985 0 0 0 1.024 0C21.125 15.395 22 10.157 22 7.95C22 5.216 19.761 3 17 3s-5 3-5 3s-2.239-3-5-3Z" />
-                                    </g>
-                                </svg>
-                            </svg>
-                        </button>
-                        {/* ___ Preview Button ___ */}
-                        <button className='flex-grow flex justify-center items-center bg-gray-300/60 transition rounded-md hover:bg-white border hover:border-black'>
-                            <svg width="32" height="32" viewBox="0 0 512 512" style={{ color: 'currentColor' }} xmlns="http://www.w3.org/2000/svg" className="h-full w-full">
-                                <rect width="512" height="512" x="0" y="0" rx="30" fill="transparent" stroke="transparent" strokeWidth="0" strokeOpacity="100%" paintOrder="stroke"></rect>
-                                <svg width="256px" height="256px" viewBox="0 0 24 24" fill="currentColor" x="128" y="128" role="img" style={{ display: 'inline-block', verticalAlign: 'middle' }} xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="currentColor">
-                                        <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
-                                            <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962Z" />
-                                            <circle cx="12" cy="12" r="3" />
-                                        </g>
-                                    </g>
-                                </svg>
-                            </svg>
-                        </button>
+                    <div className='mt-4 flex items-center justify-between gap-2'>
+                        {/* Add To Cart Button */}
+                        <CustomButton
+                            label={product.buttonText}
+                            onClick={() => console.log("Add To Cart")}
+                            variant='secondary'
+                            width={'80%'}
+                            fontSize={'12px'}
+                            padding="8px 4px"
+                            margin="0px 0px"
+                        />
+                        {/* Add To Wishlist Button */}
+                        <CustomButton
+                            onClick={() => console.log("Add To Wishlist")}
+                            leftIcon={FaRegHeart}
+                            variant='secondary'
+                            width={'20%'}
+                            fontSize={'12px'}
+                            padding="10px 4px"
+                            margin="0px 0px"
+                        />
                     </div>
                     {/* ________ End Product action button ________ */}
                 </div>
