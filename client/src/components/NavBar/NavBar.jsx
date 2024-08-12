@@ -1,7 +1,8 @@
-// Importation des modules nécessaires
-import React from 'react';
+import React, { Fragment } from 'react'
 import { RiArrowDownSLine, RiShoppingBasket2Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import { Popover, PopoverButton, Transition, PopoverPanel } from '@headlessui/react';
+import { MdOutlineShoppingCart } from 'react-icons/md';
 
 const NavBar = () => {
 
@@ -37,9 +38,12 @@ const NavBar = () => {
 
                     {/* Section 1 */}
                     <div className="flex justify-center text-secondary sm:justify-start">
-                        <Link to={'/'} className="flex items-center gap-2 text-secondary text-xl font-semibold">
-                            <RiShoppingBasket2Fill fontSize={30} />
-                            <span className="pt-0.5">Electro⚡Market</span>
+                        <Link
+                            to={'/'}
+                            className="flex items-center gap-2 text-secondary text-xl font-bold hover:no-underline rounded-lg px-4 py-2"
+                        >
+                            <RiShoppingBasket2Fill fontSize={30} className='text-neutral-800 font-bold' />
+                            <span className="pt-0.5 font-bold text-neutral-800">Electro⚡Market</span>
                         </Link>
                     </div>
 
@@ -60,7 +64,7 @@ const NavBar = () => {
                             <div className="dropdown dropdown-hover join-item">
                                 <label
                                     tabIndex={0}
-                                    className="w-[7rem] px-1 btn btn-sm btn-outline border-gray-300 rounded-none capitalize"
+                                    className="w-[7rem] px-1 btn btn-sm btn-outline border-gray-300 rounded-none capitalize hover:bg-blue-600 hover:border-blue-600"
                                 >
                                     Category <RiArrowDownSLine />
                                 </label>
@@ -68,12 +72,25 @@ const NavBar = () => {
                                     tabIndex={0}
                                     className="dropdown-content z-[1] menu p-1 shadow border border-gray-300 bg-base-100 rounded-lg w-52"
                                 >
-                                    <li><a>Electronic</a></li>
-                                    <li><a>Home Furniture</a></li>
+                                    <li>
+                                        <Link to={'/'} className='text-gray-700 hover:no-underline'>
+                                            Electronic
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={'/'} className='text-gray-700 hover:no-underline'>
+                                            Home Furniture
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={'/'} className='text-gray-700 hover:no-underline'>
+                                            Sports
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                             {/* Search button */}
-                            <button className="btn btn-sm btn-secondary join-item rounded-r-lg capitalize">
+                            <button className="btn btn-sm btn-secondary join-item rounded-r-lg capitalize bg-blue-700 border-blue-700 hover:bg-blue-600 hover:border-blue-600 border-l-slate-50">
                                 Search
                             </button>
                         </div>
@@ -82,52 +99,81 @@ const NavBar = () => {
                     {/* Section 3 */}
                     {/* Section droite de la barre de navigation pour les éléments interactifs */}
                     <div className="flex-none flex items-center gap-4">
-                        {/* 1 - Menu déroulant pour le panier */}
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                                <div className="indicator">
-                                    {/* Icône de panier */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                    {/* Badge indiquant le nombre d'articles dans le panier */}
-                                    <span className="badge badge-sm indicator-item">8</span>
-                                </div>
-                            </div>
+                        {/* Shopping Cart Menu Section */}
+                        <Popover className="relative">
+                            {({ open }) => (
+                                <>
+                                    {/* Button */}
+                                    <PopoverButton className={`group inline-flex items-center rounded-sm p-1.5 text-gray-700 hover:text-opacity-100 focus:outline-none ${open ? 'bg-gray-100' : ''}`}>
+                                        <MdOutlineShoppingCart fontSize={24} />
+                                    </PopoverButton>
 
-                            {/* Contenu déroulant pour les détails du panier */}
-                            <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
-                                <div className="card-body">
-                                    <span className="font-bold text-lg">8 Items</span>
-                                    <span className="text-info">Subtotal: $999</span>
-                                    <div className="card-actions">
-                                        <Link to={`/cart`} >
-                                        <button className="btn btn-primary btn-block">View cart</button>
-                                        </Link>
+                                    {/* Popup */}
+                                    <Transition
+                                        as={Fragment}
+                                        enter="transition ease-out duration-200"
+                                        enterFrom="opacity-0 translate-y-1"
+                                        enterTo="opacity-100 translate-y-0"
+                                        leave="transition ease-in duration-150"
+                                        leaveFrom="opacity-100 translate-y-0"
+                                        leaveTo="opacity-0 translate-y-1"
+                                    >
+                                        <PopoverPanel className="absolute right-0 z-10 mt-2.5 w-80 transform">
+                                            <div className="bg-white rounded-sm shadow-md ring-1 ring-black ring-opacity-5 px-2 py-2.5">
+                                                <strong className="text-lg text-gray-700 font-medium">
+                                                    Shopping Cart
+                                                </strong>
+                                                <div className="mt-2 py-1 text-sm text-gray-600">
+                                                    {/* Add cart items here */}
+                                                    <p>No items in your cart.</p>
+                                                </div>
+                                            </div>
+                                        </PopoverPanel>
+                                    </Transition>
+                                </>
+                            )}
+                        </Popover>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* 2 - Menu déroulant pour le profil utilisateur */}
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    {/* Espace réservé pour la photo de profil de l'utilisateur */}
-                                    <img alt="User avatar" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                </div>
-                            </div>
-                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                {
-                                    links && links.map((link, index) => (
-                                        <li key={index}>
-                                            <Link to={link.link} className='hover:no-underline text-black' >
-                                                {link.name} 
-                                                {link.isNew && <span className="badge">New</span>}
-                                            </Link>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
+                        {/* Profile Menu Section */}
+                        <div className="dropdown dropdown-end" >
+                            <Popover className="relative">
+                                {({ open }) => (
+                                    <>
+                                        <PopoverButton className={`ml-2 bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400 ${open ? 'bg-gray-100' : ''}`}>
+                                            <div
+                                                className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
+                                                style={{ backgroundImage: 'url("https://img.freepik.com/photos-gratuite/close-up-portrait-of-bel-homme-mal-rase-barbe-epaisse-moustache-cheveux-noirs-regarde-serieusement_273609-16755.jpg?t=st=1718829593~exp=1718833193~hmac=b53c17176442ce0b018cf888e71ad4f25484feb9c06942f0caf78bb02d672b66&w=740")' }}
+                                            >
+                                                <span className="sr-only">Marc Backes</span>
+                                            </div>
+                                        </PopoverButton>
+                                        <Transition
+                                            as={Fragment}
+                                            enter="transition ease-out duration-200"
+                                            enterFrom="opacity-0 translate-y-1"
+                                            enterTo="opacity-100 translate-y-0"
+                                            leave="transition ease-in duration-150"
+                                            leaveFrom="opacity-100 translate-y-0"
+                                            leaveTo="opacity-0 translate-y-1"
+                                        >
+                                            <PopoverPanel>
+                                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                                    {
+                                                        links && links.map((link, index) => (
+                                                            <li key={index}>
+                                                                <Link to={link.link} className='hover:no-underline text-gray-700' >
+                                                                    {link.name}
+                                                                    {link.isNew && <span className="badge">New</span>}
+                                                                </Link>
+                                                            </li>
+                                                        ))
+                                                    }
+                                                </ul>
+                                            </PopoverPanel>
+                                        </Transition>
+                                    </>
+                                )}
+                            </Popover>
                         </div>
                     </div>
                 </div>
@@ -146,6 +192,7 @@ const NavBar = () => {
                         <button className="btn btn-sm btn-secondary join-item capitalize">Search</button>
                     </div>
                 </div>
+
             </div>
         </div>
     );

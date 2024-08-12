@@ -18,13 +18,13 @@ function CategoryMenu() {
                         <ul className="flex items-center gap-6 text-sm">
                             <Link
                                 href={"/categories"}
-                                className="hover:opacity-70 transition-opacity flex items-center gap-2"
+                                className="hover:opacity-70 transition-opacity flex items-center gap-2 text-gray-800 hover:no-underline"
                             >
                                 <RiMenu2Line fontSize={18} />
                                 All Category
                             </Link>
                             {CATEGORY_LINKS.map((cat, idx) => (
-                                <Link key={cat.path + idx} href={cat.path} className="hover:opacity-80 transition-opacity">
+                                <Link key={cat.path + idx} href={cat.path} className="hover:opacity-80 transition-opacity text-gray-700 hover:no-underline">
                                     {cat.label}
                                 </Link>
                             ))}
