@@ -1,12 +1,17 @@
-const express = require("express");
-const logger = require("morgan");
-const cors = require("cors");
-const connectToDB = require("./app/configs/db.config");
-const { notFound, globalErrorHandler } = require("./app/middlewares/errorHandler");
-const brandRoutes = require("./app/routes/brand.routes");
-const categoryRoutes = require("./app/routes/category.routes");
-const productRoutes = require("./app/routes/product.routes");
-require("dotenv").config();
+// Importing modules:
+import express from 'express';
+import logger from 'morgan';
+import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
+// Importing database connection:
+import connectToDB from "./app/configs/db.config.js";
+// Importing middlewares:
+import { notFound, globalErrorHandler } from "./app/middlewares/errorHandler.js";
+// Importing routes:
+import productRoutes from './app/routes/product.routes.js';
+import categoryRoutes from './app/routes/category.routes.js';
+import brandRoutes from './app/routes/brand.routes.js';
 
 // ________________________________________________________________________
 const app = express();
@@ -15,9 +20,7 @@ const corsOptions = {
     origin: '*',
 }
 // ________________________________________________________________________
-
 const PORT = process.env.PORT || 8080;
-
 // ________________________________________________________________________
 
 // Middlewares:
@@ -28,23 +31,15 @@ app.use(logger('dev'));
 
 // Connect to MongoDB _____________________________________________________
 connectToDB();
-// ________________________________________________________________________
 
-// Routes:
-app.get("/", (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: "Connected to Backend successfully."
-    });
-});
-
-app.use('/api/v1/brands', brandRoutes);
-app.use('/api/v1/categories', categoryRoutes);
+// Routes section: ________________________________________________________
 app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/categories', categoryRoutes);
+app.use('/api/v1/brands', brandRoutes);
 
 // Error handler middleware: ______________________________________________
 app.use(notFound);
 app.use(globalErrorHandler);
-// ________________________________________________________________________
 
+// Run the server: ________________________________________________________
 app.listen(PORT, () => console.log(`App is running 🚀 on Port: ${PORT} ✔`));

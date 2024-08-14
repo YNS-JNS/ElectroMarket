@@ -1,7 +1,7 @@
-const express = require("express");
-const productCtrl = require("../controllers/product.controllers");
-const { productValidator } = require("../middlewares/validations/createProdValidator");
-const { isIdValidator } = require("../middlewares/validations/idValidator");
+import express from 'express';
+import { createProduct } from "../controllers/product.controllers.js";
+import { productValidator } from "../middlewares/validations/productValidators.js";
+// import { isIdValidator } = require("../middlewares/validations/idValidator");
 
 const router = express.Router(); // Router func
 
@@ -12,22 +12,12 @@ const router = express.Router(); // Router func
 /**
  * @function createProduct
  * @description Create a new product.
- * @route {POST} /api/v1/product
- * @param {string} req.body.name - The name of the product.
- * @param {number} req.body.price - The price of the product.
+ * @route {POST} /api/v1/products
+ * @param {Object} payload - The product data to be created.
  * @returns {Object} - The created product.
- * @throws {Error} - If there is an issue creating the product.
- * @example
- * {
- *   name: "Sample Product",
- *   price: 19.99
- * }
+ * @throws {Error} - If there is an issue.
 */
-/**
- * @desc POST | Create Product
- * @params No param
-*/
-router.post('/', productValidator, productCtrl.createProduct);
+router.post('/', productValidator, createProduct);
 
 // ______________________________________________________________________
 
@@ -55,7 +45,7 @@ router.post('/', productValidator, productCtrl.createProduct);
  * @desc GET | GET ALL Products
  * @params No param
 */
-router.get('/', productCtrl.getProductList);
+// router.get('/', productCtrl.getProductList);
 
 // ______________________________________________________________________
 
@@ -78,7 +68,7 @@ router.get('/', productCtrl.getProductList);
  * @desc GET | GET Product
  * @params {id}
 */
-router.get('/:id', isIdValidator, productCtrl.getProduct);
+// router.get('/:id', isIdValidator, productCtrl.getProduct);
 
 // ______________________________________________________________________
 
@@ -86,7 +76,7 @@ router.get('/:id', isIdValidator, productCtrl.getProduct);
  * @desc PUT | Update a Product
  * @params {id}
 */
-router.put('/:id', isIdValidator, productCtrl.updateProduct);
+// router.put('/:id', isIdValidator, productCtrl.updateProduct);
 
 // ______________________________________________________________________
 
@@ -94,9 +84,9 @@ router.put('/:id', isIdValidator, productCtrl.updateProduct);
  * @desc DELETE | Delete a Product
  * @params {id}
 */
-router.delete('/:id', isIdValidator, productCtrl.deleteOneProduct);
+// router.delete('/:id', isIdValidator, productCtrl.deleteOneProduct);
 
 // ______________________________________________________________________
 
 // Importing router:
-module.exports = router;
+export default router;

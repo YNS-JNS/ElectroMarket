@@ -1,6 +1,10 @@
-const Joi = require("joi");
+import Joi from"joi";
 
-// Check if Id of Product is valid or not
+/**
+ * Function to Check if Id is valid or not
+ * @param {string} id - Id of the product
+ * @returns {object} - Joi validation result
+ */
 const checkingId = (id) => {
 
     const idSchema = Joi.string().pattern(new RegExp('^[0-9a-fA-F]{24}$'));
@@ -16,7 +20,7 @@ exports.isIdValidator = (req, res, next) => {
     if (idError) {
         console.log(idError.details[0].message);
         return res.status(400).json({
-            status: 400,
+            success: false,
             message: `Product Id = ${req.params.id} is invalid !`
         });
     }
