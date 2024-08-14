@@ -1,11 +1,10 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
-// Example: One-To-One 
 const productSchema = mongoose.Schema(
     {
         name: {
             type: String,
-            required: [true, "Name is required !"]
+            required: [true, "Product name is required !"]
         },
         description: {
             type: String,
@@ -14,40 +13,45 @@ const productSchema = mongoose.Schema(
         brand: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'BrandModel',
-            required: [true, "Brand must be belong to brand"]
+            required: [true, "This Brand must be belong to brand"]
         },
         category: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'CategoryModel',
-            required: [true, "Category must be belong to category"]
+            required: [true, "This Category must be belong to category"]
         },
         price: {
             type: Number,
             required: [true, "Price must be a number and required !"]
         },
-        quantity: {
+        countInStock: {
             type: Number,
-            required: [true, "Quantity must be a number and required !"]
+            required: [true, "Quantity must be a number and required !"],
+            default: 0,
         },
-        imagesUrl:{
+        imagesUrl: {
             type: String,
             // type: Array,
             // required: [true, "Product must have at least one image"]
-        }
+        },
+        // reviews
+        // rating
+        // numReviews
+
+    },
+    {
+        timestamps: true
     }
 );
 
-/* 
-    One-To-Many: un produit peut appartenir à une seule catégorie, 
-    mais une catégorie peut avoir plusieurs produits.           
-*/
+// productSchema.method("toJSON", function(){
+//     const { _id, __v, ...object } = this.toObject();
 
-productSchema.method("toJSON", function(){
-    const { _id, __v, ...object } = this.toObject();
+//     object.id = _id;
 
-    object.id = _id;
-    
-    return object;
-});
+//     return object;
+// });
 
-module.exports = mongoose.model("ProductModel", productSchema); 
+const Product = mongoose.model("Product", productSchema);
+
+export default Product;
