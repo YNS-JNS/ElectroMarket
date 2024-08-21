@@ -18,15 +18,15 @@ const photoStorage = multer.diskStorage(
         },
         filename: function (req, file, callback) {
             if (file) {
-                // Get the original extension of the file
-                // const ext = path.extname(file.originalname);
+                // Get the original name of the file
+                const fileName = file.originalname;
                 // Create a unique name for the file using the current date and time
-                // const date = new Date().toISOString().replace(/:/g, '-');
+                const date = new Date().toISOString().replace(/:/g, '-');
                 // Return the new name with the original extension
-                // callback(null, date + ext);
+                callback(null, date + fileName);
 
                 // Create a unique name for the file using the current date and time
-                callback(null, new Date().toISOString().replace(/:/g, "-") + file.originalname);
+                // callback(null, new Date().toISOString().replace(/:/g, "-") + file.originalname);
 
             } else {
                 callback(null, false);
