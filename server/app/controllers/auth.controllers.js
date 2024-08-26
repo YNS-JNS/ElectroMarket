@@ -45,8 +45,9 @@ const registerUserCtrl = asyncHandler(async (req, res) => {
     if (!req.file) {
         return res.status(400).json({
             success: false,
-            message: 'Please upload an image profile!'
-        })
+            message: 'Please upload an image profile!',
+            error: 'No image provided'
+        });
     }
 
 

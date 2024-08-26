@@ -5,85 +5,100 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let imagePath;
-
 /**
- * Validate a user registration object
- * @param {Object} obj - The user registration object
- * @returns {Object} - The validated user registration object
- * @throws {Error} - If there is an issue with the validation
- */
-function validateRegisterUser(obj) {
-
-    const userSchema = Joi.object({
-
+ * User validation schemas:
+*/
+const userSchemas = {
+    registerUser: Joi.object({
         username: Joi.string().trim().min(2).max(100).required(),
         email: Joi.string().trim().min(5).max(100).required().email(),
         password: Joi.string().trim().min(8).required(),
         // password: passwordComplexity().required(),
-    });
+        profilePhoto: Joi.object({
+            url: Joi.string(),
+            publicId: Joi.string(),
+        })
+    }),
+    loginUser: Joi.object({
+        email: Joi.string().trim().min(5).max(100).required().email(),
+        password: Joi.string().trim().min(8).required(),
+    }),
+    updateUser: Joi.object({
+        username: Joi.string().trim().min(2).max(100),
+        email: Joi.string().trim().min(5).max(100).email(),
+        password: Joi.string().trim().min(8),
+        // password: passwordComplexity(),
+    }).min(1)
+    ,
+    // updateUserProfile: Joi.object({
+    //     username: Joi.string().trim().min(2).max(100),
+    //     email: Joi.string().trim().min(5).max(100).email(),
+    //     // password: passwordComplexity(),
+    // }).min(1)
+    // ,
+};
 
-    return userSchema.validate(obj, {abortEarly: false});
+/**
+ * Validate user data based on schema type
+ * @param {Object} data - The user data to validate
+ * @param {String} type - The schema type ('register' or 'login')
+ * @returns {Object} - The validated user data or an error
+ */
+function validateUser(data, type) {
+    const { error } = userSchemas[type].validate(data, { abortEarly: false });
+    if (error) {
+        throw new Error(error.details[0].message);
+    }
 };
 
 // ________________________________________________________________
 
 /**
- * Validate a user login object
- * @param {Object} obj - The user login object
- * @returns {Object} - The validated user login object
- * @throws {Error} - If there is an issue with the validation
+ * Middleware for user registration validation
  */
-function validateLoginUser(obj) {
-    const schema = Joi.object({
-        email: Joi.string().trim().min(5).max(100).required().email(),
-        password: Joi.string().trim().min(8).required(),
-    });
-    return schema.validate(obj, {abortEarly: false});
-}
-
-// ________________________________________________________________
-
-// Validator middleware:
 const registerUserValidator = (req, res, next) => {
+
+    let imagePath;
 
     if (req.file) {
         imagePath = path.join(__dirname, `../../images/${req.file.filename}`);
         console.log("imagePath: ", imagePath);
     }
 
-    console.log("Request Body:", req.body); // Ajoutez ceci pour voir le contenu de req.body
+    console.log("Request Body:", req.body);
 
-    const { error } = validateRegisterUser(req.body);
+    try {
+        validateUser(req.body, 'registerUser');
+        next();
+    } catch (error) {
 
-    if (error) {
         if (imagePath) {
-            // If the user already exists, remove the image from local server
+            // Remove the image if validation fails
             fs.unlinkSync(imagePath);
         }
-        console.log(error);
-        return res.status(400).json({
+        res.status(400).json({
             success: false,
-            message: error.details[0].message,
-        });
+            message: error.message,
+        })
     }
+}
 
-    next();
-};
+// ________________________________________________________________
 
+/**
+ * Middleware for user login validation
+ */
 const loginUserValidator = (req, res, next) => {
 
-    const { error } = validateLoginUser(req.body);
-
-    if (error) {
-        console.log(error);
-        return res.status(400).json({
+    try {
+        validateUser(req.body, 'loginUser');
+        next();
+    } catch (error) {
+        res.status(400).json({
             success: false,
-            message: error.details[0].message,
+            message: error.message,
         });
     }
-
-    next();
 };
 
 export { registerUserValidator, loginUserValidator };
