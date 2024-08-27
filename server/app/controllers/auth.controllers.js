@@ -141,10 +141,10 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     const token = generateToken(
         {
             sub: existingUser._id,
-            username: existingUser.username,
-            email: existingUser.email,
-            isAdmin: existingUser.isAdmin,
-            isAccountVerified: existingUser.isAccountVerified
+            // username: existingUser.username,
+            // email: existingUser.email,
+            // isAdmin: existingUser.isAdmin,
+            // isAccountVerified: existingUser.isAccountVerified
         }
     );
 
