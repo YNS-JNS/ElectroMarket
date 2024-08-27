@@ -7,6 +7,7 @@ import bcrypt from 'bcryptjs';
 import { fileURLToPath } from 'url';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import generateToken from '../utils/generateToken.js';
 
 dotenv.config();
 
@@ -107,6 +108,12 @@ const registerUserCtrl = asyncHandler(async (req, res) => {
     });
 });
 
+/** ----------------------------------------------
+* @desc    Login User
+* @route   /api/v1/auth/login
+* @method  POST
+* @access  public
+----------------------------------------------- */
 const loginUserCtrl = asyncHandler(async (req, res) => {
 
     // 1. Validation:
@@ -114,7 +121,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     const existingUser = await User.findOne({ email: req.body.email });
 
     if (!existingUser) {
-        return res.status(400).json({
+        return res.status(401).json({
             success: false,
             message: 'invalid email or password!'
         });
@@ -124,7 +131,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     const isPasswordMatch = await bcrypt.compare(req.body.password, existingUser.password);
 
     if (!isPasswordMatch) {
-        return res.status(400).json({
+        return res.status(401).json({
             success: false,
             message: 'invalid email or password!'
         });
@@ -134,19 +141,12 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     const token = generateToken(
         {
             sub: existingUser._id,
-            username: existingUser.username,
-            email: existingUser.email,
-            isAdmin: existingUser.isAdmin,
-            isAccountVerified: existingUser.isAccountVerified
+            // username: existingUser.username,
+            // email: existingUser.email,
+            // isAdmin: existingUser.isAdmin,
+            // isAccountVerified: existingUser.isAccountVerified
         }
     );
-
-    if (!token) {
-        return res.status(400).json({
-            success: false,
-            message: 'Failed to generate token!'
-        });
-    };
 
     // 4. Send response to client
     res.json({
@@ -157,9 +157,5 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
 
 });
 
-const generateToken = (payload) => {
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1d' });
-    return token;
-}
 
 export { registerUserCtrl, loginUserCtrl };
