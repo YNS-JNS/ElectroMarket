@@ -14,6 +14,8 @@ import MessageScreen from './screens/Admin/MessageScreen';
 import ProductDetailsScreen from './screens/ProductDetailsScreen';
 import CartScreen from './screens/CartScreen';
 import ListScreen from './screens/ListScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 // Importing Components:
 import NavBar from './components/NavBar/NavBar';
@@ -31,16 +33,18 @@ const App = () => {
 
   const { pathname } = useLocation();
 
-  const hideNavBar = pathname.startsWith('/dashboard');
+  const hideNavBarAndFooter = pathname.startsWith('/dashboard') || pathname === '/login';
 
   return (
     <div className='bg-white'>
-      {/* if hideNavBar is true, hide the nav bar */}
-      {!hideNavBar && <NavBar />}
-      {!hideNavBar && <CategoryMenu />}  
-      
+      {/* if hideNavBarAndFooter is true, hide the nav bar */}
+      {!hideNavBarAndFooter && <NavBar />}
+      {!hideNavBarAndFooter && <CategoryMenu />}
+
       <Routes>
         <Route path="/" element={<HomeScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/register" element={<RegisterScreen />} />
         <Route path="/products" element={<ProductListScreen />} />
         <Route path="/products/list" element={<ListScreen />} />
         <Route path="/products/:id" element={<ProductDetailsScreen />} />
@@ -69,7 +73,7 @@ const App = () => {
           <Route path="wireframes" element={<Wireframes />} />
         </Route>
       </Routes>
-      {!hideNavBar && <Footer />}
+      {!hideNavBarAndFooter && <Footer />}
     </div>
 
   )
