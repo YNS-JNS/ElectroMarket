@@ -1,8 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CustomButton from '../Ui/CustomButton'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../features/auth/authSlice';
 
 const LoginForm = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const dispatch = useDispatch();
+    // const navigate = useNavigate();
+
+    const { user, authStatus, loading, error, token } = useSelector((state) => state.auth);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        await dispatch(loginUser({ email, password }));
+        // navigate('/dashboard');
+    };
+
+    // console.log("User: ", user);
+    console.log("Auth Status: ", authStatus);
+    console.log("Loading: ", loading, error);
+    console.log("Error: ", error);
+    console.log("Token: ", token);
+
+
     return (
         <>
             <form>
@@ -10,10 +34,10 @@ const LoginForm = () => {
                     <h3>welcome back!</h3>
                 </div>
                 <div>
-                    {/* username */}
+                    {/* email */}
                     <div>
                         <div className="capitalize text-xl mb-2">
-                            <label>username</label>
+                            <label>email</label>
                         </div>
                         <div className="border-2 relative">
                             <span className="absolute px-2 inset-y-0 left-0 flex items-center text-gray-400">
@@ -34,8 +58,10 @@ const LoginForm = () => {
                             </span>
                             <input
                                 className="w-full placeholder:capitalize text-lg px-8 py-1.5 outline-blue-800"
-                                type="text"
-                                placeholder="enter username"
+                                type="email"
+                                placeholder="yns@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                     </div>
@@ -66,6 +92,8 @@ const LoginForm = () => {
                                 className="w-full placeholder:capitalize text-lg px-8 py-1.5 outline-blue-800"
                                 type="password"
                                 placeholder="enter password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                     </div>
@@ -86,11 +114,11 @@ const LoginForm = () => {
                         {/* <button className="bg-blue-800 text-xl text-white font-medium uppercase p-2 rounded-lg w-full opacity-90 hover:opacity-100">
                             login
                         </button> */}
-                        <CustomButton 
-                         label="login"
-                         onClick={() => console.log("login")}
-                         variant='success'
-                         width="100%"
+                        <CustomButton
+                            onClick={handleLogin}
+                            label="login"
+                            variant='success'
+                            width="100%"
                         />
                     </div>
 
