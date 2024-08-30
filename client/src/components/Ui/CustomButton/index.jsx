@@ -54,7 +54,7 @@ const VARIANTS = {
    }
  `,
 
-  // Black Button Css:
+  // Success Button Css:
   success: css`
  background: #0F67B1;
  color: #fff;
