@@ -32,7 +32,7 @@
 
 ## Tech Stack
 
-- **Frontend:** React.js, Tailwind CSS, Material Tailwind, DaisyUI
+- **Frontend:** React.js, Tailwind CSS, DaisyUI
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
 - **Authentication:** JWT, bcryptjs
