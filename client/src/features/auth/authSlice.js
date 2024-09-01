@@ -17,7 +17,7 @@ const initialState = {
 export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, password }, { rejectWithValue }) => {
 
     try {
-        const response = await axios.post('/auth/login', { email, password });
+        const { data } = await axios.post('/auth/login', { email, password });
 
         // configure header's Content-Type as JSON
         // const config = {
@@ -31,12 +31,20 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
         //     config
         // )
 
-        console.log(response.data);
-        return response.data;
+        console.log(data);
+
+        localStorage.setItem('userToken', data.token);
+        return data;
 
     } catch (error) {
-        console.log(error.response.data);
-        return rejectWithValue(error.response.data);
+        // return custom error message from API if any
+        if (error.response && error.response.data.message) {
+            console.log("",error.response.data);
+            return rejectWithValue(error.response.data.message);
+        } else {
+            console.log(error.message);
+            return rejectWithValue(error.message);
+        }
     }
 })
 
@@ -68,7 +76,7 @@ const authSlice = createSlice(
                 state.authStatus = 'rejected';
                 state.loading = false;
                 state.user = null;
-                state.error = payload.message;
+                state.error = payload;
             });
 
         }

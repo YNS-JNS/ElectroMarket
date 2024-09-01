@@ -1,6 +1,7 @@
 import React from 'react'
 import ProductDetailsOverview from '../../ProductDetailsOverview'
 import { useEffect, useState } from "react"
+import Loading from '../../Ui/Loading';
 
 export default function ProductPreview() {
 
@@ -18,15 +19,13 @@ export default function ProductPreview() {
 
     return (
         <div className='container mx-auto my-4'>
-                {product ? (
-                    <>
-                        <ProductDetailsOverview product={product} />
-                    </>
-                ) : (
-                    <div className="p-12 flex min-h-[22rem]">
-                        <span className="m-auto loading loading-ring loading-lg"></span>
-                    </div>
-                )}
+            {product ? (
+                <>
+                    <ProductDetailsOverview product={product} />
+                </>
+            ) : (
+                <Loading />
+            )}
         </div>
     )
 }
