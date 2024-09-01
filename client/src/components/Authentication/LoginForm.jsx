@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomButton from '../Ui/CustomButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,15 +10,21 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
 
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const { user, authStatus, loading, error, token } = useSelector((state) => state.auth);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         await dispatch(loginUser({ email, password }));
-        // navigate('/dashboard');
     };
+
+    useEffect(() => {
+        if (authStatus === 'succeeded') {
+            navigate('/dashboard');
+        }
+    }, [navigate, authStatus]);
+
 
     // console.log("User: ", user);
     console.log("Auth Status: ", authStatus);
@@ -135,6 +141,7 @@ const LoginForm = () => {
                         </p>
                     </div>
                 </div>
+                {error && <p className="text-red-500 text-sm">{error}</p>}
             </form>
         </>
     )
