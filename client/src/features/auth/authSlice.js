@@ -67,7 +67,7 @@ const authSlice = createSlice(
                 console.log("Fulfilled!");
                 state.authStatus = 'succeeded';
                 state.loading = false;
-                // state.user = payload;
+                state.user = payload;
                 state.token = payload.token;
                 state.error = null;
             });
