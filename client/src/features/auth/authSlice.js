@@ -1,13 +1,14 @@
+// client\src\features\auth\authSlice.js:
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import axios from 'axios';
 import axios from '../../config/axios.js';
 
-// const backendURL = 'http://localhost:8000';
+// initialize userToken from local storage
+const token = localStorage.getItem('authToken') ? localStorage.getItem('authToken') : null;
 
 const initialState = {
 
-    // user: null,
-    token: null,
+    user: null,
+    token,
     authStatus: "idle",
     loading: false,
     error: null,
@@ -19,31 +20,30 @@ export const loginUser = createAsyncThunk('auth/loginUser', async ({ email, pass
     try {
         const { data } = await axios.post('/auth/login', { email, password });
 
-        // configure header's Content-Type as JSON
-        // const config = {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // }
-        // const response = await axios.post(
-        //     `${backendURL}/api/v1/auth/login`,
-        //     { email, password },
-        //     config
-        // )
+        /* configure header's Content-Type as JSON
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }
+        const response = await axios.post(
+            `${backendURL}/api/v1/auth/login`,
+            { email, password },
+            config
+         ) */
 
-        console.log(data);
-
-        localStorage.setItem('userToken', data.token);
+        console.log("Data:", data);
+        localStorage.setItem('authToken', data.token);
         return data;
 
     } catch (error) {
         // return custom error message from API if any
-        if (error.response && error.response.data.message) {
-            console.log("",error.response.data);
-            return rejectWithValue(error.response.data.message);
-        } else {
-            console.log(error.message);
+        if (error.response && error.response.data) {
+            return rejectWithValue(error.response.data);
+        } else if (error.message) {
             return rejectWithValue(error.message);
+        } else {
+            return rejectWithValue('An unexpected error occurred.');
         }
     }
 })
@@ -67,7 +67,7 @@ const authSlice = createSlice(
                 console.log("Fulfilled!");
                 state.authStatus = 'succeeded';
                 state.loading = false;
-                state.user = payload;
+                state.user = payload.user;
                 state.token = payload.token;
                 state.error = null;
             });
@@ -76,7 +76,7 @@ const authSlice = createSlice(
                 state.authStatus = 'rejected';
                 state.loading = false;
                 state.user = null;
-                state.error = payload;
+                state.error = payload.message;
             });
 
         }
