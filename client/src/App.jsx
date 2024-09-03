@@ -1,3 +1,4 @@
+// App.js
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom';
 // Importing Layouts:
@@ -17,6 +18,9 @@ import ListScreen from './screens/ListScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 
+// Importing Protected Route:
+import ProtectedRoute from './components/ProtectedRoute';
+
 // Importing Components:
 import NavBar from './components/NavBar/NavBar';
 import CategoryMenu from './components/CategoryMenu';
@@ -28,6 +32,7 @@ import ProductList from './components/Dashboard/Product/ProductList';
 import UpdateProduct from './components/Dashboard/Product/UpdateProduct';
 import ProductPreview from './components/Dashboard/Product/ProductPreview';
 import Wireframes from './components/Dashboard/Wireframes';
+
 
 const App = () => {
 
@@ -50,28 +55,32 @@ const App = () => {
         <Route path="/products/:id" element={<ProductDetailsScreen />} />
         <Route path="/cart" element={<CartScreen />} />
 
-        {/* Nested routes for dashboard */}
-        <Route path="/dashboard" element={<DashboardLayout />} >
-          {/* Dashboard */}
-          <Route index element={<DashboardScreen />} />
-          {/* Profile */}
-          <Route path="profile" element={<ProfileScreen />} />
-          {/* Products */}
-          <Route path="products/new" element={<AddProduct />} />
-          <Route path="products/:id/edit" element={<UpdateProduct />} />
-          <Route path="products/:id/preview" element={<ProductPreview />} />
-          <Route path="products/list" element={<ProductList />} />
-          {/* Orders */}
-          <Route path="orders" element={<OrderScreen />} />
-          {/* Customers */}
-          <Route path="customers" element={<CustomerScreen />} />
-          {/* Transactions */}
-          <Route path="transactions" element={<TransactionScreen />} />
-          {/* Messages */}
-          <Route path="messages" element={<MessageScreen />} />
-          {/* Wireframes */}
-          <Route path="wireframes" element={<Wireframes />} />
+        {/* Protected Routes */}
+        <Route element={<ProtectedRoute />}>
+          {/* Nested routes for dashboard */}
+          <Route path="/dashboard" element={<DashboardLayout />} >
+            {/* Dashboard */}
+            <Route index element={<DashboardScreen />} />
+            {/* Profile */}
+            <Route path="profile" element={<ProfileScreen />} />
+            {/* Products */}
+            <Route path="products/new" element={<AddProduct />} />
+            <Route path="products/:id/edit" element={<UpdateProduct />} />
+            <Route path="products/:id/preview" element={<ProductPreview />} />
+            <Route path="products/list" element={<ProductList />} />
+            {/* Orders */}
+            <Route path="orders" element={<OrderScreen />} />
+            {/* Customers */}
+            <Route path="customers" element={<CustomerScreen />} />
+            {/* Transactions */}
+            <Route path="transactions" element={<TransactionScreen />} />
+            {/* Messages */}
+            <Route path="messages" element={<MessageScreen />} />
+            {/* Wireframes */}
+            <Route path="wireframes" element={<Wireframes />} />
+          </Route>
         </Route>
+
       </Routes>
       {!hideNavBarAndFooter && <Footer />}
     </div>
