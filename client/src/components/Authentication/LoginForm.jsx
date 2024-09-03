@@ -1,3 +1,4 @@
+// client\src\components\Authentication\LoginForm.jsx:
 import React, { useEffect, useState } from 'react'
 import CustomButton from '../Ui/CustomButton'
 import { Link, useNavigate } from 'react-router-dom'
@@ -14,9 +15,9 @@ const LoginForm = () => {
 
     const { user, authStatus, loading, error, token } = useSelector((state) => state.auth);
 
-    const handleLogin = async (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-        await dispatch(loginUser({ email, password }));
+        dispatch(loginUser({ email, password }));
     };
 
     useEffect(() => {
@@ -26,16 +27,16 @@ const LoginForm = () => {
     }, [navigate, authStatus]);
 
 
-    // console.log("User: ", user);
-    console.log("Auth Status: ", authStatus);
-    console.log("Loading: ", loading, error);
-    console.log("Error: ", error);
-    console.log("Token: ", token);
+    console.log("Form => User: ", user);
+    console.log("Form => Auth Status: ", authStatus);
+    console.log("Form => Loading: ", loading, error);
+    console.log("Form => Error: ", error);
+    console.log("Form => Token: ", token);
 
 
     return (
         <>
-            <form>
+            <form onSubmit={handleLogin}>
                 <div className="text-2xl text-blue-600 font-bold capitalize text-center mb-4">
                     <h3>welcome back!</h3>
                 </div>

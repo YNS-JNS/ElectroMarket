@@ -1,3 +1,4 @@
+// server\app\controllers\auth.controllers.js:
 import asyncHandler from 'express-async-handler';
 import User from '../models/user.model.js';
 import { cloudinaryUploadImage } from '../utils/cloudinary.js';
@@ -152,6 +153,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     res.json({
         success: true,
         message: 'Logged in successfully',
+        user: existingUser,
         token
     });
 
