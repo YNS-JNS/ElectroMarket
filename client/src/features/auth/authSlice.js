@@ -1,13 +1,14 @@
 // client\src\features\auth\authSlice.js:
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-// import axios from 'axios';
 import axios from '../../config/axios.js';
 
-// const backendURL = 'http://localhost:8000';
+// initialize userToken from local storage
+const token = localStorage.getItem('authToken') ? localStorage.getItem('authToken') : null;
+
 const initialState = {
 
     user: null,
-    token: null,
+    token,
     authStatus: "idle",
     loading: false,
     error: null,
