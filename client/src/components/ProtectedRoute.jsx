@@ -7,7 +7,6 @@ const ProtectedRoute = () => {
     const location = useLocation(); // Utilisé pour obtenir l'URL actuelle
 
     useEffect(() => {
-    const token = localStorage.getItem('authToken'); // Get the token from localStorage
 
         setIsAuthenticated(!!token); // Convertit en booléen : true si le token existe, false sinon
     }, [token]);
