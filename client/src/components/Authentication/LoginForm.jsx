@@ -7,7 +7,7 @@ import { loginUser } from '../../features/auth/authSlice';
 
 const LoginForm = () => {
 
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('yns@gmail.com');
     const [password, setPassword] = useState('');
 
     const dispatch = useDispatch();
