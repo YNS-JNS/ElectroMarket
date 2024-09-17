@@ -19,7 +19,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 
 // Importing Protected Route:
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './helper/ProtectedRoute';
 
 // Importing Components:
 import NavBar from './components/NavBar/NavBar';
