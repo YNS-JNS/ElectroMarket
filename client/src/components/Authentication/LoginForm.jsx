@@ -3,9 +3,24 @@ import React, { useEffect, useState } from 'react'
 import CustomButton from '../Ui/CustomButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../features/auth/authSlice';
+import { loginUser } from '../../features/auth/authAction';
+import Spinner from '../../helper/Spinner';
 
 const LoginForm = () => {
+
+    const {
+        // user,
+        token,
+        isFetching,
+        isSuccess,
+        isError,
+        errorMessage } = useSelector((state) => state.auth);
+
+        console.log("isFetching", isFetching);
+        console.log("isSuccess", isSuccess);
+        console.log("isError", isError);
+        console.log("errorMessage", errorMessage);
+        
 
     const [email, setEmail] = useState('yns@gmail.com');
     const [password, setPassword] = useState('');
@@ -13,30 +28,60 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { user, authStatus, loading, error, token } = useSelector((state) => state.auth);
 
-    const handleLogin = (e) => {
+    // Get the 'from' location state or default to home page
+    // const from = location.state?.from?.pathname || '/dashboard';
+
+    const handleSubmitLogin = (e) => {
         e.preventDefault();
         dispatch(loginUser({ email, password }));
+
+        // if (loginUser.fulfilled.match(resultAction)) {
+        // After successful login, redirect the user to the 'from' path or the home page
+        // navigate(from, { replace: true });
+        // } else {
+        // Handle login failure (optional)
+        // console.log('Login failed:', resultAction.payload);
+        // }
     };
 
+    // redirect authenticated user to profile screen
+    // useEffect(() => {
+    //     if (token) {
+    //         navigate('/dashboard');
+    //     }
+    // }, [navigate, token]);
+
+
+    // useEffect(() => {
+    //     if (authStatus === 'succeeded') {
+    //         navigate('/dashboard');
+    //     }
+    // }, [navigate, authStatus]);
+
     useEffect(() => {
-        if (authStatus === 'succeeded') {
-            navigate('/dashboard');
+        if (isSuccess) {
+            navigate('/dashboard',  { replace: true });
         }
-    }, [navigate, authStatus]);
+    }, [isSuccess, navigate]);
+
+    useEffect(() => {
+        if (token) {
+            navigate('/dashboard',  { replace: true });
+        }
+    }, [token, navigate]);
 
 
-    console.log("Form => User: ", user);
-    console.log("Form => Auth Status: ", authStatus);
-    console.log("Form => Loading: ", loading, error);
-    console.log("Form => Error: ", error);
-    console.log("Form => Token: ", token);
+    // console.log("Form => User: ", user);
+    // console.log("Form => Auth Status: ", authStatus);
+    // console.log("Form => Loading: ", loading);
+    // console.log("Form => Error: ", error);
+    // console.log("Form => Token: ", token);
 
 
     return (
         <>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleSubmitLogin}>
                 <div className="text-2xl text-blue-600 font-bold capitalize text-center mb-4">
                     <h3>welcome back!</h3>
                 </div>
@@ -121,12 +166,20 @@ const LoginForm = () => {
                         {/* <button className="bg-blue-800 text-xl text-white font-medium uppercase p-2 rounded-lg w-full opacity-90 hover:opacity-100">
                             login
                         </button> */}
-                        <CustomButton
-                            onClick={handleLogin}
-                            label="login"
-                            variant='success'
-                            width="100%"
+                        {
+                            isFetching ? (
+
+                                <Spinner />
+                            ): (
+                                    <CustomButton
+                            onClick = { handleSubmitLogin }
+                            label = "login"
+                            variant = 'success'
+                            width = "100%"
                         />
+                        )
+                        }
+
                     </div>
 
                     {/* register link */}
@@ -142,7 +195,7 @@ const LoginForm = () => {
                         </p>
                     </div>
                 </div>
-                {error && <p className="text-red-500 text-sm">{error}</p>}
+                {isError && <p className="text-red-500 text-sm">{errorMessage}</p>}
             </form>
         </>
     )
