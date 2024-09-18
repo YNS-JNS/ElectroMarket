@@ -3,10 +3,18 @@ import { HiOutlineBell, HiOutlineChatAlt, HiOutlineSearch } from 'react-icons/hi
 import { Menu, Popover, Transition, PopoverButton, PopoverPanel, MenuButton, MenuItems, MenuItem } from '@headlessui/react'
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../features/auth/authSlice'
 
 const Header = () => {
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login', { replace: true });
+  };
 
   const links = [
     { href: '/settings', label: 'Settings' },
@@ -152,7 +160,9 @@ const Header = () => {
                 <div
                   className='data-[focus]:bg-gray-100 text-sm active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200'
                 >
-                  Sign out
+                  <button onClick={handleLogout}>
+                    Logout
+                  </button>
                 </div>
               </MenuItem>
             </MenuItems>
