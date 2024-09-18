@@ -66,7 +66,8 @@ const VARIANTS = {
    /* border: 2px solid #000; */
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
  }
-`
+`,
+
 };
 
 const DISABLED = css`
@@ -86,25 +87,25 @@ const Container = styled.button`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: ${(props) => props.padding || '12px 25px'};
-  margin: ${(props) => props.margin || '8px 4px'};
-  width: ${(props) => props.width || 'auto'};
-  height: ${(props) => props.height || 'auto'};
+  padding: ${(props) => props.$padding || '12px 25px'};
+  margin: ${(props) => props.$margin || '8px 4px'};
+  width: ${(props) => props.$width || 'auto'};
+  height: ${(props) => props.$height || 'auto'};
   cursor: pointer;
   border: none;
   border-radius: 5px;
   font-weight: bold;
-  font-size: ${(props) => props.fontSize || '14px'};
+  font-size: ${(props) => props.$fontSize || '14px'};
   text-transform: uppercase;
   transition: all 0.2s;
 
-  ${(props) => props.variant && VARIANTS[props.variant]}
+  ${(props) => props.$variant && VARIANTS[props.$variant]}
   ${(props) => props.disabled && DISABLED}
 `;
 
 const CustomButton = ({ label, leftIcon: LeftIcon, rightIcon: RightIcon, onClick, variant = 'primary', disabled, fontSize, padding, margin, width, height }) => {
   return (
-    <Container onClick={onClick} variant={variant} disabled={disabled} fontSize={fontSize} padding={padding} margin={margin} width={width} height={height}>
+    <Container onClick={onClick} $variant={variant} disabled={disabled} $fontSize={fontSize} $padding={padding} $margin={margin} $width={width} $height={height}>
       {LeftIcon && <LeftIcon className="text-xl" />}
       {label && <span>{label}</span>}
       {RightIcon && <RightIcon className="text-xl" />}
@@ -117,7 +118,7 @@ CustomButton.propTypes = {
   label: PropTypes.string.isRequired,
   leftIcon: PropTypes.elementType,
   rightIcon: PropTypes.elementType,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'ghost', 'black']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'ghost', 'black', 'success']),
   disabled: PropTypes.bool,
   fontSize: PropTypes.string,
   padding: PropTypes.string,

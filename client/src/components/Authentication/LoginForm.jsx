@@ -16,11 +16,11 @@ const LoginForm = () => {
         isError,
         errorMessage } = useSelector((state) => state.auth);
 
-        console.log("isFetching", isFetching);
-        console.log("isSuccess", isSuccess);
-        console.log("isError", isError);
-        console.log("errorMessage", errorMessage);
-        
+    // console.log("isFetching", isFetching);
+    // console.log("isSuccess", isSuccess);
+    // console.log("isError", isError);
+    // console.log("errorMessage", errorMessage);
+
 
     const [email, setEmail] = useState('yns@gmail.com');
     const [password, setPassword] = useState('');
@@ -28,56 +28,25 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-
-    // Get the 'from' location state or default to home page
-    // const from = location.state?.from?.pathname || '/dashboard';
-
+    // submit handler
     const handleSubmitLogin = (e) => {
         e.preventDefault();
         dispatch(loginUser({ email, password }));
-
-        // if (loginUser.fulfilled.match(resultAction)) {
-        // After successful login, redirect the user to the 'from' path or the home page
-        // navigate(from, { replace: true });
-        // } else {
-        // Handle login failure (optional)
-        // console.log('Login failed:', resultAction.payload);
-        // }
     };
 
-    // redirect authenticated user to profile screen
-    // useEffect(() => {
-    //     if (token) {
-    //         navigate('/dashboard');
-    //     }
-    // }, [navigate, token]);
-
-
-    // useEffect(() => {
-    //     if (authStatus === 'succeeded') {
-    //         navigate('/dashboard');
-    //     }
-    // }, [navigate, authStatus]);
-
+    // redirect authenticated user to profile screen or dashboard
     useEffect(() => {
         if (isSuccess) {
-            navigate('/dashboard',  { replace: true });
+            navigate('/dashboard', { replace: true });
         }
     }, [isSuccess, navigate]);
 
+    // if token is present, redirect to dashboard
     useEffect(() => {
         if (token) {
-            navigate('/dashboard',  { replace: true });
+            navigate('/dashboard', { replace: true });
         }
     }, [token, navigate]);
-
-
-    // console.log("Form => User: ", user);
-    // console.log("Form => Auth Status: ", authStatus);
-    // console.log("Form => Loading: ", loading);
-    // console.log("Form => Error: ", error);
-    // console.log("Form => Token: ", token);
-
 
     return (
         <>
@@ -163,25 +132,21 @@ const LoginForm = () => {
 
                     {/* login button */}
                     <div>
-                        {/* <button className="bg-blue-800 text-xl text-white font-medium uppercase p-2 rounded-lg w-full opacity-90 hover:opacity-100">
-                            login
-                        </button> */}
                         {
                             isFetching ? (
 
                                 <Spinner />
-                            ): (
-                                    <CustomButton
-                            onClick = { handleSubmitLogin }
-                            label = "login"
-                            variant = 'success'
-                            width = "100%"
-                        />
-                        )
+                            ) : (
+                                <CustomButton
+                                    onClick={handleSubmitLogin}
+                                    label="login"
+                                    variant='success'
+                                    width="100%"
+                                />
+                            )
                         }
 
                     </div>
-
                     {/* register link */}
                     <div className="text-[18px] text-center mt-4">
                         <p>
