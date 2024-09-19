@@ -1,11 +1,15 @@
-import React from 'react'
+// client\src\screens\RegisterScreen\index.jsx:
+import React from "react";
+import RegisterForm from "../../../components/Authentication/RegisterForm";
 
-const index = () => {
+const RegisterScreen = () => {
     return (
-        <div className='flex flex-col items-center justify-center'>
-            <h1 className='text-xl font-medium text-black'>Register</h1>
+        <div className="h-screen flex items-center justify-center p-4">
+            <div className="bg-white p-6 shadow-lg rounded-xl w-[28rem] dark:bg-slate-100">
+                <RegisterForm />
+            </div>
         </div>
-    )
-}
+    );
+};
 
-export default index
+export default RegisterScreen;
