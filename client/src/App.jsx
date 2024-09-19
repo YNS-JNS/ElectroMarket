@@ -16,7 +16,7 @@ import ProductDetailsScreen from './screens/ProductDetailsScreen';
 import CartScreen from './screens/CartScreen';
 import ListScreen from './screens/ListScreen';
 import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
+import RegisterScreen from './screens/Auth/RegisterScreen';
 
 // Importing Protected Route:
 import ProtectedRoute from './helper/ProtectedRoute';
@@ -38,7 +38,7 @@ const App = () => {
 
   const { pathname } = useLocation();
 
-  const hideNavBarAndFooter = pathname.startsWith('/dashboard') || pathname === '/login';
+  const hideNavBarAndFooter = pathname.startsWith('/dashboard') || pathname === '/login' || pathname === '/register';
 
   return (
     <div className='bg-white'>
