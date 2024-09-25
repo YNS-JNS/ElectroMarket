@@ -1,6 +1,6 @@
 // client\src\features\auth\authSlice.js:
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser } from './authAction';
+import { loginUser, registerUser } from './authAction';
 
 // initialize userToken from local storage
 const token = localStorage.getItem('authToken') ? localStorage.getItem('authToken') : null;
@@ -13,9 +13,6 @@ const initialState = {
     isSuccess: false,
     isError: false,
     errorMessage: "idle",
-    // authStatus: "idle",
-    // loading: false,
-    // error: null,
 };
 
 const authSlice = createSlice(
@@ -37,6 +34,7 @@ const authSlice = createSlice(
 
         extraReducers: (builder) => {
 
+            // login : ______________________
             builder.addCase(loginUser.pending, (state) => {
                 console.log("Pending!");
                 state.isFetching = true;
@@ -53,6 +51,25 @@ const authSlice = createSlice(
                 state.isFetching = false;
                 state.isError = true;
                 state.errorMessage = payload.message;
+            });
+
+            // register: ______________________
+            builder.addCase(registerUser.pending, (state) => {
+                console.log("Pending!");
+                state.isFetching = true;
+            });
+            builder.addCase(registerUser.fulfilled, (state, { payload }) => {
+                console.log("Fulfilled!");
+                state.user = payload.user;
+                // state.token = payload.token;
+                state.isFetching = false;
+                state.isSuccess = true;
+            });
+            builder.addCase(registerUser.rejected, (state, { payload }) => {
+                console.log("Rejected!");
+                state.isFetching = false;
+                state.isError = true;
+                state.errorMessage = payload?.message || "An error occurred.";
             });
 
         }

@@ -1,3 +1,4 @@
+// server\app\routes\auth.routes.js
 import express from 'express';
 import { photoUpload } from '../middlewares/uploadImages.js';
 import { registerUserCtrl, loginUserCtrl } from '../controllers/auth.controllers.js';
