@@ -1,33 +1,66 @@
-// client\src\components\Authentication\LoginForm.jsx:
+// client\src\components\Authentication\RegisterForm.jsx:
 import React, { useEffect, useState } from 'react'
 import CustomButton from '../Ui/CustomButton'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../features/auth/authAction';
+import { registerUser } from '../../features/auth/authAction';
 import Spinner from '../../helper/Spinner';
 
-const LoginForm = () => {
+const RegisterForm = () => {
 
-    const { token, isFetching, isSuccess, isError, errorMessage } = useSelector((state) => state.auth);
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [profileImage, setProfileImage] = useState(null);
 
+    const { user, token, isFetching, isSuccess, isError, errorMessage } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const handleProfileImage = (e) => {
+        setProfileImage(e.target.files[0]);
+    }
 
     // submit handler
     const handleSubmitRegister = (e) => {
         e.preventDefault();
-        dispatch(loginUser({ email, password }));
+
+        // validation:
+        if (userName === '' || email === '' || password === '') {
+            return alert("All fields are required");
+        }
+
+        const formData = new FormData();
+
+        formData.append("username", userName);
+        formData.append("email", email);
+        formData.append("password", password);
+        if (profileImage) {
+            formData.append("image", profileImage);
+        }
+
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+
+        /* for (let pair of formData.entries()) {
+           console.log(pair[0] + ': ' + pair[1]);
+        } */
+
+
+        dispatch(registerUser(formData));
+        navigate('/login', { replace: true });
+
     };
 
+
+
     // redirect authenticated user to profile screen or dashboard
-    useEffect(() => {
-        if (isSuccess) {
-            navigate('/dashboard', { replace: true });
-        }
-    }, [isSuccess, navigate]);
+    // useEffect(() => {
+    //     if (isSuccess) {
+    //         navigate('/login', { replace: true });
+    //     }
+    // }, [isSuccess, navigate]);
 
     // if token is present, redirect to dashboard
     useEffect(() => {
@@ -36,10 +69,12 @@ const LoginForm = () => {
         }
     }, [token, navigate]);
 
-    // console.log("isFetching", isFetching);
-    // console.log("isSuccess", isSuccess);
-    // console.log("isError", isError);
-    // console.log("errorMessage", errorMessage);
+    console.log("user", user);
+    console.log("token", token);
+    console.log("isFetching", isFetching);
+    console.log("isSuccess", isSuccess);
+    console.log("isError", isError);
+    console.log("errorMessage", errorMessage);
 
     return (
         <>
@@ -72,8 +107,10 @@ const LoginForm = () => {
                             </span>
                             <input
                                 className="w-full placeholder:capitalize text-lg px-8 py-1.5 outline-blue-800"
-                                type="username"
+                                required
+                                type="text"
                                 placeholder="Youness"
+                                name='username'
                                 value={userName}
                                 onChange={(e) => setUserName(e.target.value)}
                             />
@@ -104,8 +141,10 @@ const LoginForm = () => {
                             </span>
                             <input
                                 className="w-full placeholder:capitalize text-lg px-8 py-1.5 outline-blue-800"
+                                required
                                 type="email"
                                 placeholder="yns@example.com"
+                                name='email'
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -136,8 +175,10 @@ const LoginForm = () => {
                             </span>
                             <input
                                 className="w-full placeholder:capitalize text-lg px-8 py-1.5 outline-blue-800"
+                                required
                                 type="password"
                                 placeholder="enter password"
+                                name='password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
@@ -149,7 +190,7 @@ const LoginForm = () => {
                         <div className="relative">
                             <label
                                 title="Click to upload"
-                                htmlFor="button2"
+                                htmlFor="profilePhoto"
                                 className="cursor-pointer flex items-center gap-4 px-6 py-4 before:border-gray-400/60 hover:before:border-gray-300 group before:bg-gray-100 before:absolute before:inset-0 before:rounded-3xl before:border before:border-dashed before:transition-transform before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
                             >
                                 <div className="w-max relative">
@@ -163,12 +204,12 @@ const LoginForm = () => {
                                 </div>
                                 <div className="relative">
                                     <span className="block text-base font-semibold relative text-blue-900 group-hover:text-blue-500">
-                                        Upload an image profile
+                                        Upload an image profile (optional)
                                     </span>
                                     <span className="mt-0.5 block text-sm text-gray-500">Max 2 MB</span>
                                 </div>
                             </label>
-                            <input hidden type="file" name="button2" id="button2" />
+                            <input hidden type="file" name="image" id="profilePhoto" onChange={handleProfileImage} />
                         </div>
                     </div>
 
@@ -209,4 +250,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default RegisterForm;
