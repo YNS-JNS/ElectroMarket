@@ -1,19 +1,19 @@
 // server\app\controllers\auth.controllers.js:
 import asyncHandler from 'express-async-handler';
 import User from '../models/user.model.js';
-import { cloudinaryUploadImage } from '../utils/cloudinary.js';
-import path from 'path';
-import fs from 'fs';
-import bcrypt from 'bcryptjs';
-import { fileURLToPath } from 'url';
-import jwt from 'jsonwebtoken';
+// import { cloudinaryUploadImage } from '../utils/cloudinary.js';
+// import path from 'path';
+// import fs from 'fs';
+// import bcrypt from 'bcryptjs';
+// import { fileURLToPath } from 'url';
+// import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import generateToken from '../utils/generateToken.js';
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 /** ----------------------------------------------
 * @desc    Register New User
@@ -22,6 +22,47 @@ const __dirname = path.dirname(__filename);
 * @access  public
 ----------------------------------------------- */
 const registerUserCtrl = asyncHandler(async (req, res) => {
+
+    const { username, email, password } = req.body;
+    // 1. Validation:
+    // Check if the user already exists
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+        res.status(400);
+        throw new Error('User already exists');
+    }
+
+    // 2. Create and save the new user
+    const newUser = new User({
+        username,
+        email,
+        password
+    });
+
+    await newUser.save();
+
+    // 3. Generate token
+    const token = generateToken({ sub: newUser._id });
+
+    // 4. Send response to client
+    res.status(201).json({
+        success: true,
+        message: 'User created successfully',
+        data: {
+            _id: newUser._id,
+            username: newUser.username,
+            email: newUser.email,
+            profilePhoto: newUser.profilePhoto,
+            isAdmin: newUser.isAdmin,
+            isAccountVerified: newUser.isAccountVerified,
+        },
+        token
+    });
+});
+
+/*
+const updateProfileUserCtrl = asyncHandler(async (req, res) => {
 
     // 1. Validation:
     // Check if user already exists
@@ -108,6 +149,7 @@ const registerUserCtrl = asyncHandler(async (req, res) => {
         data: newUser
     });
 });
+*/
 
 /** ----------------------------------------------
 * @desc    Login User
@@ -117,43 +159,32 @@ const registerUserCtrl = asyncHandler(async (req, res) => {
 ----------------------------------------------- */
 const loginUserCtrl = asyncHandler(async (req, res) => {
 
+    const { email, password } = req.body;
     // 1. Validation:
     // Check if user exists
-    const existingUser = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email });
 
-    if (!existingUser) {
-        return res.status(401).json({
-            success: false,
-            message: 'invalid email or password!'
-        });
+    if (!user || !(await user.comparePassword(password))) {
+        res.status(401);
+        throw new Error('Invalid email or password');
     };
 
-    // 2. Check if password is correct
-    const isPasswordMatch = await bcrypt.compare(req.body.password, existingUser.password);
-
-    if (!isPasswordMatch) {
-        return res.status(401).json({
-            success: false,
-            message: 'invalid email or password!'
-        });
-    };
-
-    // 3. Generate token
-    const token = generateToken(
-        {
-            sub: existingUser._id,
-            // username: existingUser.username,
-            // email: existingUser.email,
-            // isAdmin: existingUser.isAdmin,
-            // isAccountVerified: existingUser.isAccountVerified
-        }
-    );
+    // 2. Generate token
+    const token = generateToken({ sub: user._id });
 
     // 4. Send response to client
     res.json({
         success: true,
         message: 'Logged in successfully',
-        user: existingUser,
+        user: {
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            profilePhoto: user.profilePhoto,
+            isAdmin: user.isAdmin,
+            isAccountVerified: user.isAccountVerified,
+          },
+      
         token
     });
 

@@ -15,10 +15,10 @@ const userSchemas = {
         email: Joi.string().trim().min(5).max(100).required().email(),
         password: Joi.string().trim().min(8).required(),
         // password: passwordComplexity().required(),
-        profilePhoto: Joi.object({
-            url: Joi.string(),
-            publicId: Joi.string(),
-        })
+        // profilePhoto: Joi.object({
+        //     url: Joi.string(),
+        //     publicId: Joi.string(),
+        // })
     }),
     loginUser: Joi.object({
         email: Joi.string().trim().min(5).max(100).required().email(),
@@ -59,12 +59,12 @@ function validateUser(data, type) {
  */
 const registerUserValidator = (req, res, next) => {
 
-    let imagePath;
+    // let imagePath;
 
-    if (req.file) {
-        imagePath = path.join(__dirname, `../../images/${req.file.filename}`);
-        console.log("imagePath: ", imagePath);
-    }
+    // if (req.file) {
+    //     imagePath = path.join(__dirname, `../../images/${req.file.filename}`);
+    //     console.log("imagePath: ", imagePath);
+    // }
 
     console.log("Request Body:", req.body);
 
@@ -73,10 +73,10 @@ const registerUserValidator = (req, res, next) => {
         next();
     } catch (error) {
 
-        if (imagePath) {
+        // if (imagePath) {
             // Remove the image if validation fails
-            fs.unlinkSync(imagePath);
-        }
+        //     fs.unlinkSync(imagePath);
+        // }
         res.status(400).json({
             success: false,
             message: error.message,
