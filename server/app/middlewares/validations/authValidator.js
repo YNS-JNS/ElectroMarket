@@ -1,10 +1,21 @@
 // server\app\middlewares\auth.middlewares.js:
 import Joi from 'joi';
+import passwordComplexity from 'joi-password-complexity';
 // import path from 'path';
 // import fs from 'fs';
 // import { fileURLToPath } from 'url';
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
+
+const complexityOptions = {
+    min: 8,
+    max: 30,
+    lowerCase: 1,
+    upperCase: 1,
+    numeric: 1,
+    symbol: 1,
+    requirementCount: 4,
+  };
 
 /**
  * User validation schemas:
@@ -13,8 +24,10 @@ const userSchemas = {
     registerUser: Joi.object({
         username: Joi.string().trim().min(2).max(100).required(),
         email: Joi.string().trim().min(5).max(100).required().email(),
-        password: Joi.string().trim().min(8).required(),
-    }),
+        password: passwordComplexity(complexityOptions).required(),
+        confirmPassword: Joi.ref('password'),
+        // confirmPassword: Joi.any().valid(Joi.ref('password')).required().label('Confirm password'),
+    }).with('password', 'confirmPassword'),
     loginUser: Joi.object({
         email: Joi.string().trim().min(5).max(100).required().email(),
         password: Joi.string().trim().min(8).required(),
@@ -49,7 +62,7 @@ const registerUserValidator = (req, res, next) => {
     //     console.log("imagePath: ", imagePath);
     // }
 
-    // console.log("Request Body:", req.body);
+    console.log("Request Body in registerUserValidator:", req.body);
 
     try {
         validateUser(req.body, 'registerUser');
