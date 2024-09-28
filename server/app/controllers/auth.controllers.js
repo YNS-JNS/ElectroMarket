@@ -23,8 +23,15 @@ dotenv.config();
 ----------------------------------------------- */
 const registerUserCtrl = asyncHandler(async (req, res) => {
 
-    const { username, email, password } = req.body;
+    const { username, email, password, confirmPassword } = req.body;
     // 1. Validation:
+
+    // Check password and confirm password match
+    if(password !== confirmPassword) {
+        res.status(400);
+        throw new Error('Passwords do not match');
+    }
+
     // Check if the user already exists
     const existingUser = await User.findOne({ email });
 
