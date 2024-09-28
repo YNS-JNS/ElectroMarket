@@ -1,10 +1,10 @@
 // server\app\middlewares\auth.middlewares.js:
 import Joi from 'joi';
-import path from 'path';
-import fs from 'fs';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// import path from 'path';
+// import fs from 'fs';
+// import { fileURLToPath } from 'url';
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
 /**
  * User validation schemas:
@@ -14,29 +14,11 @@ const userSchemas = {
         username: Joi.string().trim().min(2).max(100).required(),
         email: Joi.string().trim().min(5).max(100).required().email(),
         password: Joi.string().trim().min(8).required(),
-        // password: passwordComplexity().required(),
-        // profilePhoto: Joi.object({
-        //     url: Joi.string(),
-        //     publicId: Joi.string(),
-        // })
     }),
     loginUser: Joi.object({
         email: Joi.string().trim().min(5).max(100).required().email(),
         password: Joi.string().trim().min(8).required(),
-    }),
-    updateUser: Joi.object({
-        username: Joi.string().trim().min(2).max(100),
-        email: Joi.string().trim().min(5).max(100).email(),
-        password: Joi.string().trim().min(8),
-        // password: passwordComplexity(),
-    }).min(1)
-    ,
-    // updateUserProfile: Joi.object({
-    //     username: Joi.string().trim().min(2).max(100),
-    //     email: Joi.string().trim().min(5).max(100).email(),
-    //     // password: passwordComplexity(),
-    // }).min(1)
-    // ,
+    })
 };
 
 /**
@@ -49,6 +31,7 @@ function validateUser(data, type) {
     const { error } = userSchemas[type].validate(data, { abortEarly: false });
     if (error) {
         throw new Error(error.details[0].message);
+        // throw new Error(error.details.map(detail => detail.message).join(', '));
     }
 };
 
@@ -66,7 +49,7 @@ const registerUserValidator = (req, res, next) => {
     //     console.log("imagePath: ", imagePath);
     // }
 
-    console.log("Request Body:", req.body);
+    // console.log("Request Body:", req.body);
 
     try {
         validateUser(req.body, 'registerUser');
