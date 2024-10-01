@@ -1,7 +1,7 @@
 // config/axios.js
 import axios from 'axios';
 
-const instance = axios.create({
+const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     headers: {
         'Content-Type': 'application/json'
@@ -9,7 +9,8 @@ const instance = axios.create({
 });
 
 // Add a request interceptor to include the authentication token
-instance.interceptors.request.use(
+// Intercepteur pour ajouter le token à chaque requête
+axiosInstance.interceptors.request.use(
     config => {
         // Get the authentication token from wherever it is stored (e.g., local storage, Redux state, etc.)
         const token = localStorage.getItem('authToken'); // Example: Retrieve token from local storage
@@ -26,7 +27,7 @@ instance.interceptors.request.use(
     }
 );
 
-export default instance;
+export default axiosInstance;
 
 /* import axios from 'axios';
 
