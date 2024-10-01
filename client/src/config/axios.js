@@ -1,11 +1,7 @@
 // config/axios.js
 import axios from 'axios';
 
-<<<<<<< HEAD
 const axiosInstance = axios.create({
-=======
-const instance = axios.create({
->>>>>>> bc01a439ca89003e2e1c7952ccf7fe673d401e67
     baseURL: import.meta.env.VITE_API_URL,
     headers: {
         'Content-Type': 'application/json'
