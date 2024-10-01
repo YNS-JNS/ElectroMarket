@@ -5,15 +5,24 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../features/auth/authAction';
 import Spinner from '../../helper/Spinner';
+import { clearError } from '../../features/auth/authSlice';
 
 const LoginForm = () => {
 
-    const { token, isFetching, isSuccess, isError, errorMessage } = useSelector((state) => state.auth);
     const [email, setEmail] = useState('yns@gmail.com');
     const [password, setPassword] = useState('');
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { token, isLoading, error } = useSelector((state) => state.auth);
+
+    // if token is present, redirect to dashboard
+    // redirect authenticated user to profile screen or dashboard
+    useEffect(() => {
+        if (token) {
+            navigate('/dashboard', { replace: true });
+        }
+        return () => dispatch(clearError());
+    }, [token, navigate, dispatch]);
 
     // submit handler
     const handleSubmitLogin = (e) => {
@@ -21,24 +30,9 @@ const LoginForm = () => {
         dispatch(loginUser({ email, password }));
     };
 
-    // redirect authenticated user to profile screen or dashboard
-    useEffect(() => {
-        if (isSuccess) {
-            navigate('/dashboard', { replace: true });
-        }
-    }, [isSuccess, navigate]);
-
-    // if token is present, redirect to dashboard
-    useEffect(() => {
-        if (token) {
-            navigate('/dashboard', { replace: true });
-        }
-    }, [token, navigate]);
-
-    // console.log("isFetching", isFetching);
-    // console.log("isSuccess", isSuccess);
-    // console.log("isError", isError);
-    // console.log("errorMessage", errorMessage);
+    // console.log("token", token);
+    // console.log("isLoading", isLoading);
+    // console.log("error", error);
 
     return (
         <>
@@ -125,7 +119,7 @@ const LoginForm = () => {
                     {/* login button */}
                     <div>
                         {
-                            isFetching ? (
+                            isLoading ? (
 
                                 <Spinner />
                             ) : (
@@ -152,7 +146,7 @@ const LoginForm = () => {
                         </p>
                     </div>
                 </div>
-                {isError && <p className="text-red-500 text-sm">{errorMessage}</p>}
+                {error && <p className="error text-red-500 text-sm">{error}</p>}
             </form>
         </>
     )
