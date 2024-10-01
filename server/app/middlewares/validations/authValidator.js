@@ -43,8 +43,8 @@ const userSchemas = {
 function validateUser(data, type) {
     const { error } = userSchemas[type].validate(data, { abortEarly: false });
     if (error) {
-        throw new Error(error.details[0].message);
-        // throw new Error(error.details.map(detail => detail.message).join(', '));
+        // throw new Error(error.details[0].message);
+        throw new Error(error.details.map(detail => detail.message).join(', '));
     }
 };
 
