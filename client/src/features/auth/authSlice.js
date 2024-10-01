@@ -6,13 +6,10 @@ import { loginUser, registerUser } from './authAction';
 const token = localStorage.getItem('authToken') ? localStorage.getItem('authToken') : null;
 
 const initialState = {
-
     user: null,
     token,
-    isFetching: false,
-    isSuccess: false,
-    isError: false,
-    errorMessage: "idle",
+    isLoading: false,
+    error: null,
 };
 
 const authSlice = createSlice(
@@ -21,14 +18,13 @@ const authSlice = createSlice(
         name: 'auth',
         initialState,
         reducers: {
+            clearError: (state) => {
+                state.error = null;
+            },
             logout: (state) => {
-                localStorage.removeItem('authToken');
                 state.user = null;
                 state.token = null;
-                state.isFetching = false;
-                state.isSuccess = false;
-                state.isError = false;
-                state.errorMessage = "idle";
+                localStorage.removeItem('authToken');
             }
         },
 
@@ -37,44 +33,50 @@ const authSlice = createSlice(
             // login : ______________________
             builder.addCase(loginUser.pending, (state) => {
                 console.log("Pending!");
-                state.isFetching = true;
+                state.isLoading = true;
+                state.error = null;
             });
             builder.addCase(loginUser.fulfilled, (state, { payload }) => {
                 console.log("Fulfilled!");
+                state.isLoading = false;
                 state.user = payload.user;
                 state.token = payload.token;
-                state.isFetching = false;
-                state.isSuccess = true;
+                localStorage.setItem('authToken', payload.token);
             });
             builder.addCase(loginUser.rejected, (state, { payload }) => {
                 console.log("Rejected!");
-                state.isFetching = false;
-                state.isError = true;
-                state.errorMessage = payload.message;
+                state.isLoading = false;
+                state.error = payload.message;
             });
-
             // register: ______________________
             builder.addCase(registerUser.pending, (state) => {
                 console.log("Pending!");
-                state.isFetching = true;
+                state.isLoading = true;
+                state.error = null;
             });
             builder.addCase(registerUser.fulfilled, (state, { payload }) => {
                 console.log("Fulfilled!");
+                state.isLoading = false;
                 state.user = payload.user;
-                // state.token = payload.token;
-                state.isFetching = false;
-                state.isSuccess = true;
+                state.token = payload.token;
+                localStorage.setItem('authToken', payload.token);
             });
             builder.addCase(registerUser.rejected, (state, { payload }) => {
                 console.log("Rejected!");
-                state.isFetching = false;
-                state.isError = true;
-                state.errorMessage = payload?.message || "An error occurred.";
+                state.isLoading = false;
+                state.error = payload?.message;
             });
+            // logout: ______________________
+            // builder.addCase(logoutUser.fulfilled, (state) => {
+            //     console.log("Fulfilled!");
+            //     state.user = null;
+            //     state.token = null;
+            //     localStorage.removeItem('authToken');
+            // });
 
         }
     }
 );
 
-export const { logout } = authSlice.actions;
+export const { clearError, logout } = authSlice.actions;
 export default authSlice.reducer;
