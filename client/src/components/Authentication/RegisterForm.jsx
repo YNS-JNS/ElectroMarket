@@ -5,34 +5,46 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../features/auth/authAction';
 import Spinner from '../../helper/Spinner';
+import { clearError } from '../../features/auth/authSlice';
 
 const RegisterForm = () => {
 
-    const [userName, setUserName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [profileImage, setProfileImage] = useState(null);
-
-    const { user, token, isFetching, isSuccess, isError, errorMessage } = useSelector((state) => state.auth);
+    const [confirmPassword, setConfirmPassword] = useState('');
+    // const [profileImage, setProfileImage] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { token, isLoading, error } = useSelector((state) => state.auth);
 
-    const handleProfileImage = (e) => {
-        setProfileImage(e.target.files[0]);
-    }
+    useEffect(() => {
+        if (token) {
+          navigate('/dashboard', { replace: true });
+        }
+        return () => dispatch(clearError());
+      }, [token, navigate, dispatch]);
+
+      
+    // const handleProfileImage = (e) => {
+    //     setProfileImage(e.target.files[0]);
+    // }
 
     // submit handler
     const handleSubmitRegister = (e) => {
         e.preventDefault();
 
         // validation:
-        if (userName === '' || email === '' || password === '') {
+        if (username === '' || email === '' || password === '' || confirmPassword === '') {
             return alert("All fields are required");
         }
 
-        const formData = new FormData();
+        if (password !== confirmPassword) {
+            return alert("Passwords do not match");
+        }
 
-        formData.append("username", userName);
+        /* const formData = new FormData();
+        formData.append("username", username);
         formData.append("email", email);
         formData.append("password", password);
         if (profileImage) {
@@ -41,15 +53,14 @@ const RegisterForm = () => {
 
         for (let [key, value] of formData.entries()) {
             console.log(`${key}: ${value}`);
-        }
-
+        } */
         /* for (let pair of formData.entries()) {
            console.log(pair[0] + ': ' + pair[1]);
         } */
 
 
-        dispatch(registerUser(formData));
-        navigate('/login', { replace: true });
+        dispatch(registerUser({ username, email, password, confirmPassword }));
+        // navigate('/login', { replace: true });
 
     };
 
@@ -63,18 +74,18 @@ const RegisterForm = () => {
     // }, [isSuccess, navigate]);
 
     // if token is present, redirect to dashboard
-    useEffect(() => {
-        if (token) {
-            navigate('/dashboard', { replace: true });
-        }
-    }, [token, navigate]);
+    // useEffect(() => {
+    //     if (token) {
+    //         navigate('/dashboard', { replace: true });
+    //     }
+    // }, [token, navigate]);
 
-    console.log("user", user);
-    console.log("token", token);
-    console.log("isFetching", isFetching);
-    console.log("isSuccess", isSuccess);
-    console.log("isError", isError);
-    console.log("errorMessage", errorMessage);
+    // console.log("user", user);
+    // console.log("token", token);
+    // console.log("isFetching", isFetching);
+    // console.log("isSuccess", isSuccess);
+    // console.log("isError", isError);
+    // console.log("errorMessage", errorMessage);
 
     return (
         <>
@@ -111,8 +122,8 @@ const RegisterForm = () => {
                                 type="text"
                                 placeholder="Youness"
                                 name='username'
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
                     </div>
@@ -185,8 +196,42 @@ const RegisterForm = () => {
                         </div>
                     </div>
 
+                    {/* confirmPassword */}
+                    <div className="mt-4">
+                        <div className="capitalize text-xl mb-2">
+                            <label>confirm Password</label>
+                        </div>
+                        <div className="border-2 relative">
+                            <span className="absolute px-2 inset-y-0 left-0 flex items-center text-gray-400">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth="1.5"
+                                    stroke="currentColor"
+                                    className="w-5 h-5"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"
+                                    />
+                                </svg>
+                            </span>
+                            <input
+                                className="w-full placeholder:capitalize text-lg px-8 py-1.5 outline-blue-800"
+                                required
+                                type="password"
+                                placeholder="confirm password"
+                                name='confirmPassword'
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </div>
+                    </div>
+
                     {/* Image Profile */}
-                    <div className="my-4">
+                    {/* <div className="my-4">
                         <div className="relative">
                             <label
                                 title="Click to upload"
@@ -211,12 +256,12 @@ const RegisterForm = () => {
                             </label>
                             <input hidden type="file" name="image" id="profilePhoto" onChange={handleProfileImage} />
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Register button */}
                     <div>
                         {
-                            isFetching ? (
+                            isLoading ? (
 
                                 <Spinner />
                             ) : (
@@ -244,7 +289,7 @@ const RegisterForm = () => {
                         </p>
                     </div>
                 </div>
-                {isError && <p className="text-red-500 text-sm">{errorMessage}</p>}
+                {error && <p className="text-red-500 text-sm">{error}</p>}
             </form>
         </>
     )
