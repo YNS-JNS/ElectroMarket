@@ -1,3 +1,4 @@
+// client\src\app\store.js
 import { configureStore } from '@reduxjs/toolkit';
 // import productReducer from '../features/product/productSlice';
 // import brandReducer from '../features/brand/brandSlice';

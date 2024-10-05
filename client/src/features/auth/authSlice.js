@@ -39,7 +39,7 @@ const authSlice = createSlice(
             builder.addCase(loginUser.fulfilled, (state, { payload }) => {
                 console.log("Fulfilled!");
                 state.isLoading = false;
-                state.user = payload.user;
+                state.user = payload.data;
                 state.token = payload.token;
                 localStorage.setItem('authToken', payload.token);
             });
@@ -57,7 +57,7 @@ const authSlice = createSlice(
             builder.addCase(registerUser.fulfilled, (state, { payload }) => {
                 console.log("Fulfilled!");
                 state.isLoading = false;
-                state.user = payload.user;
+                state.user = payload.data;
                 state.token = payload.token;
                 localStorage.setItem('authToken', payload.token);
             });

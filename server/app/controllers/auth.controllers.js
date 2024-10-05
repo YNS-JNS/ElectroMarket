@@ -183,7 +183,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     res.json({
         success: true,
         message: 'Logged in successfully',
-        user: {
+        data: {
             _id: user._id,
             username: user.username,
             email: user.email,
