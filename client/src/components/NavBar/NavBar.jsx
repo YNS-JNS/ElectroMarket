@@ -1,10 +1,26 @@
+// NavBar.jsx
 import React, { Fragment } from 'react'
 import { RiArrowDownSLine, RiShoppingBasket2Fill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Popover, PopoverButton, Transition, PopoverPanel } from '@headlessui/react';
 import { MdOutlineShoppingCart } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../features/auth/authSlice';
 
 const NavBar = () => {
+
+    const { token } = useSelector((state) => state.auth);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    console.log("token: ", token);
+    // console.log("token: ", token);
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/login');
+    }
 
     const links = [
         {
@@ -25,7 +41,8 @@ const NavBar = () => {
         {
             name: "Logout",
             link: "/",
-            isNew: false
+            isNew: false,
+            onClick: handleLogout
         },
     ]
 
@@ -135,46 +152,56 @@ const NavBar = () => {
                         </Popover>
 
                         {/* Profile Menu Section */}
-                        <div className="dropdown dropdown-end" >
-                            <Popover className="relative">
-                                {({ open }) => (
-                                    <>
-                                        <PopoverButton className={`ml-2 bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400 ${open ? 'bg-gray-100' : ''}`}>
-                                            <div
-                                                className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
-                                                style={{ backgroundImage: 'url("https://img.freepik.com/photos-gratuite/close-up-portrait-of-bel-homme-mal-rase-barbe-epaisse-moustache-cheveux-noirs-regarde-serieusement_273609-16755.jpg?t=st=1718829593~exp=1718833193~hmac=b53c17176442ce0b018cf888e71ad4f25484feb9c06942f0caf78bb02d672b66&w=740")' }}
-                                            >
-                                                <span className="sr-only">Marc Backes</span>
-                                            </div>
-                                        </PopoverButton>
-                                        <Transition
-                                            as={Fragment}
-                                            enter="transition ease-out duration-200"
-                                            enterFrom="opacity-0 translate-y-1"
-                                            enterTo="opacity-100 translate-y-0"
-                                            leave="transition ease-in duration-150"
-                                            leaveFrom="opacity-100 translate-y-0"
-                                            leaveTo="opacity-0 translate-y-1"
-                                        >
-                                            <PopoverPanel>
-                                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                                    {
-                                                        links && links.map((link, index) => (
-                                                            <li key={index}>
-                                                                <Link to={link.link} className='hover:no-underline text-gray-700' >
-                                                                    {link.name}
-                                                                    {link.isNew && <span className="badge">New</span>}
-                                                                </Link>
-                                                            </li>
-                                                        ))
-                                                    }
-                                                </ul>
-                                            </PopoverPanel>
-                                        </Transition>
-                                    </>
-                                )}
-                            </Popover>
-                        </div>
+                        {
+                            token ? (
+                                <div className="dropdown dropdown-end" >
+                                    <Popover className="relative">
+                                        {({ open }) => (
+                                            <>
+                                                <PopoverButton className={`ml-2 bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-neutral-400 ${open ? 'bg-gray-100' : ''}`}>
+                                                    <div
+                                                        className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
+                                                        style={{ backgroundImage: 'url("https://img.freepik.com/photos-gratuite/close-up-portrait-of-bel-homme-mal-rase-barbe-epaisse-moustache-cheveux-noirs-regarde-serieusement_273609-16755.jpg?t=st=1718829593~exp=1718833193~hmac=b53c17176442ce0b018cf888e71ad4f25484feb9c06942f0caf78bb02d672b66&w=740")' }}
+                                                    >
+                                                        <span className="sr-only">Marc Backes</span>
+                                                    </div>
+                                                </PopoverButton>
+                                                <Transition
+                                                    as={Fragment}
+                                                    enter="transition ease-out duration-200"
+                                                    enterFrom="opacity-0 translate-y-1"
+                                                    enterTo="opacity-100 translate-y-0"
+                                                    leave="transition ease-in duration-150"
+                                                    leaveFrom="opacity-100 translate-y-0"
+                                                    leaveTo="opacity-0 translate-y-1"
+                                                >
+                                                    <PopoverPanel>
+                                                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                                            {
+                                                                links && links.map((link, index) => (
+                                                                    <li key={index}>
+                                                                        <Link to={link.link} onClick={link.onClick} className='hover:no-underline text-gray-700' >
+                                                                            {link.name}
+                                                                            {link.isNew && <span className="badge">New</span>}
+                                                                        </Link>
+                                                                    </li>
+                                                                ))
+                                                            }
+                                                        </ul>
+                                                    </PopoverPanel>
+                                                </Transition>
+                                            </>
+                                        )}
+                                    </Popover>
+                                </div>
+                            ) :
+                                (
+                                    <Link to="/login" className="btn btn-sm btn-primary">
+                                        Login
+                                    </Link>
+                                )
+                        }
+
                     </div>
                 </div>
 

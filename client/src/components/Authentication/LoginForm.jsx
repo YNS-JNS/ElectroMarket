@@ -20,6 +20,7 @@ const LoginForm = () => {
     useEffect(() => {
         if (token) {
             navigate('/dashboard', { replace: true });
+            // alert("You are logged in");
         }
         return () => dispatch(clearError());
     }, [token, navigate, dispatch]);
