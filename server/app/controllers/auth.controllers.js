@@ -27,7 +27,7 @@ const registerUserCtrl = asyncHandler(async (req, res) => {
     // 1. Validation:
 
     // Check password and confirm password match
-    if(password !== confirmPassword) {
+    if (password !== confirmPassword) {
         res.status(400);
         throw new Error('Passwords do not match');
     }
@@ -52,7 +52,21 @@ const registerUserCtrl = asyncHandler(async (req, res) => {
     // 3. Generate token
     const token = generateToken({ sub: newUser._id });
 
-    // 4. Send response to client
+    // 4. Set HttpOnly cookie
+    const options = {
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        sameSite: 'strict', // Prevent CSRF attacks
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
+    };
+
+    if (process.env.NODE_ENV === 'production') {
+        options.secure = true;
+    }
+
+    res.cookie('token', token, options);
+
+    // 5. Send response to client
     res.status(201).json({
         success: true,
         message: 'User created successfully',
@@ -63,8 +77,7 @@ const registerUserCtrl = asyncHandler(async (req, res) => {
             profilePhoto: newUser.profilePhoto,
             isAdmin: newUser.isAdmin,
             isAccountVerified: newUser.isAccountVerified,
-        },
-        token
+        }
     });
 });
 
@@ -179,6 +192,21 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
     // 2. Generate token
     const token = generateToken({ sub: user._id });
 
+    // 3. Set HttpOnly cookie
+    // 4. Set HttpOnly cookie
+    const options = {
+        httpOnly: true,
+        // secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        sameSite: 'strict', // Prevent CSRF attacks
+        maxAge: 24 * 60 * 60 * 1000
+    };
+
+    if (process.env.NODE_ENV === 'production') {
+        options.secure = true;
+    }
+
+    res.cookie('token', token, options);
+
     // 4. Send response to client
     res.json({
         success: true,
@@ -190,12 +218,27 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
             profilePhoto: user.profilePhoto,
             isAdmin: user.isAdmin,
             isAccountVerified: user.isAccountVerified,
-          },
-      
-        token
+        }
     });
 
 });
 
+/** ----------------------------------------------
+* @desc    Logout User
+* @route   /api/v1/auth/logout
+* @method  POST
+* @access  public
+----------------------------------------------- */
+const logoutUserCtrl = asyncHandler(async (req, res) => {
+    res.cookie('token', '', {
+        httpOnly: true,
+        expires: new Date(0),
+    })
 
-export { registerUserCtrl, loginUserCtrl };
+    res.json({
+        success: true,
+        message: 'Successful disconnection',
+    });
+})
+
+export { registerUserCtrl, loginUserCtrl, logoutUserCtrl };
