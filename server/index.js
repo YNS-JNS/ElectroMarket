@@ -1,5 +1,6 @@
 // Importing modules:
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -27,6 +28,7 @@ const PORT = process.env.PORT || 8080;
 
 // Middlewares:
 app.use(express.json()); // Pour parser les données JSON
+app.use(cookieParser()); // Pour parser les cookies
 app.use(express.urlencoded({ extended: true })); // Pour parser les données URL-encodées
 app.use(cors(corsOptions));
 app.use(logger('dev'));
