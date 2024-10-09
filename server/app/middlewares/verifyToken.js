@@ -11,7 +11,7 @@ const verifyToken = asyncHandler(async (req, res, next) => {
     // 1. Extract the token from the request cookies:
     const token = req.cookies.token;
 
-    console.log("token: ", token);
+    // console.log("token: ", token);
 
     // Check if token exists
     if (!token) {

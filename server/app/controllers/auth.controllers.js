@@ -1,19 +1,17 @@
 // server\app\controllers\auth.controllers.js:
 import asyncHandler from 'express-async-handler';
 import User from '../models/user.model.js';
-// import { cloudinaryUploadImage } from '../utils/cloudinary.js';
-// import path from 'path';
-// import fs from 'fs';
-// import bcrypt from 'bcryptjs';
-// import { fileURLToPath } from 'url';
-// import jwt from 'jsonwebtoken';
+import { cloudinaryUploadImage, cloudinaryRemoveImage } from '../utils/cloudinary.js';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import generateToken from '../utils/generateToken.js';
 
 dotenv.config();
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /** ----------------------------------------------
 * @desc    Register New User
@@ -183,110 +181,66 @@ const getUserProfileCtrl = asyncHandler(async (req, res) => {
 ----------------------------------------------- */
 const updateUserProfileCtrl = asyncHandler(async (req, res) => {
 
-    // 1. Validation:
-    // Check if user already exists
-    const userAuthenticated = await User.findById(req.user._id);
+    // 1. Verify if the user is authenticated
+    if (!req.user) {
+        res.status(401);
+        throw new Error('User not authenticated!');
+    }
 
-    console.log("userAuthenticated: ", userAuthenticated);
-
-    // Get the path to the image
-    // Get the file path (Multer stores the file path in req.file.path)
-    // let imagePath;
-    // if (req.file) {
-    //     imagePath = path.join(__dirname, `../images/${req.file.filename}`);
-    //     console.log("imagePath: ", imagePath);
-    // }
-
-    // check if user exists
-    if (!userAuthenticated) {
-        // if (imagePath) {
-        //     // If the user already exists, remove the image from local server
-        //     fs.unlinkSync(imagePath);
-        // }
+    // 2.Check if the user exists
+    const user = await User.findById(req.user._id);
+    if (!user) {
         res.status(404);
         throw new Error('User not found!');
-
     }
 
-    userAuthenticated.username = req.body.username || userAuthenticated.username;
-    userAuthenticated.email = req.body.email || userAuthenticated.email;
+    // 3. Update user fields
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
 
     if (req.body.password) {
-        // const salt = await bcrypt.genSalt(10);
-        // const hashedPassword = await bcrypt.hash(req.body.password, salt);
-        userAuthenticated.password = req.body.password;
+        user.password = req.body.password;
     }
 
-    const userUpdated = await userAuthenticated.save();
+    // 4. Handle image processing
+    if (req.file) {
+        const imagePath = path.join(__dirname, `../images/${req.file.filename}`);
 
-    console.log("userUpdated: ", userUpdated);
+        try {
+            // Upload new image to Cloudinary
+            const result = await cloudinaryUploadImage(imagePath); // will return : { secure_url, public_id }
+
+            // if successful, update user's profilePhoto
+            if (result && result.secure_url) {
+                // Remove old image from Cloudinary if it exists
+                await cloudinaryRemoveImage(user.profilePhoto?.publicId);
+            }
+
+            user.profilePhoto = {
+                url: result.secure_url,
+                publicId: result.public_id
+            }
+
+            // Remove temporary file from server
+            fs.unlinkSync(imagePath);
+
+        } catch (error) {
+            // If Cloudinary upload fails, remove the temporary file
+            fs.unlinkSync(imagePath);
+            res.status(400);
+            throw new Error(`Image upload failed: ${error.message}`);
+        }
+    }
+
+    // 5. Save the updated user
+    await user.save();
 
     res.json({
         success: true,
         message: 'User profile updated successfully',
-        data: userUpdated
+        data: user
     });
 
-    // Check if the image file was uploaded
-    // if (!req.file) {
-    //     return res.status(400).json({
-    //         success: false,
-    //         message: 'Please upload an image profile!',
-    //         error: 'No image provided'
-    //     });
-    // }
-
-
-
-    // 3. Upload to cloudinary
-    // let result;
-    // try {
-    //     result = await cloudinaryUploadImage(imagePath); // will return : { secure_url, public_id }
-    //     console.log("result: ", result);
-    // } catch (error) {
-    //     // If Cloudinary upload fails, remove the image from the server
-    //     if (imagePath) {
-    //         fs.unlinkSync(imagePath);
-    //     }
-
-    //     return res.status(500).json({
-    //         success: false,
-    //         message: 'Image upload failed. Please try again.',
-    //         error: error.message,
-    //     });
-    // }
-
-    // 4. Hash the password
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-    // 5. Create and save the new user
-    // const newUser = new User({
-    //     username: req.body.username,
-    //     email: req.body.email,
-    //     password: hashedPassword,
-    //     profilePhoto: {
-    //         url: result.secure_url,
-    //         publicId: result.public_id
-    //     },
-    //     isAdmin: req.body.isAdmin,
-    //     isAccountVerified: req.body.isAccountVerified
-    // });
-
-    // console.log("New User: ", newUser);
-    // await newUser.save();
-
-    // 6. Remove the image from the server
-    // if (imagePath) {
-    //     fs.unlinkSync(imagePath);
-    // }
-
-    // 7. Send response to client
-    // res.status(201).json({
-    //     success: true,
-    //     message: 'User created successfully',
-    //     data: newUser
-    // });
 });
 
 
