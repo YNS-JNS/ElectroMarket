@@ -15,7 +15,7 @@ const complexityOptions = {
     numeric: 1,
     symbol: 1,
     requirementCount: 4,
-  };
+};
 
 /**
  * User validation schemas:
@@ -31,13 +31,18 @@ const userSchemas = {
     loginUser: Joi.object({
         email: Joi.string().trim().min(5).max(100).required().email(),
         password: Joi.string().trim().min(8).required(),
-    })
+    }),
+    updateUserProfile: Joi.object({
+        username: Joi.string().trim().min(2).max(100),
+        email: Joi.string().trim().min(5).max(100).email(),
+        password: passwordComplexity(complexityOptions),
+    }),
 };
 
 /**
  * Validate user data based on schema type
  * @param {Object} data - The user data to validate
- * @param {String} type - The schema type ('register' or 'login')
+ * @param {String} type - The schema type ('register', 'login' or 'updateUserProfile')
  * @returns {Object} - The validated user data or an error
  */
 function validateUser(data, type) {
@@ -70,7 +75,7 @@ const registerUserValidator = (req, res, next) => {
     } catch (error) {
 
         // if (imagePath) {
-            // Remove the image if validation fails
+        // Remove the image if validation fails
         //     fs.unlinkSync(imagePath);
         // }
         res.status(400).json({
@@ -98,4 +103,19 @@ const loginUserValidator = (req, res, next) => {
     }
 };
 
-export { registerUserValidator, loginUserValidator };
+/**
+ * Middleware for user profile update validation
+ */
+const updateUserProfileValidator = (req, res, next) => {
+    try {
+        validateUser(req.body, 'updateUserProfile');
+        next();
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message,
+        });
+    }
+};
+
+export { registerUserValidator, loginUserValidator, updateUserProfileValidator };
