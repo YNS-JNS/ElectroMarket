@@ -8,6 +8,7 @@ dotenv.config();
 // Importing database connection:
 import connectToDB from "./app/configs/db.config.js";
 // Importing middlewares:
+import corsOptions from './app/configs/corsOptions.js';
 import { notFound, globalErrorHandler } from "./app/middlewares/errorHandler.js";
 // Importing routes:
 import authRoutes from './app/routes/auth.routes.js';
@@ -23,11 +24,6 @@ const app = express();
 
 // Connect to MongoDB _____________________________________________________
 connectToDB();
-
-// ________________________________________________________________________
-const corsOptions = {
-    origin: '*',
-}
 
 // Middlewares: ___________________________________________________________
 app.use(express.json()); // Permet de parser les requêtes au format JSON
