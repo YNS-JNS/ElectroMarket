@@ -17,24 +17,25 @@ import brandRoutes from './app/routes/brand.routes.js';
 import userRoutes from './app/routes/user.routes.js';
 
 // ________________________________________________________________________
+
+const PORT = process.env.PORT || 8080;
 const app = express();
+
+// Connect to MongoDB _____________________________________________________
+connectToDB();
+
 // ________________________________________________________________________
 const corsOptions = {
     origin: '*',
 }
-// ________________________________________________________________________
-const PORT = process.env.PORT || 8080;
-// ________________________________________________________________________
 
-// Middlewares:
-app.use(express.json()); // Pour parser les données JSON
-app.use(cookieParser()); // Pour parser les cookies
-app.use(express.urlencoded({ extended: true })); // Pour parser les données URL-encodées
-app.use(cors(corsOptions));
-app.use(logger('dev'));
+// Middlewares: ___________________________________________________________
+app.use(express.json()); // Permet de parser les requêtes au format JSON
+app.use(express.urlencoded({ extended: true })); // Permet de parser les requêtes URL-encodées
+app.use(cors(corsOptions)); // Autorise les requêtes provenant de différentes origines (CORS)
+app.use(cookieParser()); // Permet de parser les cookies dans les requêtes HTTP
+app.use(logger('dev')); // Active le logging des requêtes HTTP pour le développement
 
-// Connect to MongoDB _____________________________________________________
-connectToDB();
 
 // Routes section: ________________________________________________________
 app.use('/api/v1/auth', authRoutes);

@@ -4,22 +4,22 @@ import { RiArrowDownSLine, RiShoppingBasket2Fill } from 'react-icons/ri';
 import { Link, useNavigate } from 'react-router-dom';
 import { Popover, PopoverButton, Transition, PopoverPanel } from '@headlessui/react';
 import { MdOutlineShoppingCart } from 'react-icons/md';
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../features/auth/authSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { logout } from '../../features/auth/authSlice';
 
 const NavBar = () => {
 
-    const { token } = useSelector((state) => state.auth);
+    // const { token } = useSelector((state) => state.auth);
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
 
-    console.log("token: ", token);
+    // console.log("token: ", token);
     // console.log("token: ", token);
 
     const handleLogout = () => {
-        dispatch(logout());
-        navigate('/login');
+        // dispatch(logout());
+        // navigate('/login');
     }
 
     const links = [
@@ -152,8 +152,8 @@ const NavBar = () => {
                         </Popover>
 
                         {/* Profile Menu Section */}
-                        {
-                            token ? (
+                        {/* { */}
+                            {/* // token ? ( */}
                                 <div className="dropdown dropdown-end" >
                                     <Popover className="relative">
                                         {({ open }) => (
@@ -194,13 +194,13 @@ const NavBar = () => {
                                         )}
                                     </Popover>
                                 </div>
-                            ) :
-                                (
-                                    <Link to="/login" className="btn btn-sm btn-primary">
-                                        Login
-                                    </Link>
-                                )
-                        }
+                        {/* //     ) :
+                        //         (
+                        //             <Link to="/login" className="btn btn-sm btn-primary">
+                        //                 Login
+                        //             </Link>
+                        //         )
+                        // } */}
 
                     </div>
                 </div>

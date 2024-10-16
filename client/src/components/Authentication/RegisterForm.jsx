@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react'
 import CustomButton from '../Ui/CustomButton'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../../features/auth/authAction';
-import Spinner from '../../helper/Spinner';
-import { clearError } from '../../features/auth/authSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { registerUser } from '../../features/auth/authAction';
+// import Spinner from '../../helper/Spinner';
+// import { clearError } from '../../features/auth/authSlice';
 
 const RegisterForm = () => {
 
@@ -14,16 +14,16 @@ const RegisterForm = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     // const [profileImage, setProfileImage] = useState(null);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { token, isLoading, error } = useSelector((state) => state.auth);
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    // const { token, isLoading, error } = useSelector((state) => state.auth);
 
-    useEffect(() => {
-        if (token) {
-          navigate('/dashboard', { replace: true });
-        }
-        return () => dispatch(clearError());
-      }, [token, navigate, dispatch]);
+    // useEffect(() => {
+    //     if (token) {
+    //       navigate('/dashboard', { replace: true });
+    //     }
+    //     // return () => dispatch(clearError());
+    //   }, [token, navigate, dispatch]);
 
       
     // const handleProfileImage = (e) => {
@@ -59,7 +59,7 @@ const RegisterForm = () => {
         } */
 
 
-        dispatch(registerUser({ username, email, password, confirmPassword }));
+        // dispatch(registerUser({ username, email, password, confirmPassword }));
         // navigate('/login', { replace: true });
 
     };
@@ -260,19 +260,19 @@ const RegisterForm = () => {
 
                     {/* Register button */}
                     <div>
-                        {
-                            isLoading ? (
-
-                                <Spinner />
-                            ) : (
+                        {/* { */}
+                            {/* // isLoading ? ( */}
+{/* 
+                            //     <Spinner />
+                            // ) : ( */}
                                 <CustomButton
                                     onClick={handleSubmitRegister}
                                     label="Register"
                                     variant='success'
                                     width="100%"
                                 />
-                            )
-                        }
+                            {/* // ) */}
+                        {/* // } */}
 
                     </div>
 
@@ -289,7 +289,7 @@ const RegisterForm = () => {
                         </p>
                     </div>
                 </div>
-                {error && <p className="text-red-500 text-sm">{error}</p>}
+                {/* {error && <p className="text-red-500 text-sm">{error}</p>} */}
             </form>
         </>
     )
