@@ -4,7 +4,7 @@ import { Menu, Popover, Transition, PopoverButton, PopoverPanel, MenuButton, Men
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { logout } from '../../../features/auth/authSlice'
+// import { logout } from '../../../features/auth/authSlice'
 
 const Header = () => {
 
@@ -12,8 +12,8 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout());
-    navigate('/login', { replace: true });
+    // dispatch(logout());
+    // navigate('/login', { replace: true });
   };
 
   const links = [
