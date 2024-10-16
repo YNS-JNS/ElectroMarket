@@ -2,33 +2,40 @@
 import React, { useEffect, useState } from 'react'
 import CustomButton from '../Ui/CustomButton'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../features/auth/authAction';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { loginUser } from '../../features/auth/authAction';
 import Spinner from '../../helper/Spinner';
-import { clearError } from '../../features/auth/authSlice';
+import { useLoginUserMutation } from '../../features/auth/authSlice';
+// import { clearError } from '../../features/auth/authSlice';
 
 const LoginForm = () => {
 
     const [email, setEmail] = useState('yns@gmail.com');
     const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
+    const [ loginUser, { data: user, isLoading, isError, error, isSuccess }] = useLoginUserMutation();
+
+    // console.log("user", user);
+
+    // const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { token, isLoading, error } = useSelector((state) => state.auth);
+    // const { token, isLoading, error } = useSelector((state) => state.auth);
 
     // if token is present, redirect to dashboard
     // redirect authenticated user to profile screen or dashboard
     useEffect(() => {
-        if (token) {
+        if (isSuccess && !isError) {
+            console.log("user:", user);
+            localStorage.setItem('userInfo', JSON.stringify(user));
             navigate('/dashboard', { replace: true });
-            // alert("You are logged in");
+            alert("You are logged in");
         }
-        return () => dispatch(clearError());
-    }, [token, navigate, dispatch]);
+        // return () => dispatch(clearError());
+    }, [isSuccess, navigate, isError, user]);
 
     // submit handler
     const handleSubmitLogin = (e) => {
         e.preventDefault();
-        dispatch(loginUser({ email, password }));
+        loginUser({ email, password });
     };
 
     // console.log("token", token);
@@ -119,19 +126,14 @@ const LoginForm = () => {
 
                     {/* login button */}
                     <div>
-                        {
-                            isLoading ? (
-
-                                <Spinner />
-                            ) : (
+                      
                                 <CustomButton
                                     onClick={handleSubmitLogin}
                                     label="login"
                                     variant='success'
                                     width="100%"
                                 />
-                            )
-                        }
+                      
 
                     </div>
                     {/* register link */}
@@ -147,7 +149,7 @@ const LoginForm = () => {
                         </p>
                     </div>
                 </div>
-                {error && <p className="error text-red-500 text-sm">{error}</p>}
+                {/* {error && <p className="error text-red-500 text-sm">{error}</p>} */}
             </form>
         </>
     )
